@@ -1233,6 +1233,7 @@ async function signalerEvent(evId) {
 
 
 var SUPA_URL = "https://jdxtdqnyyxtoenyhaatq.supabase.co";
+var API_URL = "https://waout-api-production.up.railway.app";
 var SUPA_KEY = "sb_publishable_VbT8j26_JdKvBnp-mIoyZQ_zqBhiB93";
 var supa = null;
 try {
@@ -1591,12 +1592,37 @@ function updateDRB(id) {
 }
 
 // --- REGISTER ---
-function register(id) {
-  var ev=findEv(id); if(!ev) return;
-  if(ev.inscrits>=ev.places&&!registered[id]){toast("Cet evenement est complet !"); return;}
-  if(registered[id]){delete registered[id];ev.inscrits--;toast("Inscription annulee");}
-  else{registered[id]=true;ev.inscrits++;toast("Inscription confirmee !");}
-  renderEv(dispEv); updateStats();
+async function register(evId) {
+  if (!currentUser) {
+    toast("Connecte-toi pour t'inscrire !");
+    openAuth();
+    return;
+  }
+  if (registered[evId]) {
+    registered[evId] = false;
+    toast("Inscription annulée");
+    renderEv(dispEv);
+    return;
+  }
+  try {
+    var res = await fetch(API_URL + "/api/events/" + evId + "/inscrire", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        user_email: currentUser.email,
+        user_name: currentUser.user_metadata?.full_name || currentUser.email.split("@")[0]
+      })
+    });
+    if (res.ok) {
+      registered[evId] = true;
+      toast("&#9989; Inscription confirmée ! Email envoyé.");
+      renderEv(dispEv);
+    } else {
+      toast("Erreur lors de l'inscription");
+    }
+  } catch(e) {
+    toast("Erreur de connexion");
+  }
 }
 
 // --- PAYMENT ---
