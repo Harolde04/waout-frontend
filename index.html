@@ -774,6 +774,7 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
       <div class="pm-item" onclick="showOrgDash()"><div class="pm-ico">&#128202;</div><div class="pm-text"><div class="pm-title">Tableau de bord</div><div class="pm-sub">Stats et participants</div></div><span class="pm-arr">&#8250;</span></div>
       <div class="pm-item" onclick="openAdmin()"><div class="pm-ico">&#10010;</div><div class="pm-text"><div class="pm-title">Publier un evenement</div><div class="pm-sub">Ajouter un evenement</div></div><span class="pm-arr">&#8250;</span></div>
       <div class="pm-item" onclick="signOut()" style="border-top:1px solid #f5eaea;margin-top:4px"><div class="pm-ico" style="background:#fff0f0">&#128682;</div><div class="pm-text"><div class="pm-title" style="color:#c0392b">Se deconnecter</div><div class="pm-sub">Fermer la session</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="showPage('cgu')"><div class="pm-ico" style="background:#f0f0ff">&#128220;</div><div class="pm-text"><div class="pm-title">CGU</div><div class="pm-sub">Conditions d'utilisation</div></div><span class="pm-arr">&#8250;</span></div>
       <div class="pm-item" onclick="showPage('privacy')"><div class="pm-ico" style="background:#f0f0ff">&#128274;</div><div class="pm-text"><div class="pm-title">Confidentialite</div><div class="pm-sub">Politique RGPD et tes droits</div></div><span class="pm-arr">&#8250;</span></div>
       <div class="pm-item" onclick="deleteAccount()" style="border-top:1px solid #ffe0e0"><div class="pm-ico" style="background:#fff0f0">&#128465;</div><div class="pm-text"><div class="pm-title" style="color:#c0392b">Supprimer mon compte</div><div class="pm-sub">Efface toutes tes donnees (irreversible)</div></div><span class="pm-arr">&#8250;</span></div>
     </div>
@@ -852,6 +853,49 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
   <button onclick="showPage('profile')" style="width:100%;background:var(--bord);color:#fff;border:none;padding:14px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer">Retour au profil</button>
 </div>
 
+<div class="page" id="page-cgu" style="padding:20px;padding-bottom:90px">
+  <div style="background:var(--dark2);border-radius:14px;padding:20px;margin-bottom:16px">
+    <div style="font-size:18px;font-weight:900;color:#fff;margin-bottom:4px">&#128220; Conditions Generales d'Utilisation</div>
+    <div style="font-size:11px;color:#888">Derniere mise a jour : juillet 2026</div>
+  </div>
+  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
+    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">1. Objet</div>
+    <div style="font-size:13px;color:#555;line-height:1.7">WAOUT est une plateforme permettant de decouvrir, publier et s'inscrire a des evenements et sorties. En utilisant WAOUT, tu acceptes les presentes conditions.</div>
+  </div>
+  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
+    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">2. Inscription et compte</div>
+    <div style="font-size:13px;color:#555;line-height:1.7">Tu dois avoir au moins 16 ans pour creer un compte. Tu es responsable de la confidentialite de ton mot de passe et de toutes les actions effectuees depuis ton compte.</div>
+  </div>
+  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
+    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">3. Publication d'evenements</div>
+    <div style="font-size:13px;color:#555;line-height:1.7">En publiant un evenement, tu garantis que les informations sont exactes et que tu as le droit de l'organiser. WAOUT se reserve le droit de refuser, modifier ou supprimer tout contenu inapproprie, frauduleux ou illegal, sans preavis.</div>
+  </div>
+  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
+    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">4. Responsabilite</div>
+    <div style="font-size:13px;color:#555;line-height:1.7">WAOUT est un intermediaire de mise en relation. WAOUT n'est pas responsable du deroulement des evenements, des dommages, annulations ou litiges entre organisateurs et participants. Chaque utilisateur participe sous sa propre responsabilite.</div>
+  </div>
+  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
+    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">5. Paiements et remboursements</div>
+    <div style="font-size:13px;color:#555;line-height:1.7">Les paiements pour evenements payants sont traites de maniere securisee. Les conditions de remboursement sont definies par chaque organisateur. WAOUT preleve une commission sur chaque transaction, dont le montant sera precise lors de l'activation des paiements.</div>
+  </div>
+  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
+    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">6. Comportement et moderation</div>
+    <div style="font-size:13px;color:#555;line-height:1.7">Tout contenu illegal, discriminatoire, frauduleux ou nuisible entrainera la suppression du contenu et peut conduire a la suspension du compte. Les utilisateurs peuvent signaler tout contenu inapproprie.</div>
+  </div>
+  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
+    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">7. Propriete intellectuelle</div>
+    <div style="font-size:13px;color:#555;line-height:1.7">Le nom WAOUT, le logo et l'interface sont la propriete de WAOUT. Le contenu publie par les utilisateurs reste leur propriete, mais ils accordent a WAOUT le droit de l'afficher sur la plateforme.</div>
+  </div>
+  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
+    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">8. Modification des conditions</div>
+    <div style="font-size:13px;color:#555;line-height:1.7">WAOUT peut modifier ces conditions a tout moment. Les utilisateurs seront informes des changements significatifs.</div>
+  </div>
+  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:16px">
+    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">9. Contact</div>
+    <div style="font-size:13px;color:#555;line-height:1.7">Pour toute question : waout@gmail.com</div>
+  </div>
+  <button onclick="showPage('profile')" style="width:100%;background:var(--bord);color:#fff;border:none;padding:14px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer">Retour au profil</button>
+</div>
 </main>
 
 
