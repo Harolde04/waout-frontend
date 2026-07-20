@@ -59,7 +59,7 @@ header{background:#240004!important;padding:4px 16px;position:sticky;top:0;z-ind
 main{padding-bottom:90px;background:#f0f0f0;width:100%;overflow-x:hidden}
 .hero-banner{position:relative;overflow:hidden;height:280px;display:flex;align-items:flex-end}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero-fallback{position:absolute;inset:0;background:url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80") center/cover no-repeat}
+.hero-fallback{position:absolute;inset:0;background:url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80") center/cover no-repeat;z-index:-1}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(18,6,6,0.1),rgba(18,6,6,0.88))}
 .hero-content{position:relative;z-index:1;padding:20px 16px;width:100%}
 .hero-content h2{font-size:22px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,0.5)}
@@ -1180,6 +1180,11 @@ function stars(n) {
   var s=""; for(var i=1;i<=5;i++) s+=(i<=Math.floor(n))?"*":(i-0.5<=n)?"~":"-"; return s;
 }
 
+function deviseFor(pays) {
+  var d = {France:"€",Belgique:"€",Suisse:"CHF","Cote Ivoire":"FCFA",Senegal:"FCFA",Cameroun:"FCFA",Maroc:"MAD",Canada:"$"};
+  return d[pays] || "€";
+}
+
 function countdown(rawDate, heure) {
   if (!rawDate) return null;
   var p = (heure||"00h00").replace("h",":").split(":");
@@ -1376,9 +1381,9 @@ function openPay(evId) {
   payEvId=evId; selectedPM="card";
   var b='<div class="pay-ev-summary"><span class="pay-ev-ico">'+ev.ico+'</span><div class="pay-ev-info"><div class="pay-ev-title">'+ev.title+'</div><div class="pay-ev-meta">'+ev.ville+' - '+ev.date+'</div></div><span class="pay-ev-price">'+ev.prix+'</span></div>';
   b+='<div class="pay-methods">';
-  b+='<div class="pay-method selected" id="pm-card" onclick="selPM("card")"><span class="pm-ico">&#128179;</span><div><div class="pm-name">Carte bancaire</div><div class="pm-sub">Visa, Mastercard</div></div><div class="pm-radio checked" id="radio-card"></div></div>';
-  b+='<div class="pay-method" id="pm-paypal" onclick="selPM("paypal")"><span class="pm-ico">&#128016;</span><div><div class="pm-name">PayPal</div><div class="pm-sub">Paiement 1 clic</div></div><div class="pm-radio" id="radio-paypal"></div></div>';
-  b+='<div class="pay-method" id="pm-apple" onclick="selPM("apple")"><span class="pm-ico">&#128241;</span><div><div class="pm-name">Apple Pay</div><div class="pm-sub">Touch ID Face ID</div></div><div class="pm-radio" id="radio-apple"></div></div>';
+  b+='<div class="pay-method selected" id="pm-card" onclick="selPM(\'card\')"><span class="pm-ico">&#128179;</span><div><div class="pm-name">Carte bancaire</div><div class="pm-sub">Visa, Mastercard</div></div><div class="pm-radio checked" id="radio-card"></div></div>';
+  b+='<div class="pay-method" id="pm-paypal" onclick="selPM(\'paypal\')"><span class="pm-ico">&#128016;</span><div><div class="pm-name">PayPal</div><div class="pm-sub">Paiement 1 clic</div></div><div class="pm-radio" id="radio-paypal"></div></div>';
+  b+='<div class="pay-method" id="pm-apple" onclick="selPM(\'apple\')"><span class="pm-ico">&#128241;</span><div><div class="pm-name">Apple Pay</div><div class="pm-sub">Touch ID Face ID</div></div><div class="pm-radio" id="radio-apple"></div></div>';
   b+='</div>';
   b+='<div class="pay-card-form show" id="card-form">';
   b+='<input class="pay-input" type="text" placeholder="Numero de carte" maxlength="19">';
@@ -1859,8 +1864,8 @@ function renderAuthModal(tab) {
   var isLogin = tab === "login";
   var b = "";
   b += '<div class="auth-tabs">';
-  b += '<button class="auth-tab'+(isLogin?" active":"")+'" onclick="renderAuthModal(\"login\")">Se connecter</button>';
-  b += '<button class="auth-tab'+(!isLogin?" active":"")+'" onclick="renderAuthModal(\"signup\")">Creer un compte</button>';
+  b += '<button class="auth-tab'+(isLogin?" active":"")+'" onclick="renderAuthModal(\'login\')">Se connecter</button>';
+  b += '<button class="auth-tab'+(!isLogin?" active":"")+'" onclick="renderAuthModal(\'signup\')">Creer un compte</button>';
   b += "</div>";
   b += '<div class="auth-error" id="auth-err"></div>';
   b += '<div class="auth-success" id="auth-ok"></div>';
