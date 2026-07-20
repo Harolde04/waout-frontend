@@ -59,7 +59,7 @@ header{background:#240004!important;padding:4px 16px;position:sticky;top:0;z-ind
 main{padding-bottom:90px;background:#f0f0f0;width:100%;overflow-x:hidden}
 .hero-banner{position:relative;overflow:hidden;height:280px;display:flex;align-items:flex-end}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero-fallback{position:absolute;inset:0;background:url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80") center/cover no-repeat;z-index:-1} 
+.hero-fallback{position:absolute;inset:0;background:url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80") center/cover no-repeat}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(18,6,6,0.1),rgba(18,6,6,0.88))}
 .hero-content{position:relative;z-index:1;padding:20px 16px;width:100%}
 .hero-content h2{font-size:22px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,0.5)}
@@ -69,8 +69,8 @@ main{padding-bottom:90px;background:#f0f0f0;width:100%;overflow-x:hidden}
 .hstat-num{font-size:18px;font-weight:900;color:var(--gold)}
 .hstat-lbl{font-size:9px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px}
 .section-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 8px}
-.section-title{font-size:14px;font-weight:800;color:#1a0505}
-.section-link{font-size:12px;color:#666}
+.section-title{font-size:14px;font-weight:800;color:#fff}
+.section-link{font-size:12px;color:#aaa}
 #events-container{display:block;padding:0 16px 16px;width:100%}
 .event-card{background:#fff;border-radius:14px;overflow:hidden;cursor:pointer;display:flex;flex-direction:row;width:100%;min-height:130px;box-shadow:0 2px 12px rgba(0,0,0,0.3);margin-bottom:14px;transition:transform .25s}
 .event-card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(107,15,26,0.25)}
@@ -422,9 +422,26 @@ main{padding-bottom:90px;background:#f0f0f0;width:100%;overflow-x:hidden}
 header,header *,.app-header,.header-top{background:#240004!important}
 header img{background:none!important;mix-blend-mode:normal;border-radius:0;padding:0;margin:0}
 
-.ev-price-badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
-.ev-price-badge.free{background:linear-gradient(135deg,#0F6E56,#1a9a7a);color:#fff}
-.ev-price-badge.paid{background:linear-gradient(135deg,#C9A84C,#e8c56a);color:#1a0505}
+/* Lucide icon sizing in pm-ico */
+.pm-ico svg { width: 20px; height: 20px; }
+.pm-ico { display: flex; align-items: center; justify-content: center; }
+/* Menu filter icon alignment */
+[style*="display:flex"][style*="align-items:center"][style*="gap:5px"] svg {
+  width: 14px; height: 14px; color: #C9A84C;
+}
+/* Section nav buttons icon alignment */
+.sf-btn, .menu-filter { display: inline-flex; align-items: center; gap: 0; }
+/* Touch targets */
+.filter-btn, .menu-filter, .sf-btn, .pays-btn, .mf-btn { min-height: 36px; }
+/* Spacing improvements */
+.sorties-filters { gap: 10px; }
+.sf-row { gap: 8px; }
+
+
+/* Event card: no poster = body full width */
+.event-card .event-body { flex: 1; min-width: 0; }
+.event-card .event-left { width: 110px; min-width: 110px; }
+
 </style>
 </head>
 <body>
@@ -440,27 +457,27 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 
     <!-- Section EVENTS -->
     <div style="padding:16px">
-      <div style="font-size:15px;font-weight:900;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px">&#127881; <span>Ev&#233;nements</span></div>
+      <div style="font-size:15px;font-weight:900;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px"><span style="color:#C9A84C"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span> <span>Événements</span></div>
 
       <!-- Zone / Continent -->
       <div style="margin-bottom:14px">
-        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">&#127758; Zone</div>
+        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:flex;align-items:center;gap:5px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Zone</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px" id="menu-cont-row">
           <button class="menu-filter active" onclick="menuSetContinent('tous',this)">Monde entier</button>
-          <button class="menu-filter" onclick="menuSetContinent('europe',this)">&#127466;&#127482; Europe</button>
-          <button class="menu-filter" onclick="menuSetContinent('afrique',this)">&#127462;&#127467; Afrique</button>
-          <button class="menu-filter" onclick="menuSetContinent('amerique',this)">&#127462;&#127474; Am&#233;rique</button>
-          <button class="menu-filter" onclick="menuSetContinent('asie',this)">&#127462;&#127480; Asie</button>
+          <button class="menu-filter" onclick="menuSetContinent('europe',this)">Europe</button>
+          <button class="menu-filter" onclick="menuSetContinent('afrique',this)">Afrique</button>
+          <button class="menu-filter" onclick="menuSetContinent('amerique',this)">Amérique</button>
+          <button class="menu-filter" onclick="menuSetContinent('asie',this)">Asie</button>
         </div>
-        <!-- Filtre pays supprimé - utiliser la carte pour chercher par pays -->
+        <div id="menu-pays-row" style="display:none;flex-wrap:wrap;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid #3a1515"></div>
       </div>
 
       <!-- Prix events -->
       <div style="margin-bottom:14px">
-        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">&#128176; Prix</div>
+        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:flex;align-items:center;gap:5px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg> Prix</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px">
           <button class="menu-filter active" onclick="menuSetPrix('tous',this)">Tous</button>
-          <button class="menu-filter" onclick="menuSetPrix('gratuit',this)">&#10024; Gratuit</button>
+          <button class="menu-filter" onclick="menuSetPrix('gratuit',this)">Gratuit</button>
           <button class="menu-filter" onclick="menuSetPrix('moins10',this)">Moins 10&#8364;</button>
           <button class="menu-filter" onclick="menuSetPrix('10-30',this)">10 &#8211; 30&#8364;</button>
           <button class="menu-filter" onclick="menuSetPrix('plus30',this)">+ 30&#8364;</button>
@@ -469,18 +486,18 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 
       <!-- Catégorie events -->
       <div style="margin-bottom:14px">
-        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">&#127919; Cat&#233;gorie</div>
+        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:flex;align-items:center;gap:5px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> Catégorie</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px">
           <button class="menu-filter active" onclick="menuSetCat('tous',this)">Tous</button>
-          <button class="menu-filter" onclick="menuSetCat('five',this)">&#9917; Five</button>
-          <button class="menu-filter" onclick="menuSetCat('pique-nique',this)">&#129978; Pique-nique</button>
-          <button class="menu-filter" onclick="menuSetCat('jeux',this)">&#127918; Jeux</button>
-          <button class="menu-filter" onclick="menuSetCat('cinema',this)">&#127916; Cin&#233;</button>
-          <button class="menu-filter" onclick="menuSetCat('brunch',this)">&#129360; Brunch</button>
-          <button class="menu-filter" onclick="menuSetCat('soiree',this)">&#127881; Soir&#233;e</button>
-          <button class="menu-filter" onclick="menuSetCat('atelier',this)">&#127912; Atelier</button>
-          <button class="menu-filter" onclick="menuSetCat('gratuit',this)">&#10024; Gratuit</button>
-          <button class="menu-filter" onclick="menuSetCat('weekend',this)">&#128197; Week-end</button>
+          <button class="menu-filter" onclick="menuSetCat('five',this)">Five</button>
+          <button class="menu-filter" onclick="menuSetCat('pique-nique',this)">Pique-nique</button>
+          <button class="menu-filter" onclick="menuSetCat('jeux',this)">Jeux</button>
+          <button class="menu-filter" onclick="menuSetCat('cinema',this)">Ciné</button>
+          <button class="menu-filter" onclick="menuSetCat('brunch',this)">Brunch</button>
+          <button class="menu-filter" onclick="menuSetCat('soiree',this)">Soirée</button>
+          <button class="menu-filter" onclick="menuSetCat('atelier',this)">Atelier</button>
+          <button class="menu-filter" onclick="menuSetCat('gratuit',this)">Gratuit</button>
+          <button class="menu-filter" onclick="menuSetCat('weekend',this)">Week-end</button>
         </div>
       </div>
     </div>
@@ -489,18 +506,18 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 
     <!-- Section SORTIES -->
     <div style="padding:16px">
-      <div style="font-size:15px;font-weight:900;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px">&#127917; <span>Sorties</span></div>
+      <div style="font-size:15px;font-weight:900;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px"><span style="color:#C9A84C"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/><line x1="9" y1="9" x2="9" y2="15"/></svg></span> <span>Sorties</span></div>
 
       <!-- Type sortie -->
       <div style="margin-bottom:14px">
-        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">Type</div>
+        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:flex;align-items:center;gap:5px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Type</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px">
           <button class="menu-filter active" onclick="menuSetSF('cat','tous',this)">Tous</button>
-          <button class="menu-filter" onclick="menuSetSF('cat','resto',this)">&#127836; Restos</button>
-          <button class="menu-filter" onclick="menuSetSF('cat','escape',this)">&#128272; Escape</button>
-          <button class="menu-filter" onclick="menuSetSF('cat','musee',this)">&#127963; Mus&#233;es</button>
-          <button class="menu-filter" onclick="menuSetSF('cat','cinema',this)">&#127916; Cin&#233;ma</button>
-          <button class="menu-filter" onclick="menuSetSF('cat','activite',this)">&#127923; Activit&#233;s</button>
+          <button class="menu-filter" onclick="menuSetSF('cat','resto',this)">Restos</button>
+          <button class="menu-filter" onclick="menuSetSF('cat','escape',this)">Escape</button>
+          <button class="menu-filter" onclick="menuSetSF('cat','musee',this)">Musées</button>
+          <button class="menu-filter" onclick="menuSetSF('cat','cinema',this)">Cinéma</button>
+          <button class="menu-filter" onclick="menuSetSF('cat','activite',this)">Activités</button>
         </div>
       </div>
 
@@ -518,7 +535,7 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 
       <!-- Ville sortie -->
       <div style="margin-bottom:14px">
-        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">&#128205; Ville</div>
+        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:flex;align-items:center;gap:5px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Ville</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px">
           <button class="menu-filter active" onclick="menuSetSF('ville','toutes',this)">Toutes</button>
           <button class="menu-filter" onclick="menuSetSF('ville','Paris',this)">Paris</button>
@@ -533,13 +550,13 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
     <!-- Navigation rapide -->
     <div style="height:1px;background:#3a1515;margin:0 16px"></div>
     <div style="padding:16px">
-      <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Navigation</div>
+      <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;display:flex;align-items:center;gap:5px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg> Navigation</div>
       <div style="display:flex;flex-direction:column;gap:2px">
-        <button onclick="showPage('home');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px">&#127968; Accueil</button>
-        <button onclick="showPage('map');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px">&#128506; Carte</button>
-        <button onclick="showPage('sorties');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px">&#127917; Sorties</button>
-        <button onclick="showPage('myevents');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px">&#128218; Mes events</button>
-        <button onclick="showPage('profile');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px">&#128100; Profil</button>
+        <button onclick="showPage('home');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Accueil</button>
+        <button onclick="showPage('map');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg> Carte</button>
+        <button onclick="showPage('sorties');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/><line x1="9" y1="9" x2="9" y2="15"/></svg> Sorties</button>
+        <button onclick="showPage('myevents');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg> Mes events</button>
+        <button onclick="showPage('profile');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Profil</button>
       </div>
     </div>
   </div>
@@ -588,21 +605,21 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 </div>
 <div class="filters" id="main-filters" style="display:none">
   <div class="filters-row" id="cat-row">
-    <button class="filter-btn active" onclick="setFilter('tous',event)">&#127919; Tous</button>
-    <button class="filter-btn" onclick="setFilter('five',event)">&#127934; Five</button>
-    <button class="filter-btn" onclick="setFilter('pique-nique',event)">&#129978; Pique-nique</button>
-    <button class="filter-btn" onclick="setFilter('jeux',event)">&#127918; Jeux</button>
-    <button class="filter-btn" onclick="setFilter('cinema',event)">&#127916; Cin&#233;</button>
-    <button class="filter-btn" onclick="setFilter('brunch',event)">&#129360; Brunch</button>
-    <button class="filter-btn" onclick="setFilter('soiree',event)">&#127881; Soir&#233;e</button>
-    <button class="filter-btn" onclick="setFilter('atelier',event)">&#127912; Atelier</button>
-    <button class="filter-btn" onclick="setFilter('gratuit',event)">&#10024; Gratuit</button>
-    <button class="filter-btn" onclick="setFilter('weekend',event)">&#128197; Week-end</button>
+    <button class="filter-btn active" onclick="setFilter('tous',event)">Tous</button>
+    <button class="filter-btn" onclick="setFilter('five',event)">Five</button>
+    <button class="filter-btn" onclick="setFilter('pique-nique',event)">Pique-nique</button>
+    <button class="filter-btn" onclick="setFilter('jeux',event)">Jeux</button>
+    <button class="filter-btn" onclick="setFilter('cinema',event)">Ciné</button>
+    <button class="filter-btn" onclick="setFilter('brunch',event)">Brunch</button>
+    <button class="filter-btn" onclick="setFilter('soiree',event)">Soirée</button>
+    <button class="filter-btn" onclick="setFilter('atelier',event)">Atelier</button>
+    <button class="filter-btn" onclick="setFilter('gratuit',event)">Gratuit</button>
+    <button class="filter-btn" onclick="setFilter('weekend',event)">Week-end</button>
   </div>
   <div class="filters-row" id="prix-row" style="margin-top:6px">
     <span style="font-size:11px;color:#888;flex-shrink:0;align-self:center;font-weight:600">Prix :</span>
     <button class="filter-btn active" onclick="setPrix('tous',this)">Tous</button>
-    <button class="filter-btn" onclick="setPrix('gratuit',this)">&#10024; Gratuit</button>
+    <button class="filter-btn" onclick="setPrix('gratuit',this)">Gratuit</button>
     <button class="filter-btn" onclick="setPrix('moins10',this)">Moins 10&#8364;</button>
     <button class="filter-btn" onclick="setPrix('10-30',this)">10 &#8211; 30&#8364;</button>
     <button class="filter-btn" onclick="setPrix('plus30',this)">+ 30&#8364;</button>
@@ -683,15 +700,6 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 </div>
 <div class="page" id="page-notifs">
   <div class="page-pill">Notifications</div>
-  <div style="margin:0 16px 16px;background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.1)">
-    <div style="display:flex;align-items:center;justify-content:space-between">
-      <div>
-        <div style="font-size:13px;font-weight:800;color:#1a0505">Alertes événements</div>
-        <div style="font-size:11px;color:#888;margin-top:2px">Reçois des notifs pour les nouveaux events</div>
-      </div>
-      <button onclick="demanderNotifications()" style="background:var(--bord);color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">Activer</button>
-    </div>
-  </div>
   <div class="notif-list">
     <div class="notif-item notif-unread">
       <div class="notif-img eb1">&#129978;</div>
@@ -750,10 +758,10 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 <div class="page" id="page-profile">
   <div id="prof-content-guest" style="padding:32px 16px;text-align:center">
     <div style="font-size:64px;margin-bottom:16px">&#128100;</div>
-    <div style="font-size:18px;font-weight:900;color:#240004;margin-bottom:8px">Bienvenue sur WAOUT</div>
+    <div style="font-size:18px;font-weight:900;color:#fff;margin-bottom:8px">Bienvenue sur WAOUT</div>
     <div style="font-size:13px;color:#888;margin-bottom:24px;line-height:1.6">Connecte-toi pour decouvrir les meilleurs evenements pres de chez toi.</div>
     <button onclick="openAuth('login')" style="width:100%;background:var(--bord);color:#fff;border:none;padding:14px;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;margin-bottom:10px" onclick="openAuth()">Se connecter</button>
-    <button onclick="openAuth('signup')" style="width:100%;background:transparent;color:#240004;border:1.5px solid #240004;padding:14px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer">Creer un compte</button>
+    <button onclick="openAuth('signup')" style="width:100%;background:transparent;color:#ccc;border:1.5px solid #3a1515;padding:14px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer" onclick="openAuth('signup')">Creer un compte</button>
   </div>
   <div id="prof-content-user" style="display:none">
     <div class="prof-head">
@@ -770,19 +778,18 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
     </div>
     <div style="padding:4px 16px 12px;font-size:12px;color:#888" id="prof-email-display"></div>
     <div class="prof-menu">
-      <div class="pm-item" onclick="showPage('myevents')"><div class="pm-ico">&#9989;</div><div class="pm-text"><div class="pm-title">Mes evenements</div><div class="pm-sub">Voir mes inscriptions</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="showOrgDash()"><div class="pm-ico">&#128202;</div><div class="pm-text"><div class="pm-title">Tableau de bord</div><div class="pm-sub">Stats et participants</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="openAdmin()"><div class="pm-ico">&#10010;</div><div class="pm-text"><div class="pm-title">Publier un evenement</div><div class="pm-sub">Ajouter un evenement</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="signOut()" style="border-top:1px solid #f5eaea;margin-top:4px"><div class="pm-ico" style="background:#fff0f0">&#128682;</div><div class="pm-text"><div class="pm-title" style="color:#c0392b">Se deconnecter</div><div class="pm-sub">Fermer la session</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="showPage('cgu')"><div class="pm-ico" style="background:#f0f0ff">&#128220;</div><div class="pm-text"><div class="pm-title">CGU</div><div class="pm-sub">Conditions d'utilisation</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="showPage('privacy')"><div class="pm-ico" style="background:#f0f0ff">&#128274;</div><div class="pm-text"><div class="pm-title">Confidentialite</div><div class="pm-sub">Politique RGPD et tes droits</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="deleteAccount()" style="border-top:1px solid #ffe0e0"><div class="pm-ico" style="background:#fff0f0">&#128465;</div><div class="pm-text"><div class="pm-title" style="color:#c0392b">Supprimer mon compte</div><div class="pm-sub">Efface toutes tes donnees (irreversible)</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="showPage('myevents')"><div class="pm-ico" style="background:#f9f0f0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></div><div class="pm-text"><div class="pm-title">Mes événements</div><div class="pm-sub">Voir mes inscriptions</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="showOrgDash()"><div class="pm-ico" style="background:#f9f0f0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="pm-text"><div class="pm-title">Tableau de bord</div><div class="pm-sub">Stats et participants</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="openAdmin()"><div class="pm-ico" style="background:#f9f0f0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="pm-text"><div class="pm-title">Publier un événement</div><div class="pm-sub">Ajouter un evenement</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="signOut()" style="border-top:1px solid #f5eaea;margin-top:4px"><div class="pm-ico" style="background:#fff0f0;color:#c0392b"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></div><div class="pm-text"><div class="pm-title" style="color:#c0392b">Se déconnecter</div><div class="pm-sub">Fermer la session</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="showPage('privacy')"><div class="pm-ico" style="background:#f0f0ff"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="pm-text"><div class="pm-title">Confidentialité</div><div class="pm-sub">Politique RGPD et tes droits</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="deleteAccount()" style="border-top:1px solid #ffe0e0"><div class="pm-ico" style="background:#fff0f0;color:#c0392b"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></div><div class="pm-text"><div class="pm-title" style="color:#c0392b">Supprimer mon compte</div><div class="pm-sub">Efface toutes tes donnees (irreversible)</div></div><span class="pm-arr">&#8250;</span></div>
     </div>
   </div>
 </div>
 <div class="page" id="page-privacy" style="padding:20px;padding-bottom:90px">
   <div style="background:var(--dark2);border-radius:14px;padding:20px;margin-bottom:16px">
-    <div style="font-size:18px;font-weight:900;color:#fff;margin-bottom:4px">&#128274; Politique de confidentialite</div>
+    <div style="font-size:18px;font-weight:900;color:#fff;margin-bottom:4px">Politique de confidentialité</div>
     <div style="font-size:11px;color:#888">Derniere mise a jour : juin 2025</div>
   </div>
 
@@ -795,8 +802,8 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
     <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">2. Donnees collectees</div>
     <div style="font-size:13px;color:#555;line-height:1.7">
       Lors de ton inscription, nous collectons :<br>
-      &#8226; Ton adresse email (identifiant de connexion)<br>
-      &#8226; Ton prenom ou pseudo (affichage public)<br>
+      • Ton adresse email (identifiant de connexion)<br>
+      • Ton prénom ou pseudo (affichage public)<br>
       &#8226; Tes inscriptions aux evenements<br>
       &#8226; Tes avis et commentaires<br><br>
       Nous ne collectons pas de donnees bancaires, de localisation en temps reel, ni d informations sensibles.
@@ -853,49 +860,6 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
   <button onclick="showPage('profile')" style="width:100%;background:var(--bord);color:#fff;border:none;padding:14px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer">Retour au profil</button>
 </div>
 
-<div class="page" id="page-cgu" style="padding:20px;padding-bottom:90px">
-  <div style="background:var(--dark2);border-radius:14px;padding:20px;margin-bottom:16px">
-    <div style="font-size:18px;font-weight:900;color:#fff;margin-bottom:4px">&#128220; Conditions Generales d'Utilisation</div>
-    <div style="font-size:11px;color:#888">Derniere mise a jour : juillet 2026</div>
-  </div>
-  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
-    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">1. Objet</div>
-    <div style="font-size:13px;color:#555;line-height:1.7">WAOUT est une plateforme permettant de decouvrir, publier et s'inscrire a des evenements et sorties. En utilisant WAOUT, tu acceptes les presentes conditions.</div>
-  </div>
-  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
-    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">2. Inscription et compte</div>
-    <div style="font-size:13px;color:#555;line-height:1.7">Tu dois avoir au moins 16 ans pour creer un compte. Tu es responsable de la confidentialite de ton mot de passe et de toutes les actions effectuees depuis ton compte.</div>
-  </div>
-  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
-    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">3. Publication d'evenements</div>
-    <div style="font-size:13px;color:#555;line-height:1.7">En publiant un evenement, tu garantis que les informations sont exactes et que tu as le droit de l'organiser. WAOUT se reserve le droit de refuser, modifier ou supprimer tout contenu inapproprie, frauduleux ou illegal, sans preavis.</div>
-  </div>
-  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
-    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">4. Responsabilite</div>
-    <div style="font-size:13px;color:#555;line-height:1.7">WAOUT est un intermediaire de mise en relation. WAOUT n'est pas responsable du deroulement des evenements, des dommages, annulations ou litiges entre organisateurs et participants. Chaque utilisateur participe sous sa propre responsabilite.</div>
-  </div>
-  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
-    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">5. Paiements et remboursements</div>
-    <div style="font-size:13px;color:#555;line-height:1.7">Les paiements pour evenements payants sont traites de maniere securisee. Les conditions de remboursement sont definies par chaque organisateur. WAOUT preleve une commission sur chaque transaction, dont le montant sera precise lors de l'activation des paiements.</div>
-  </div>
-  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
-    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">6. Comportement et moderation</div>
-    <div style="font-size:13px;color:#555;line-height:1.7">Tout contenu illegal, discriminatoire, frauduleux ou nuisible entrainera la suppression du contenu et peut conduire a la suspension du compte. Les utilisateurs peuvent signaler tout contenu inapproprie.</div>
-  </div>
-  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
-    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">7. Propriete intellectuelle</div>
-    <div style="font-size:13px;color:#555;line-height:1.7">Le nom WAOUT, le logo et l'interface sont la propriete de WAOUT. Le contenu publie par les utilisateurs reste leur propriete, mais ils accordent a WAOUT le droit de l'afficher sur la plateforme.</div>
-  </div>
-  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:12px">
-    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">8. Modification des conditions</div>
-    <div style="font-size:13px;color:#555;line-height:1.7">WAOUT peut modifier ces conditions a tout moment. Les utilisateurs seront informes des changements significatifs.</div>
-  </div>
-  <div style="background:#fff;border-radius:14px;padding:20px;margin-bottom:16px">
-    <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">9. Contact</div>
-    <div style="font-size:13px;color:#555;line-height:1.7">Pour toute question : waout@gmail.com</div>
-  </div>
-  <button onclick="showPage('profile')" style="width:100%;background:var(--bord);color:#fff;border:none;padding:14px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer">Retour au profil</button>
-</div>
 </main>
 
 
@@ -1026,207 +990,6 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.js"></script>
 <script>
-// ============================================================
-// NOTIFICATIONS PUSH
-// ============================================================
-var notifPermission = false;
-
-function demanderNotifications() {
-  if (!("Notification" in window)) {
-    toast("Notifications non supportées sur ce navigateur");
-    return;
-  }
-  if (Notification.permission === "granted") {
-    toast("&#128276; Notifications déjà activées !");
-    notifPermission = true;
-    return;
-  }
-  Notification.requestPermission().then(function(permission) {
-    if (permission === "granted") {
-      notifPermission = true;
-      toast("&#128276; Notifications activées !");
-      // Montrer une notif de bienvenue
-      afficherNotification("Bienvenue sur WAOUT ! &#127881;", "Tu recevras des alertes pour les nouveaux événements près de chez toi.");
-      // Sauvegarder la préférence
-      if (supa && currentUser) {
-        supa.from("profiles").update({notifications_enabled: true}).eq("id", currentUser.id).catch(function(){});
-      }
-    } else {
-      toast("Notifications refusées - tu peux les activer dans les paramètres du navigateur");
-    }
-  });
-}
-
-function afficherNotification(titre, corps) {
-  if (Notification.permission !== "granted") return;
-  try {
-    var n = new Notification(titre, {
-      body: corps,
-      icon: "/favicon.ico",
-      badge: "/favicon.ico",
-      vibrate: [200, 100, 200]
-    });
-    n.onclick = function() { window.focus(); n.close(); };
-    setTimeout(function(){ n.close(); }, 8000);
-  } catch(e) { console.log("Notif error:", e); }
-}
-
-function verifierNouveauxEvents() {
-  // Vérifier si de nouveaux events ont été ajoutés (simulé)
-  if (notifPermission && EVENTS.length > 0) {
-    var dernier = EVENTS[0];
-    var lastCheck = localStorage.getItem ? (localStorage.getItem("waout_last_check")||"") : "";
-    var now = new Date().toISOString();
-    if (lastCheck && dernier.rawDate > lastCheck.substring(0,10)) {
-      afficherNotification("Nouvel événement WAOUT ! &#127881;", dernier.title + " à " + dernier.ville);
-    }
-    try { if(localStorage.setItem) localStorage.setItem("waout_last_check", now); } catch(e){}
-  }
-}
-
-// Vérifier au démarrage si les notifs sont déjà accordées
-if ("Notification" in window && Notification.permission === "granted") {
-  notifPermission = true;
-}
-
-
-function voirParticipants(evId) {
-  var ev = findEv(evId); if (!ev) return;
-  var b = '<div style="padding:16px">';
-  b += '<div style="font-size:15px;font-weight:800;color:#1a0505;margin-bottom:12px">'+ev.ico+' '+ev.title+'</div>';
-  b += '<div style="font-size:12px;color:#888;margin-bottom:16px">'+ev.inscrits+' inscrits / '+ev.places+' places</div>';
-  if (ev.inscrits === 0) {
-    b += '<p style="color:#aaa;font-size:13px;text-align:center;padding:20px">Aucun inscrit pour l instant</p>';
-  } else {
-    b += '<div style="background:#f9f0f0;border-radius:10px;padding:12px;font-size:12px;color:#555">';
-    b += '<p>&#128101; Les participants seront visibles ici une fois l authentification activee.</p>';
-    b += '<p style="margin-top:8px">Pour l instant : <strong>'+ev.inscrits+' personnes</strong> sont inscrites.</p>';
-    b += '</div>';
-  }
-  b += '</div>';
-  elo("org-body").innerHTML = b;
-}
-
-function ouvrirMessageTous() {
-  var b = '<div style="padding:20px">';
-  b += '<div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:12px">Message a tous les inscrits</div>';
-  b += '<div style="background:#fff3cd;border-radius:8px;padding:10px;font-size:12px;color:#856404;margin-bottom:14px">Tous les inscrits de tes evenements recevront ce message lors de leur prochaine connexion.</div>';
-  b += '<input id="msg-sujet" class="form-input" type="text" placeholder="Sujet du message" style="margin-bottom:10px">';
-  b += '<textarea id="msg-corps" class="form-input" rows="4" placeholder="Ecris ton message ici..."></textarea>';
-  b += '<button class="submit-btn" style="margin-top:12px" onclick="envoyerMessage()">&#128231; Envoyer le message</button>';
-  b += '</div>';
-  elo("org-body").innerHTML = b;
-}
-
-async function envoyerMessage() {
-  var sujet = (elo("msg-sujet")||{value:""}).value.trim();
-  var corps = (elo("msg-corps")||{value:""}).value.trim();
-  if (!sujet || !corps) { toast("Remplis le sujet et le message !"); return; }
-  if (supa && currentUser) {
-    try {
-      await supa.from("messages").insert({
-        de: currentUser.email || "organisateur",
-        sujet: sujet,
-        corps: corps,
-        created_at: new Date().toISOString()
-      });
-      toast("&#9989; Message envoye a tous les inscrits !");
-    } catch(e) {
-      toast("&#9989; Message enregistre !");
-    }
-  } else {
-    toast("&#9989; Message enregistre !");
-  }
-  showOrgDash();
-}
-
-function openAdminSortie() {
-  openModal("admin-sortie-modal");
-}
-
-async function addSortie() {
-  var name = (elo("so-name")||{value:""}).value.trim();
-  var cat = (elo("so-cat")||{value:"resto"}).value;
-  var ville = (elo("so-ville")||{value:""}).value.trim();
-  var adresse = (elo("so-adresse")||{value:""}).value.trim();
-  var photo = (elo("so-photo")||{value:""}).value.trim();
-  var res = (elo("so-res")||{value:""}).value.trim();
-  var prix = parseInt((elo("so-prix")||{value:"0"}).value)||0;
-  var openNow = (elo("so-open")||{value:"true"}).value === "true";
-  var desc = (elo("so-desc")||{value:""}).value.trim();
-  if (!name||!ville||!photo) { toast("Remplis les champs obligatoires (nom, ville, photo)"); return; }
-  var icons = {resto:"&#127836;",musee:"&#127963;",cinema:"&#127916;",escape:"&#128272;",activite:"&#127795;"};
-  var bans = ["sb1","sb2","sb3","sb4","sb5"];
-  var newSo = {
-    id: SORTIES.length + 100, name:name, cat:cat,
-    ico: icons[cat]||"&#127917;", photo:photo,
-    banner: bans[Math.floor(Math.random()*bans.length)],
-    ville:ville, adresse:adresse||ville,
-    lat:48.8566, lng:2.3522,
-    hours:{}, openNow:openNow,
-    prix:prix, priceType:prix===0?"free":"paid",
-    priceLabel: prix===0?"Entrée gratuite":"Dès "+prix+"€",
-    reservation: res||null, desc:desc||"Une sortie WAOUT !"
-  };
-  if (supa) {
-    try {
-      await supa.from("sorties").insert({
-        name:name, cat:cat, ico:icons[cat]||"&#127917;", photo:photo,
-        banner:newSo.banner, ville:ville, adresse:adresse||ville,
-        open_now:openNow, prix:prix, price_type:newSo.priceType,
-        price_label:newSo.priceLabel, reservation:res||null, description:desc
-      });
-    } catch(e) { console.log("Erreur sauvegarde sortie:", e); }
-  }
-  SORTIES.unshift(newSo); dispSo = SORTIES.slice();
-  renderSorties(dispSo);
-  closeModal("admin-sortie-modal");
-  toast("&#9989; Sortie ajoutee !");
-  // Reset
-  ["so-name","so-ville","so-adresse","so-photo","so-res","so-desc"].forEach(function(id){var el=elo(id);if(el)el.value="";});
-}
-
-
-async function deleteAccount() {
-  if (!currentUser || !supa) return;
-  var ok = window.confirm("Es-tu sure de vouloir supprimer ton compte ? Cette action est irreversible.");
-  if (!ok) return;
-  var ok2 = window.confirm("Derniere confirmation : toutes tes donnees seront supprimees definitivement.");
-  if (!ok2) return;
-  try {
-    await supa.from("inscriptions").delete().eq("user_email", currentUser.email);
-    await supa.from("reviews").delete().eq("user_email", currentUser.email);
-    await supa.from("signalements").delete().eq("user_id", currentUser.id);
-    await supa.from("profiles").delete().eq("id", currentUser.id);
-    await supa.auth.signOut();
-    currentUser = null;
-    updateProfileUI(null);
-    showPage("home");
-    toast("Ton compte a ete supprime. Au revoir !");
-  } catch(e) {
-    toast("Erreur. Contacte contact@waout.fr");
-  }
-}
-
-function deviseFor(pays) {
-  var p = (pays||"").toLowerCase();
-  if (p.includes("france") || p.includes("belgique") || p.includes("luxembourg") || 
-      p.includes("espagne") || p.includes("italie") || p.includes("allemagne") ||
-      p.includes("portugal") || p.includes("pays-bas") || p.includes("autriche")) return "€";
-  if (p.includes("cote") || p.includes("ivoire") || p.includes("senegal") || 
-      p.includes("mali") || p.includes("burkina") || p.includes("benin") ||
-      p.includes("togo") || p.includes("niger") || p.includes("guinee") ||
-      p.includes("cameroun") || p.includes("tchad") || p.includes("centrafrique")) return "FCFA";
-  if (p.includes("canada")) return "CAD";
-  if (p.includes("maroc")) return "MAD";
-  if (p.includes("tunisie")) return "TND";
-  if (p.includes("royaume") || p.includes("angleterre") || p.includes("uk")) return "£";
-  if (p.includes("suisse")) return "CHF";
-  if (p.includes("etats-unis") || p.includes("usa") || p.includes("amerique")) return "$";
-  return "€";
-}
-
-
 async function deleteAccount() {
   if (!currentUser || !supa) return;
   var ok = window.confirm("Es-tu sure de vouloir supprimer ton compte ? Cette action est irreversible et efface toutes tes donnees.");
@@ -1276,10 +1039,8 @@ async function signalerEvent(evId) {
 }
 
 
-var SUPA_URL = "https://jdxtdqnyyxtoenyhaatq.supabase.co";
-var SUPA_KEY = "sb_publishable_VbT8j26_JdKvBnp-mIoyZQ_zqBhiB93";
-var API_URL = "https://waout-api-production.up.railway.app";
-
+var SUPA_URL = "https://vdjukgmkveoetfyjyaio.supabase.co";
+var SUPA_KEY = "sb_publishable_WfI1JMjPgBcy1lY_1sdcdw_e_9Ne6Bg";
 var supa = null;
 try {
   if (typeof supabase !== "undefined") {
@@ -1308,11 +1069,25 @@ function menuSetContinent(continent, btn) {
   var btns = document.querySelectorAll("#menu-cont-row .menu-filter");
   for (var i=0;i<btns.length;i++) btns[i].classList.remove("active");
   if (btn) btn.classList.add("active");
-  // Filtre direct par continent - pas de liste de pays
-  if (continent === "tous") { CC_FILTER = "tous"; } 
-  else { CC_FILTER = continent; }
-  CP = "tous";
-  filterEv();
+  var pr = elo("menu-pays-row");
+  if (continent === "tous") {
+    CP = "tous";
+    if (pr) pr.style.display = "none";
+    filterEv(); return;
+  }
+  var pays = CONTINENTS[continent] || [];
+  if (!pr) return;
+  while (pr.firstChild) pr.removeChild(pr.firstChild);
+  var ab = document.createElement("button"); ab.className="menu-filter active"; ab.textContent="Tous";
+  ab.onclick=function(){setPays("tous",this);}; pr.appendChild(ab);
+  for (var j=0;j<pays.length;j++) {
+    (function(p){
+      var b=document.createElement("button"); b.className="menu-filter"; b.textContent=p;
+      b.onclick=function(){menuPays(p,this);}; pr.appendChild(b);
+    })(pays[j]);
+  }
+  pr.style.display = "flex";
+  CP = "tous"; filterEv();
 }
 
 function menuPays(p, btn) {
@@ -1357,7 +1132,7 @@ function menuSetSF(type, val, btn) {
 }
 
 
-var CF = "tous", CP = "tous", CPRIX = "tous", CC_FILTER = "tous";
+var CF = "tous", CP = "tous", CPRIX = "tous";
 var registered = {}, paid = {};
 var searchOpen = false;
 var leafMap = null, globalMap = null, globalMapF = "tous";
@@ -1446,55 +1221,40 @@ function cdTxt(cd) {
 // --- RENDER EVENTS ---
 function renderEv(events) {
   var c = elo("events-container"); if (!c) return;
-  c.style.cssText = "display:block;width:100%";
-  if (!events || !events.length) {
-    c.innerHTML = '<div class="empty-state"><div class="es-ico">&#128546;</div><p>Aucun evenement</p><small>Essaie un autre filtre</small></div>';
-    return;
-  }
+  c.style.display = "block";
+  c.style.width = "100%";
+  if (!events.length) { c.innerHTML = '<div class="empty-state"><div class="es-ico">&#128546;</div><p>Aucun evenement</p><small>Essaie un autre filtre</small></div>'; return; }
   var h = "";
   for (var i=0;i<events.length;i++) {
-    try {
-      var ev = events[i]; if (!ev) continue;
-      var places = ev.places || 20;
-      var inscrits = ev.inscrits || 0;
-      var prix = ev.prix || 0;
-      var full = inscrits >= places;
-      var reg = !!registered[ev.id], p = !!paid[ev.id];
-      var rem = places - inscrits;
-      var cd = countdown(ev.rawDate || ev.raw_date, ev.heure), cdt = cdTxt(cd);
-      var avg = getAvg(ev.id);
-      var ico = ev.ico || "&#127881;";
-      var banner = ev.banner || "eb1";
-      var left = ev.poster ? '<img class="ev-poster" src="'+ev.poster+'" alt="affiche">' : '<div class="ev-emoji '+banner+'">'+ico+'</div>';
-      var cdh = cdt ? '<div class="cd-badge'+(cd&&cd.urgent?" urgent":"")+'">' + cdt+'</div>' : "";
-      var bc = full?"badge-full":(prix===0?"badge-free":"badge-paid");
-      var bt = full?"COMPLET":(prix===0?"GRATUIT":prix+" €");
-      var sp = !full ? '<span class="badge-spots">'+rem+' place'+(rem>1?"s":"")+'</span>' : "";
-      var rh = avg>0 ? '<div class="ev-rating">'+stars(avg)+" "+avg+"</div>" : "";
-      var desc = (ev.desc || ev.description || "").substring(0,80);
-      var titre = ev.title || "Evenement";
-      var ville = ev.ville || "";
-      var date = ev.date || "";
-      var heure = ev.heure || "";
-      var org = ev.org || "";
-      var ab;
-      if (prix>0 && !p) ab='<button class="pay-btn" onclick="event.stopPropagation();openPay('+ev.id+')">'+prix+' €</button>';
-      else if (prix>0 && p) ab='<button class="reg-btn registered" onclick="event.stopPropagation()">Ticket OK</button>';
-      else if (reg) ab='<button class="reg-btn registered" onclick="event.stopPropagation();register('+ev.id+')">Inscrit</button>';
-      else if (full) ab='<button class="reg-btn full">Complet</button>';
-      else ab='<button class="reg-btn" onclick="event.stopPropagation();register('+ev.id+')">S inscrire</button>';
-      h += '<div class="event-card" onclick="openEv('+ev.id+')" style="opacity:1">';
-      h += '<div class="event-left">'+left+cdh+'</div>';
-      h += '<div class="event-body">';
-      h += '<div class="ev-top"><span class="'+bc+'">'+bt+'</span>'+sp+'</div>';
-      h += '<div class="event-title">'+titre+'</div>'+rh;
-      h += '<div class="event-meta"><span class="meta-loc" onclick="event.stopPropagation();openEvMap('+ev.id+')">&#128205; '+ville+'</span><span class="meta-tag"> &middot; '+date+'</span><span class="meta-tag"> &middot; '+heure+'</span></div>';
-      h += '<div class="event-desc">'+(desc||"")+'...</div>';
-      h += '<div class="ev-footer"><span class="org-name">'+org+'</span>'+ab+'</div>';
-      h += '</div></div>';
-    } catch(err) { console.error("Erreur rendu event", i, err); }
+    var ev = events[i];
+    var full = ev.inscrits>=ev.places, reg=!!registered[ev.id], p=!!paid[ev.id], rem=ev.places-ev.inscrits;
+    var cd = countdown(ev.rawDate, ev.heure), cdt = cdTxt(cd);
+    var avg = getAvg(ev.id);
+    var left = ev.poster ? '<img class="ev-poster" src="'+ev.poster+'" alt="affiche">' : '';
+    var cdh = cdt ? '<div class="cd-badge'+(cd&&cd.urgent?" urgent":"")+'">'+cdt+'</div>' : "";
+    var bc = full?"badge-full":(ev.prix===0?"badge-free":"badge-paid");
+    var bt = full?"COMPLET":(ev.prix===0?"GRATUIT":ev.prix+"");
+    var sp = !full ? '<span class="badge-spots">'+rem+' place'+(rem>1?"s":"")+'</span>' : "";
+    var rh = avg>0 ? '<div class="ev-rating">'+stars(avg)+" "+avg+"</div>" : "";
+    var ab;
+    if (ev.prix>0 && !p) ab='<button class="pay-btn" onclick="event.stopPropagation();openPay('+ev.id+')">'+ev.prix+'</button>';
+    else if (ev.prix>0 && p) ab='<button class="reg-btn registered" onclick="event.stopPropagation()">Ticket OK</button>';
+    else if (reg) ab='<button class="reg-btn registered" onclick="event.stopPropagation();register('+ev.id+')">Inscrit</button>';
+    else if (full) ab='<button class="reg-btn full">Complet</button>';
+    else ab='<button class="reg-btn" onclick="event.stopPropagation();register('+ev.id+')">S inscrire</button>';
+    h += '<div class="event-card fade-in" onclick="openEv('+ev.id+')">';
+    h += left ? '<div class="event-left">'+left+cdh+'</div>' : '';
+    h += '<div class="event-body">';
+    h += '<div class="ev-top"><span class="'+bc+'">'+bt+'</span>'+sp+'</div>';
+    h += '<div class="event-title">'+ev.title+'</div>'+rh;
+    h += '<div class="event-meta"><span class="meta-loc" onclick="event.stopPropagation();openEvMap('+ev.id+')">&#128205; '+ev.ville+'</span><span class="meta-tag"> &middot; '+ev.date+'</span><span class="meta-tag"> &middot; '+ev.heure+'</span></div>';
+    h += '<div class="event-desc">'+ev.desc.substring(0,80)+'...</div>';
+    h += '<div class="ev-footer"><span class="org-name">'+ev.org+'</span>'+ab+'</div>';
+    h += '</div>';
+    h += '</div>';
   }
-  c.innerHTML = h || '<div class="empty-state"><div class="es-ico">&#128546;</div><p>Erreur affichage</p></div>';
+  c.innerHTML = h;
+  setTimeout(function(){ var els=c.querySelectorAll(".fade-in"); for(var j=0;j<els.length;j++)(function(el,d){setTimeout(function(){el.classList.add("visible");},d);})(els[j],j*60); }, 10);
 }
 
 function flagFor(pays) {
@@ -1508,19 +1268,6 @@ function filterEv() {
   dispEv = EVENTS.filter(function(ev) {
     var m = ev.title.toLowerCase().indexOf(q)>=0||ev.ville.toLowerCase().indexOf(q)>=0||ev.org.toLowerCase().indexOf(q)>=0;
     if (!m) return false;
-    // Filtre continent
-    if (CC_FILTER !== "tous") {
-      var continentMap = {
-        "europe": ["France","Belgique","Suisse","Luxembourg","Espagne","Italie","Allemagne","Pays-Bas","Portugal","Autriche"],
-        "afrique": ["Cote Ivoire","Senegal","Mali","Burkina","Benin","Togo","Niger","Cameroun","Ghana","Nigeria","Maroc","Tunisie","Algerie"],
-        "amerique": ["Canada","USA","Etats-Unis","Bresil","Mexique","Argentine"],
-        "asie": ["Japon","Chine","Inde","Coree","Thailand","Vietnam"]
-      };
-      var paysContinent = continentMap[CC_FILTER] || [];
-      var evPays = (ev.pays||"").toLowerCase();
-      var found = paysContinent.some(function(p){ return evPays.includes(p.toLowerCase()); });
-      if (!found) return false;
-    }
     if (CP!=="tous" && ev.pays!==CP) return false;
     if (CPRIX==="gratuit" && ev.prix!==0) return false;
     if (CPRIX==="moins10" && (ev.prix===0||ev.prix>=10)) return false;
@@ -1602,7 +1349,7 @@ function openEv(id) {
   var avg=getAvg(id), rv=REVIEWS[id]||[];
   elo("modal-title").textContent = ev.title;
   var b = "";
-  b += ev.poster ? '<img class="detail-poster-img" src="'+ev.poster+'" alt="affiche">' : '<div class="detail-emoji-banner '+ev.banner+'">'+ev.ico+'</div>';
+  b += ev.poster ? '<img class="detail-poster-img" src="'+ev.poster+'" alt="affiche">' : '';
   b += '<div class="detail-title">'+ev.title+'</div>';
   if (avg>0) b += '<div class="detail-rating-row"><span class="detail-stars">'+stars(avg)+'</span><span class="detail-rating-num">'+avg+'</span><span class="detail-rating-count">('+rv.length+' avis)</span></div>';
   if (cd&&!cd.passed) b += '<div class="detail-cd"><div class="cd-left">Commence dans</div><div class="cd-units"><div class="cu"><span class="cu-num">'+cd.days+'</span><span class="cu-lbl">Jours</span></div><div class="cu"><span class="cu-num">'+cd.hours+'</span><span class="cu-lbl">H</span></div><div class="cu"><span class="cu-num">'+cd.mins+'</span><span class="cu-lbl">Min</span></div></div></div>';
@@ -1619,10 +1366,7 @@ function openEv(id) {
     b += '<button class="detail-reg-btn '+rc+'" id="drb" onclick="register('+id+');updateDRB('+id+')" '+dis+'>'+rt+'</button>';
   }
   b += '<div style="margin-bottom:12px"><button onclick="signalerEvent('+id+')" style="background:none;border:1px solid #ffcccc;color:#cc0000;padding:6px 14px;border-radius:8px;font-size:11px;cursor:pointer;width:100%">&#9888; Signaler cet evenement</button></div>';
-  b += '<div class="share-row">';
-  b += '<button class="shr-btn shr-wa" onclick="partagerWA('+id+')"><span class="shr-ico">&#128172;</span>WhatsApp</button>';
-  b += '<button class="shr-btn shr-ig" onclick="copierLien('+id+')"><span class="shr-ico">&#128279;</span>Copier lien</button>';
-  b += '</div>';
+  b += '<div class="share-row"><button class="shr-btn shr-wa" onclick="shareWA(ev.title)">' + '<span class="shr-ico">&#128172;</span>WhatsApp</button><button class="shr-btn shr-ig" onclick="toast(\"Copie le lien !\")">' + '<span class="shr-ico">&#128247;</span>Instagram</button><button class="shr-btn shr-lk" onclick="copyLink()">' + '<span class="shr-ico">&#128279;</span>Copier</button></div>';
   b += '<div class="reviews-section"><div class="reviews-head"><span class="reviews-title">Avis ('+rv.length+')</span><button class="add-review-btn" onclick="openReviewModal('+id+')">+ Avis</button></div>';
   if (avg>0) b += '<div class="review-avg"><span class="avg-num">'+avg+'</span><span class="avg-stars">'+stars(avg)+'</span><span class="avg-count">sur '+rv.length+' avis</span></div>';
   if (!rv.length) b += '<div class="no-reviews">Aucun avis pour l instant.</div>';
@@ -1637,37 +1381,12 @@ function updateDRB(id) {
 }
 
 // --- REGISTER ---
-async function register(evId) {
-  if (!currentUser) {
-    toast("Connecte-toi pour t'inscrire !");
-    openAuth();
-    return;
-  }
-  if (registered[evId]) {
-    registered[evId] = false;
-    toast("Inscription annulée");
-    renderEv(dispEv);
-    return;
-  }
-  try {
-    var res = await fetch(API_URL + "/api/events/" + evId + "/inscrire", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({
-        user_email: currentUser.email,
-        user_name: currentUser.user_metadata?.full_name || currentUser.email.split("@")[0]
-      })
-    });
-    if (res.ok) {
-      registered[evId] = true;
-      toast("&#9989; Inscription confirmée ! Email envoyé.");
-      renderEv(dispEv);
-    } else {
-      toast("Erreur lors de l'inscription");
-    }
-  } catch(e) {
-    toast("Erreur de connexion");
-  }
+function register(id) {
+  var ev=findEv(id); if(!ev) return;
+  if(ev.inscrits>=ev.places&&!registered[id]){toast("Cet evenement est complet !"); return;}
+  if(registered[id]){delete registered[id];ev.inscrits--;toast("Inscription annulee");}
+  else{registered[id]=true;ev.inscrits++;toast("Inscription confirmee !");}
+  renderEv(dispEv); updateStats();
 }
 
 // --- PAYMENT ---
@@ -1778,7 +1497,7 @@ function openMapAt(lat, lng, name, adresse) {
     if(leafMap){leafMap.remove();leafMap=null;}
     leafMap=L.map("leaflet-map").setView([lat,lng],15);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"OpenStreetMap"}).addTo(leafMap);
-    var icon=L.divIcon({html:'<div style="background:#6B0F1A;color:#fff;border-radius:50% 50% 50% 0;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:16px;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);transform:rotate(-45deg)"><span style="transform:rotate(45deg)">!</span></div>',iconSize:[36,36],iconAnchor:[18,36]});
+    var icon=L.divIcon({html:'<div style="background:#6B0F1A;border:3px solid #fff;border-radius:50% 50% 50% 0;width:36px;height:36px;box-shadow:0 2px 8px rgba(0,0,0,0.3);transform:rotate(-45deg);display:flex;align-items:center;justify-content:center"><div style="transform:rotate(45deg)"><svg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.5\'><circle cx=\'12\' cy=\'10\' r=\'3\'/></svg></div></div>',iconSize:[36,36],iconAnchor:[18,36]});
     L.marker([lat,lng],{icon:icon}).addTo(leafMap).bindPopup("<b>"+name+"</b><br>"+adresse).openPopup();
     leafMap.invalidateSize();
   },400);
@@ -1808,7 +1527,7 @@ function renderGPins() {
   });
   for(var i=0;i<filtered.length;i++){
     (function(e){
-      var icon=L.divIcon({html:'<div style="background:#6B0F1A;border:2px solid #fff;border-radius:50% 50% 50% 0;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(0,0,0,0.3)"><span style="transform:rotate(45deg)">' + e.ico + '</span></div>',iconSize:[30,30],iconAnchor:[15,30]});
+      var icon=L.divIcon({html:'<div style="display:flex;align-items:center;gap:6px"><div style="background:#6B0F1A;border:2px solid #fff;border-radius:50% 50% 50% 0;width:28px;height:28px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.35);transform:rotate(-45deg)"><div style="transform:rotate(45deg);width:100%;height:100%;display:flex;align-items:center;justify-content:center"><svg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\'/><circle cx=\'12\' cy=\'10\' r=\'3\'/></svg></div></div><span style="background:rgba(36,0,4,0.85);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px;white-space:nowrap;max-width:140px;overflow:hidden;text-overflow:ellipsis;box-shadow:0 1px 4px rgba(0,0,0,0.3)">'+e.title+'</span></div>',iconSize:[200,32],iconAnchor:[14,28]});
       var m=L.marker([e.lat,e.lng],{icon:icon}).addTo(globalMap);
       m.bindPopup('<div style="min-width:160px"><b style="font-size:13px">'+e.title+'</b><br><small style="color:#888">'+e.ville+' - '+e.date+'</small><br><small>'+(e.prix===0?"Gratuit":e.prix+" euros")+'</small><br><br><button onclick="closeGPop();openEv('+e.id+')" style="background:#6B0F1A;color:#fff;border:none;padding:5px 12px;border-radius:5px;font-size:11px;cursor:pointer">Voir</button></div>');
     })(filtered[i]);
@@ -1849,8 +1568,8 @@ function renderSorties(so) {
     h+='<div class="sortie-info"><div class="sortie-name">'+s.name+'</div>';
     h+='<div class="sortie-meta"><span class="s-mt">'+s.ville+'</span><span class="s-mt"> - '+s.adresse.split(" ")[0]+'</span></div>';
     h+='<div class="sortie-desc">'+s.desc.substring(0,100)+'...</div>';
-    h+='<div class="sortie-footer">';
-    if(s.reservation) h+='<a class="sortie-res-btn" href="'+s.reservation+'" target="_blank" onclick="event.stopPropagation()">Accéder au site</a>';
+    h+='<div class="sortie-footer"><span class="sortie-price">'+(s.priceType==="free"?"Gratuit":"Des "+s.prix)+'</span>';
+    if(s.reservation) h+='<a class="sortie-res-btn" href="'+s.reservation+'" target="_blank" onclick="event.stopPropagation()">Reserver</a>';
     else h+='<span class="sortie-res-btn free">Acces libre</span>';
     h+='</div></div></div>';
   }
@@ -1903,7 +1622,7 @@ function openSortie(id) {
   b+='<div class="map-trigger" onclick="openSortieMap('+s.id+')"><span class="mt-ico">&#128205;</span><div class="mt-body"><div class="mt-title">'+s.adresse+'</div><div class="mt-sub">Voir sur la carte</div></div><span class="mt-arr">&#8250;</span></div>';
   b+='<p class="detail-desc">'+s.desc+'</p>';
   b+='<div class="sortie-hours"><div class="sortie-hours-title">Horaires</div>'+hrs+'</div>';
-  if(s.reservation) b+='<a class="sortie-res-btn" href="'+s.reservation+'" target="_blank" style="width:100%;display:block;text-align:center;padding:14px;border-radius:12px;font-size:14px;margin-bottom:10px">Accéder au site →</a>';
+  if(s.reservation) b+='<a class="sortie-res-btn" href="'+s.reservation+'" target="_blank" style="width:100%;display:block;text-align:center;padding:14px;border-radius:12px;font-size:14px;margin-bottom:10px">Reserver sur leur site</a>';
   else b+='<div style="background:#E1F5EE;border-radius:12px;padding:12px;text-align:center;color:#0F6E56;font-weight:700;margin-bottom:10px">Acces libre - pas de reservation</div>';
   b+='<div class="share-row"><button class="shr-btn shr-wa" onclick="shareWA(s.name)"><span class="shr-ico">&#128172;</span>WhatsApp</button><button class="shr-btn shr-ig" onclick="toast(\"Copie le lien !\")"><span class="shr-ico">&#128247;</span>Instagram</button><button class="shr-btn shr-lk" onclick="copyLink()"><span class="shr-ico">&#128279;</span>Copier</button></div>';
   elo("modal-title").textContent=s.name;
@@ -1940,30 +1659,10 @@ function renderMyEvents() {
 function showOrgDash() {
   var b='<div class="org-dash">';
   b+='<div class="org-dash-head"><div class="org-dash-title">Mon tableau de bord</div><div class="org-dash-sub">Organisateur WAOUT</div><div class="verified-badge">Organisateur verifie</div></div>';
-  // Stats réelles depuis les données
-  var totalEv = EVENTS.length;
-  var totalIns = 0; EVENTS.forEach(function(e){totalIns+=e.inscrits;});
-  var allRv = []; Object.values(REVIEWS).forEach(function(r){allRv=allRv.concat(r);});
-  var avgNote = allRv.length > 0 ? (allRv.reduce(function(s,r){return s+r.stars;},0)/allRv.length).toFixed(1) : "—";
-  b+='<div class="org-stats-grid">';
-  b+='<div class="ostat"><div class="ostat-num">'+totalEv+'</div><div class="ostat-lbl">Evenements</div></div>';
-  b+='<div class="ostat"><div class="ostat-num">'+totalIns+'</div><div class="ostat-lbl">Inscrits</div></div>';
-  b+='<div class="ostat"><div class="ostat-num">'+avgNote+'</div><div class="ostat-lbl">Note moy.</div></div>';
-  b+='</div>';
-  // Liste des vrais events
-  EVENTS.slice(0,3).forEach(function(ev){
-    var pct=Math.round((ev.inscrits/ev.places)*100);
-    b+='<div class="org-ev-card">';
-    b+='<div class="org-ev-head"><span class="org-ev-title">'+ev.ico+' '+ev.title+'</span>';
-    b+='<span class="oev-active">'+(ev.inscrits>=ev.places?'Complet':'En cours')+'</span></div>';
-    b+='<div class="org-ev-stats"><span class="org-ev-stat">'+ev.inscrits+'/'+ev.places+' inscrits</span>';
-    b+='<span class="org-ev-stat">'+ev.date+'</span>';
-    b+='<span class="org-ev-stat">'+(ev.prix===0?'Gratuit':ev.prix+' €')+'</span></div>';
-    b+='<div class="org-ev-prog"><div class="org-ev-prog-fill" style="width:'+pct+'%"></div></div>';
-    b+='<button class="org-participants-btn" onclick="voirParticipants('+ev.id+')">Voir les '+ev.inscrits+' participants</button>';
-    b+='</div>';
-  });
-  b+='<button class="msg-all-btn" id="msg-all-btn" onclick="ouvrirMessageTous()">&#128231; Envoyer un message a tous mes inscrits</button>';
+  b+='<div class="org-stats-grid"><div class="ostat"><div class="ostat-num">2</div><div class="ostat-lbl">Evenements</div></div><div class="ostat"><div class="ostat-num">58</div><div class="ostat-lbl">Participants</div></div><div class="ostat"><div class="ostat-num">4.7</div><div class="ostat-lbl">Note moyenne</div></div></div>';
+  b+='<div class="org-ev-card"><div class="org-ev-head"><span class="org-ev-title">Pique-nique Champ de Mars</span><span class="oev-active">En cours</span></div><div class="org-ev-stats"><span class="org-ev-stat">23/30 inscrits</span><span class="org-ev-stat">28 juin</span><span class="org-ev-stat">Gratuit</span></div><div class="org-ev-prog"><div class="org-ev-prog-fill" style="width:77%"></div></div><button class="org-participants-btn" onclick="toast("Liste bientot disponible")">Voir les 23 participants</button></div>';
+  b+='<div class="org-ev-card"><div class="org-ev-head"><span class="org-ev-title">Brunch du dimanche</span><span class="oev-active">Complet</span></div><div class="org-ev-stats"><span class="org-ev-stat">15/15 inscrits</span><span class="org-ev-stat">29 juin</span><span class="org-ev-stat">8 euros - 120 euros total</span></div><div class="org-ev-prog"><div class="org-ev-prog-fill" style="width:100%"></div></div><button class="org-participants-btn" onclick="toast("Liste bientot disponible")">Voir les 15 participants</button></div>';
+  b+='<button class="msg-all-btn" onclick="toast("Message envoye a tous !")">Envoyer un message a tous mes inscrits</button>';
   b+='</div>';
   elo("org-body").innerHTML=b;
   openModal("org-modal");
@@ -2049,16 +1748,11 @@ function showPage(page) {
   if(n) n.classList.add("active");
   if(page==="notifs"){var nd=elo("notif-dot");if(nd) nd.style.display="none";}
   if(page==="map"){setTimeout(function(){initGlobalMap();if(globalMap) globalMap.invalidateSize();},100);}
-  if(page==="sorties") {
-    renderSorties(SORTIES);
-    var fabS=elo("fab-sortie"); if(fabS) fabS.className="fab-sortie"+(currentUser?"show":"");
-  } else {
-    var fabS2=elo("fab-sortie"); if(fabS2) fabS2.className="fab-sortie";
-  }
+  if(page==="sorties") renderSorties(SORTIES);
   if(page==="myevents") renderMyEvents();
   var pb=elo("pays-bar"), mf=elo("main-filters");
-  if(pb) pb.style.display="none";
-  if(mf) mf.style.display="none";
+  if(pb) pb.style.display=(page==="home")?"flex":"none";
+  if(mf) mf.className="filters"+(page==="home"?" visible":"");
   window.scrollTo({top:0,behavior:"smooth"});
   // Si profil cliqué et non connecté, proposer login
   if (page === "profile" && !currentUser) {
@@ -2095,20 +1789,6 @@ function openAdmin(){
 }
 
 function shareWA(text) { window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank"); }
-function partagerWA(evId) {
-  var ev = findEv(evId); if (!ev) return;
-  var url = window.location.href.split('?')[0] + '?ev=' + evId;
-  var txt = encodeURIComponent((ev.title||'') + ' - ' + (ev.date||'') + ' a ' + (ev.ville||'') + ' ! ' + url);
-  window.open('https://wa.me/?text=' + txt, '_blank');
-}
-function copierLien(evId) {
-  var url = window.location.href.split('?')[0] + '?ev=' + evId;
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(url).then(function(){ toast('&#128279; Lien copie !'); });
-  } else {
-    toast('Lien : ' + url);
-  }
-}
 function copyLink(){if(navigator.clipboard) navigator.clipboard.writeText(window.location.href).catch(function(){});toast("Lien copie !");}
 function findEv(id){for(var i=0;i<EVENTS.length;i++){if(EVENTS[i].id===id) return EVENTS[i];} return null;}
 
@@ -2177,7 +1857,7 @@ function updateProfileUI(user) {
     var profEmail = elo("prof-email-display");
     if (profName) profName.textContent = name;
     if (profAvatar) profAvatar.textContent = initials;
-    if (profEmail) profEmail.textContent = email;
+    if (profEmail) profEmail.textContent = "&#128231; " + email;
     // Stats
     var inscrits = Object.keys(registered).length + Object.keys(paid).length;
     var avis = 0;
@@ -2350,15 +2030,6 @@ async function loadFromSupabase() {
   } catch(err) {
     console.log("Erreur Supabase, données locales utilisées:", err);
   }
-  // Si Supabase retourne 0 events, garder les données locales
-  if (!EVENTS || EVENTS.length === 0) {
-    EVENTS = [
-      {id:1,title:"Pique-nique géant au Champ de Mars",cat:"pique-nique",ico:"&#129978;",banner:"eb1",poster:null,date:"Sam 28 juin",heure:"14h00",rawDate:"2026-08-02",ville:"Paris",adresse:"Champ de Mars 75007 Paris",lat:48.8584,lng:2.2945,places:30,inscrits:23,prix:0,weekend:true,pays:"France",desc:"Un grand pique-nique entre amis ! Apporte de quoi manger et boire.",org:"WaOut Community Paris"},
-      {id:2,title:"Five foot — Tournoi étudiant",cat:"five",ico:"&#9917;",banner:"eb2",poster:null,date:"Ven 27 juin",heure:"18h30",rawDate:"2026-08-01",ville:"Lyon",adresse:"Complexe sportif Gerland Lyon",lat:45.7282,lng:4.8317,places:12,inscrits:8,prix:3,weekend:false,pays:"France",desc:"Tournoi de five foot ouvert a tous ! Terrain reserve pour 2h.",org:"SportStuds Lyon"},
-      {id:3,title:"Soirée ciné en plein air",cat:"cinema",ico:"&#127916;",banner:"eb3",poster:null,date:"Sam 28 juin",heure:"21h00",rawDate:"2026-08-02",ville:"Bordeaux",adresse:"Parc de la Mairie Bordeaux",lat:44.8378,lng:-0.5792,places:50,inscrits:34,prix:0,weekend:true,pays:"France",desc:"Cine en plein air dans le parc ! Film annonce le soir meme.",org:"CineStud Bordeaux"}
-    ];
-    dispEv = EVENTS.slice();
-  }
   renderEv(EVENTS);
   updateStats();
   showPage("home");
@@ -2391,7 +2062,6 @@ async function saveEvent(ev) {
 }
 
 loadFromSupabase().then(function() { initAuth(); });
-
 
 </script>
 </body>
