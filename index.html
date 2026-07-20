@@ -47,7 +47,7 @@ header{background:#240004!important;padding:4px 16px;position:sticky;top:0;z-ind
 .pays-bar::-webkit-scrollbar{display:none}
 .pays-bar.visible{display:flex}
 .pays-label{font-size:11px;color:#888;white-space:nowrap;flex-shrink:0;font-weight:600}
-.pays-btn{padding:5px 12px;border-radius:20px;border:1px solid #3a1818;background:#2a1010;font-size:11px;color:#aaa;transition:all .2s;flex-shrink:0;white-space:nowrap;cursor:pointer}
+.pays-btn{padding:5px 12px;border-radius:20px;border:1px solid #d0c0c0;background:#f9f0f0;font-size:11px;color:#4a0912;transition:all .2s;flex-shrink:0;white-space:nowrap;cursor:pointer}
 .pays-btn.active{background:var(--bord);color:#fff;border-color:var(--bord)}
 .filters{background:var(--dark2);padding:10px 16px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;display:none}
 .filters::-webkit-scrollbar{display:none}
@@ -366,9 +366,9 @@ main{padding-bottom:90px;background:#f0f0f0;width:100%;overflow-x:hidden}
 .fade-in{opacity:0;transform:translateY(16px);transition:opacity .4s,transform .4s}
 .fade-in.visible{opacity:1;transform:translateY(0)}
 
-.menu-filter{padding:6px 12px;border-radius:20px;border:1.5px solid #3a1515;background:#2a1010;font-size:11px;color:#bbb;transition:all .2s;cursor:pointer;white-space:nowrap}
+.menu-filter{padding:6px 12px;border-radius:20px;border:1.5px solid #d0c0c0;background:#f9f0f0;font-size:11px;color:#4a0912;transition:all .2s;cursor:pointer;white-space:nowrap}
 .menu-filter.active{background:#6B0F1A;color:#fff;border-color:#6B0F1A}
-.menu-filter:hover:not(.active){border-color:#8B2030;color:#fff}
+.menu-filter:hover:not(.active){border-color:#6B0F1A;color:#6B0F1A}
 
 .icon-btn{background:none;border:none;color:#fff;padding:6px;display:flex;align-items:center;justify-content:center;border-radius:8px;cursor:pointer;transition:background .2s;position:relative}
 .icon-btn:hover{background:rgba(255,255,255,0.12)}
@@ -421,27 +421,6 @@ main{padding-bottom:90px;background:#f0f0f0;width:100%;overflow-x:hidden}
 
 header,header *,.app-header,.header-top{background:#240004!important}
 header img{background:none!important;mix-blend-mode:normal;border-radius:0;padding:0;margin:0}
-
-/* Lucide icon sizing in pm-ico */
-.pm-ico svg { width: 20px; height: 20px; }
-.pm-ico { display: flex; align-items: center; justify-content: center; }
-/* Menu filter icon alignment */
-[style*="display:flex"][style*="align-items:center"][style*="gap:5px"] svg {
-  width: 14px; height: 14px; color: #C9A84C;
-}
-/* Section nav buttons icon alignment */
-.sf-btn, .menu-filter { display: inline-flex; align-items: center; gap: 0; }
-/* Touch targets */
-.filter-btn, .menu-filter, .sf-btn, .pays-btn, .mf-btn { min-height: 36px; }
-/* Spacing improvements */
-.sorties-filters { gap: 10px; }
-.sf-row { gap: 8px; }
-
-
-/* Event card: no poster = body full width */
-.event-card .event-body { flex: 1; min-width: 0; }
-.event-card .event-left { width: 110px; min-width: 110px; }
-
 </style>
 </head>
 <body>
@@ -457,11 +436,11 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 
     <!-- Section EVENTS -->
     <div style="padding:16px">
-      <div style="font-size:15px;font-weight:900;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px"><span style="color:#C9A84C"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span> <span>Événements</span></div>
+      <div style="font-size:15px;font-weight:900;color:#240004;margin-bottom:12px;display:flex;align-items:center;gap:8px">Événements</div>
 
       <!-- Zone / Continent -->
       <div style="margin-bottom:14px">
-        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:flex;align-items:center;gap:5px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Zone</div>
+        <div style="font-size:10px;font-weight:700;color:#6B0F1A;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">Zone</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px" id="menu-cont-row">
           <button class="menu-filter active" onclick="menuSetContinent('tous',this)">Monde entier</button>
           <button class="menu-filter" onclick="menuSetContinent('europe',this)">Europe</button>
@@ -474,7 +453,7 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 
       <!-- Prix events -->
       <div style="margin-bottom:14px">
-        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:flex;align-items:center;gap:5px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg> Prix</div>
+        <div style="font-size:10px;font-weight:700;color:#6B0F1A;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">Prix</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px">
           <button class="menu-filter active" onclick="menuSetPrix('tous',this)">Tous</button>
           <button class="menu-filter" onclick="menuSetPrix('gratuit',this)">Gratuit</button>
@@ -486,7 +465,7 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 
       <!-- Catégorie events -->
       <div style="margin-bottom:14px">
-        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:flex;align-items:center;gap:5px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> Catégorie</div>
+        <div style="font-size:10px;font-weight:700;color:#6B0F1A;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">Catégorie</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px">
           <button class="menu-filter active" onclick="menuSetCat('tous',this)">Tous</button>
           <button class="menu-filter" onclick="menuSetCat('five',this)">Five</button>
@@ -502,15 +481,15 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
       </div>
     </div>
 
-    <div style="height:1px;background:#3a1515;margin:0 16px"></div>
+    <div style="height:1px;background:#f0e8e8;margin:0 16px"></div>
 
     <!-- Section SORTIES -->
     <div style="padding:16px">
-      <div style="font-size:15px;font-weight:900;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px"><span style="color:#C9A84C"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/><line x1="9" y1="9" x2="9" y2="15"/></svg></span> <span>Sorties</span></div>
+      <div style="font-size:15px;font-weight:900;color:#240004;margin-bottom:12px;display:flex;align-items:center;gap:8px">Sorties</div>
 
       <!-- Type sortie -->
       <div style="margin-bottom:14px">
-        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:flex;align-items:center;gap:5px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Type</div>
+        <div style="font-size:10px;font-weight:700;color:#6B0F1A;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">Type</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px">
           <button class="menu-filter active" onclick="menuSetSF('cat','tous',this)">Tous</button>
           <button class="menu-filter" onclick="menuSetSF('cat','resto',this)">Restos</button>
@@ -523,7 +502,7 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 
       <!-- Prix sortie -->
       <div style="margin-bottom:14px">
-        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">Prix</div>
+        <div style="font-size:10px;font-weight:700;color:#6B0F1A;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">Prix</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px">
           <button class="menu-filter active" onclick="menuSetSF('prix','tous',this)">Tous</button>
           <button class="menu-filter" onclick="menuSetSF('prix','gratuit',this)">Gratuit</button>
@@ -535,7 +514,7 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 
       <!-- Ville sortie -->
       <div style="margin-bottom:14px">
-        <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:flex;align-items:center;gap:5px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Ville</div>
+        <div style="font-size:10px;font-weight:700;color:#6B0F1A;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">Ville</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px">
           <button class="menu-filter active" onclick="menuSetSF('ville','toutes',this)">Toutes</button>
           <button class="menu-filter" onclick="menuSetSF('ville','Paris',this)">Paris</button>
@@ -548,15 +527,15 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
     </div>
 
     <!-- Navigation rapide -->
-    <div style="height:1px;background:#3a1515;margin:0 16px"></div>
+    <div style="height:1px;background:#f0e8e8;margin:0 16px"></div>
     <div style="padding:16px">
-      <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;display:flex;align-items:center;gap:5px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg> Navigation</div>
+      <div style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Navigation</div>
       <div style="display:flex;flex-direction:column;gap:2px">
-        <button onclick="showPage('home');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Accueil</button>
-        <button onclick="showPage('map');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg> Carte</button>
-        <button onclick="showPage('sorties');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/><line x1="9" y1="9" x2="9" y2="15"/></svg> Sorties</button>
-        <button onclick="showPage('myevents');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg> Mes events</button>
-        <button onclick="showPage('profile');closeMenu()" style="background:none;border:none;color:#ccc;font-size:13px;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Profil</button>
+        <button onclick="showPage('home');closeMenu()" style="background:none;border:none;color:#240004;font-size:13px;font-weight:600;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px">Accueil</button>
+        <button onclick="showPage('map');closeMenu()" style="background:none;border:none;color:#240004;font-size:13px;font-weight:600;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px">Carte</button>
+        <button onclick="showPage('sorties');closeMenu()" style="background:none;border:none;color:#240004;font-size:13px;font-weight:600;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px">Sorties</button>
+        <button onclick="showPage('myevents');closeMenu()" style="background:none;border:none;color:#240004;font-size:13px;font-weight:600;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px">Mes events</button>
+        <button onclick="showPage('profile');closeMenu()" style="background:none;border:none;color:#240004;font-size:13px;font-weight:600;text-align:left;padding:10px 8px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px">Profil</button>
       </div>
     </div>
   </div>
@@ -580,6 +559,7 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
       <button class="icon-btn" onclick="showPage('notifs')" aria-label="Notifications" style="position:relative">
         <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="notif-dot" id="notif-dot"></span>
       </button>
+      <button id="lang-btn" onclick="openLangPicker()" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:11px;font-weight:700;padding:5px 8px;border-radius:6px;cursor:pointer;letter-spacing:.5px">FR</button>
     </div>
   </div>
   <div id="search-wrap" style="display:none;margin-top:8px">
@@ -663,8 +643,7 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 <div class="page" id="page-sorties">
   <div class="sorties-search">
     <div class="sorties-sw">
-      <span class="sorties-sw-ico">&#128269;</span>
-      <input type="text" id="sorties-q" placeholder="Rechercher un resto, activite..." oninput="filterSorties()" autocomplete="off">
+      <input type="text" id="sorties-q" style="padding-left:14px" placeholder="Rechercher un resto, activite..." oninput="filterSorties()" autocomplete="off">
     </div>
   </div>
   <div class="sorties-filters">
@@ -702,7 +681,7 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
   <div class="page-pill">Notifications</div>
   <div class="notif-list">
     <div class="notif-item notif-unread">
-      <div class="notif-img eb1">&#129978;</div>
+      <div class="notif-img" style="background:#fff0f5;display:flex;align-items:center;justify-content:center"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B0F1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
       <div class="notif-content">
         <div class="notif-title">Laisse un avis !</div>
         <div class="notif-desc">Le pique-nique est termine. Comment ca s est passe ?</div>
@@ -711,7 +690,7 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
       <div class="notif-actions"><button class="notif-rbtn" onclick="openReviewModal(1)">Donner un avis</button></div>
     </div>
     <div class="notif-item notif-unread">
-      <div class="notif-img eb2">&#9917;</div>
+      <div class="notif-img" style="background:#fff0f5;display:flex;align-items:center;justify-content:center"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B0F1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
       <div class="notif-content">
         <div class="notif-title">Five organise ce vendredi !</div>
         <div class="notif-desc">Lyon, il reste 4 places. Inscris-toi vite !</div>
@@ -719,11 +698,11 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
       </div>
       <div class="notif-actions">
         <span class="notif-badge">GRATUIT</span>
-        <button class="notif-rbtn" onclick="showToast('Inscription confirmee !')">S inscrire</button>
+        <button class="notif-rbtn" onclick="showToast('Inscription confirmee !')">S'inscrire</button>
       </div>
     </div>
     <div class="notif-item">
-      <div class="notif-img" style="background:#f9f0f0">&#127881;</div>
+      <div class="notif-img" style="background:#f0fff8;display:flex;align-items:center;justify-content:center"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
       <div class="notif-content">
         <div class="notif-title">Paiement confirme</div>
         <div class="notif-desc">Ton ticket pour le Brunch est pret.</div>
@@ -778,18 +757,18 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
     </div>
     <div style="padding:4px 16px 12px;font-size:12px;color:#888" id="prof-email-display"></div>
     <div class="prof-menu">
-      <div class="pm-item" onclick="showPage('myevents')"><div class="pm-ico" style="background:#f9f0f0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></div><div class="pm-text"><div class="pm-title">Mes événements</div><div class="pm-sub">Voir mes inscriptions</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="showOrgDash()"><div class="pm-ico" style="background:#f9f0f0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="pm-text"><div class="pm-title">Tableau de bord</div><div class="pm-sub">Stats et participants</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="openAdmin()"><div class="pm-ico" style="background:#f9f0f0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="pm-text"><div class="pm-title">Publier un événement</div><div class="pm-sub">Ajouter un evenement</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="signOut()" style="border-top:1px solid #f5eaea;margin-top:4px"><div class="pm-ico" style="background:#fff0f0;color:#c0392b"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></div><div class="pm-text"><div class="pm-title" style="color:#c0392b">Se déconnecter</div><div class="pm-sub">Fermer la session</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="showPage('privacy')"><div class="pm-ico" style="background:#f0f0ff"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="pm-text"><div class="pm-title">Confidentialité</div><div class="pm-sub">Politique RGPD et tes droits</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="deleteAccount()" style="border-top:1px solid #ffe0e0"><div class="pm-ico" style="background:#fff0f0;color:#c0392b"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></div><div class="pm-text"><div class="pm-title" style="color:#c0392b">Supprimer mon compte</div><div class="pm-sub">Efface toutes tes donnees (irreversible)</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="showPage('myevents')"><div class="pm-ico">&#9989;</div><div class="pm-text"><div class="pm-title">Mes evenements</div><div class="pm-sub">Voir mes inscriptions</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="showOrgDash()"><div class="pm-ico">&#128202;</div><div class="pm-text"><div class="pm-title">Tableau de bord</div><div class="pm-sub">Stats et participants</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="openAdmin()"><div class="pm-ico">&#10010;</div><div class="pm-text"><div class="pm-title">Publier un evenement</div><div class="pm-sub">Ajouter un evenement</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="signOut()" style="border-top:1px solid #f5eaea;margin-top:4px"><div class="pm-ico" style="background:#fff0f0">&#128682;</div><div class="pm-text"><div class="pm-title" style="color:#c0392b">Se deconnecter</div><div class="pm-sub">Fermer la session</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="showPage('privacy')"><div class="pm-ico" style="background:#f0f0ff">&#128274;</div><div class="pm-text"><div class="pm-title">Confidentialite</div><div class="pm-sub">Politique RGPD et tes droits</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="deleteAccount()" style="border-top:1px solid #ffe0e0"><div class="pm-ico" style="background:#fff0f0">&#128465;</div><div class="pm-text"><div class="pm-title" style="color:#c0392b">Supprimer mon compte</div><div class="pm-sub">Efface toutes tes donnees (irreversible)</div></div><span class="pm-arr">&#8250;</span></div>
     </div>
   </div>
 </div>
 <div class="page" id="page-privacy" style="padding:20px;padding-bottom:90px">
   <div style="background:var(--dark2);border-radius:14px;padding:20px;margin-bottom:16px">
-    <div style="font-size:18px;font-weight:900;color:#fff;margin-bottom:4px">Politique de confidentialité</div>
+    <div style="font-size:18px;font-weight:900;color:#fff;margin-bottom:4px">&#128274; Politique de confidentialite</div>
     <div style="font-size:11px;color:#888">Derniere mise a jour : juin 2025</div>
   </div>
 
@@ -802,8 +781,8 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
     <div style="font-size:14px;font-weight:800;color:#1a0505;margin-bottom:10px">2. Donnees collectees</div>
     <div style="font-size:13px;color:#555;line-height:1.7">
       Lors de ton inscription, nous collectons :<br>
-      • Ton adresse email (identifiant de connexion)<br>
-      • Ton prénom ou pseudo (affichage public)<br>
+      &#8226; Ton adresse email (identifiant de connexion)<br>
+      &#8226; Ton prenom ou pseudo (affichage public)<br>
       &#8226; Tes inscriptions aux evenements<br>
       &#8226; Tes avis et commentaires<br><br>
       Nous ne collectons pas de donnees bancaires, de localisation en temps reel, ni d informations sensibles.
@@ -1233,7 +1212,7 @@ function renderEv(events) {
     var left = ev.poster ? '<img class="ev-poster" src="'+ev.poster+'" alt="affiche">' : '';
     var cdh = cdt ? '<div class="cd-badge'+(cd&&cd.urgent?" urgent":"")+'">'+cdt+'</div>' : "";
     var bc = full?"badge-full":(ev.prix===0?"badge-free":"badge-paid");
-    var bt = full?"COMPLET":(ev.prix===0?"GRATUIT":ev.prix+"");
+    var bt = full?"COMPLET":(ev.prix===0?"GRATUIT":ev.prix+" "+deviseFor(ev.pays));
     var sp = !full ? '<span class="badge-spots">'+rem+' place'+(rem>1?"s":"")+'</span>' : "";
     var rh = avg>0 ? '<div class="ev-rating">'+stars(avg)+" "+avg+"</div>" : "";
     var ab;
@@ -1497,7 +1476,7 @@ function openMapAt(lat, lng, name, adresse) {
     if(leafMap){leafMap.remove();leafMap=null;}
     leafMap=L.map("leaflet-map").setView([lat,lng],15);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"OpenStreetMap"}).addTo(leafMap);
-    var icon=L.divIcon({html:'<div style="background:#6B0F1A;border:3px solid #fff;border-radius:50% 50% 50% 0;width:36px;height:36px;box-shadow:0 2px 8px rgba(0,0,0,0.3);transform:rotate(-45deg);display:flex;align-items:center;justify-content:center"><div style="transform:rotate(45deg)"><svg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.5\'><circle cx=\'12\' cy=\'10\' r=\'3\'/></svg></div></div>',iconSize:[36,36],iconAnchor:[18,36]});
+    var icon=L.divIcon({html:'<div style="background:#6B0F1A;color:#fff;border-radius:50% 50% 50% 0;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:16px;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);transform:rotate(-45deg)"><span style="transform:rotate(45deg)">!</span></div>',iconSize:[36,36],iconAnchor:[18,36]});
     L.marker([lat,lng],{icon:icon}).addTo(leafMap).bindPopup("<b>"+name+"</b><br>"+adresse).openPopup();
     leafMap.invalidateSize();
   },400);
@@ -1527,7 +1506,7 @@ function renderGPins() {
   });
   for(var i=0;i<filtered.length;i++){
     (function(e){
-      var icon=L.divIcon({html:'<div style="display:flex;align-items:center;gap:6px"><div style="background:#6B0F1A;border:2px solid #fff;border-radius:50% 50% 50% 0;width:28px;height:28px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.35);transform:rotate(-45deg)"><div style="transform:rotate(45deg);width:100%;height:100%;display:flex;align-items:center;justify-content:center"><svg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z\'/><circle cx=\'12\' cy=\'10\' r=\'3\'/></svg></div></div><span style="background:rgba(36,0,4,0.85);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:12px;white-space:nowrap;max-width:140px;overflow:hidden;text-overflow:ellipsis;box-shadow:0 1px 4px rgba(0,0,0,0.3)">'+e.title+'</span></div>',iconSize:[200,32],iconAnchor:[14,28]});
+      var icon=L.divIcon({html:'<div style="display:flex;align-items:center;gap:5px"><div style="background:#6B0F1A;border:2px solid #fff;border-radius:50% 50% 50% 0;width:26px;height:26px;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,0.3);transform:rotate(-45deg)"></div><span style="color:#1a0505;font-size:11px;font-weight:700;white-space:nowrap;max-width:130px;overflow:hidden;text-overflow:ellipsis;text-shadow:0 0 3px #fff,0 0 3px #fff">'+e.title+'</span></div>',iconSize:[200,28],iconAnchor:[13,24],className:''});
       var m=L.marker([e.lat,e.lng],{icon:icon}).addTo(globalMap);
       m.bindPopup('<div style="min-width:160px"><b style="font-size:13px">'+e.title+'</b><br><small style="color:#888">'+e.ville+' - '+e.date+'</small><br><small>'+(e.prix===0?"Gratuit":e.prix+" euros")+'</small><br><br><button onclick="closeGPop();openEv('+e.id+')" style="background:#6B0F1A;color:#fff;border:none;padding:5px 12px;border-radius:5px;font-size:11px;cursor:pointer">Voir</button></div>');
     })(filtered[i]);
@@ -1887,6 +1866,19 @@ function renderAuthModal(tab) {
   b += '<div class="auth-success" id="auth-ok"></div>';
   if (!isLogin) {
     b += '<input class="auth-input" type="text" id="auth-name" placeholder="Ton prenom ou pseudo" autocomplete="name">';
+    b += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">';
+    b += '<div><label style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px">Langue</label>';
+    b += '<select class="auth-input" id="auth-lang" style="padding:10px 8px;background:#fff;cursor:pointer">';
+    b += '<option value="fr">Français</option><option value="en">English</option>';
+    b += '<option value="es">Español</option><option value="pt">Português</option>';
+    b += '<option value="ar">العربية</option><option value="zh">中文</option>';
+    b += '<option value="ru">Русский</option><option value="hi">हिन्दी</option>';
+    b += '<option value="bn">বাংলা</option>';
+    b += '</select></div>';
+    b += '<div><label style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px">Pays</label>';
+    b += '<select class="auth-input" id="auth-country" style="padding:10px 8px;background:#fff;cursor:pointer">';
+    b += WAOUT_COUNTRIES.map(function(c){ return '<option>'+c+'</option>'; }).join('');
+    b += '</select></div></div>';
   }
   b += '<input class="auth-input" type="email" id="auth-email" placeholder="Ton adresse email" autocomplete="email">';
   b += '<input class="auth-input" type="password" id="auth-pass" placeholder="Mot de passe (min 6 caracteres)" autocomplete="'+(isLogin?"current-password":"new-password")+'">';
@@ -1940,19 +1932,22 @@ async function doSignup() {
   var name = (elo("auth-name")||{value:""}).value.trim();
   var email = (elo("auth-email")||{value:""}).value.trim();
   var pass = (elo("auth-pass")||{value:""}).value;
+  var lang = (elo("auth-lang")||{value:"fr"}).value;
+  var country = (elo("auth-country")||{value:"France"}).value;
   if (!email||!pass) { showAuthErr("Remplis tous les champs !"); return; }
   if (pass.length < 6) { showAuthErr("Le mot de passe doit faire au moins 6 caracteres"); return; }
   var consent = elo("auth-consent");
   if (!consent || !consent.checked) { showAuthErr("Tu dois accepter les conditions d utilisation pour continuer"); return; }
   var btn = document.querySelector("#auth-modal-body .auth-btn");
   if (btn) { btn.textContent = "Creation..."; btn.disabled = true; }
-  var res = await supa.auth.signUp({email:email, password:pass, options:{data:{full_name:name||email.split("@")[0]}}});
+  var res = await supa.auth.signUp({email:email, password:pass, options:{data:{full_name:name||email.split("@")[0], lang:lang, country:country}}});
   if (res.error) {
     showAuthErr("Erreur : " + res.error.message);
     if (btn) { btn.textContent = "Creer mon compte"; btn.disabled = false; }
   } else {
     showAuthOk("Compte cree ! Verifie ta boite email pour confirmer ton inscription.");
     if (btn) { btn.textContent = "Creer mon compte"; btn.disabled = false; }
+    if (lang && lang !== "fr" && typeof setLang === "function") setLang(lang);
   }
 }
 
@@ -2063,6 +2058,146 @@ async function saveEvent(ev) {
 
 loadFromSupabase().then(function() { initAuth(); });
 
+</script>
+
+<style>
+.lang-opt{display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:10px;border:1.5px solid #f0e8e8;background:#fff;font-size:14px;font-weight:600;color:#1a0505;cursor:pointer;text-align:left;transition:all .2s;width:100%}
+.lang-opt.active{border-color:var(--bord);background:#fff9f9;color:var(--bord)}
+.lang-opt:hover:not(.active){background:#f9f0f0}
+.lang-flag{font-size:20px;width:28px;text-align:center;flex-shrink:0}
+body.rtl{direction:rtl}
+body.rtl .event-card{flex-direction:row-reverse}
+body.rtl .pm-item{flex-direction:row-reverse}
+</style>
+
+<div class="modal-overlay" id="lang-modal">
+  <div class="modal-box" style="max-height:70vh">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <span class="modal-title">Choisir la langue</span>
+      <button class="modal-close" onclick="closeModal('lang-modal')">&#10005;</button>
+    </div>
+    <div style="padding:16px;display:flex;flex-direction:column;gap:8px">
+      <button class="lang-opt active" onclick="setLang('fr',this)"><span class="lang-flag">🇫🇷</span>Français</button>
+      <button class="lang-opt" onclick="setLang('en',this)"><span class="lang-flag">🇬🇧</span>English</button>
+      <button class="lang-opt" onclick="setLang('es',this)"><span class="lang-flag">🇪🇸</span>Español</button>
+      <button class="lang-opt" onclick="setLang('pt',this)"><span class="lang-flag">🇧🇷</span>Português</button>
+      <button class="lang-opt" onclick="setLang('ar',this)"><span class="lang-flag">🇸🇦</span>العربية</button>
+      <button class="lang-opt" onclick="setLang('zh',this)"><span class="lang-flag">🇨🇳</span>中文</button>
+      <button class="lang-opt" onclick="setLang('ru',this)"><span class="lang-flag">🇷🇺</span>Русский</button>
+      <button class="lang-opt" onclick="setLang('hi',this)"><span class="lang-flag">🇮🇳</span>हिन्दी</button>
+      <button class="lang-opt" onclick="setLang('bn',this)"><span class="lang-flag">🇧🇩</span>বাংলা</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var WAOUT_COUNTRIES = [
+  'Afghanistan','Afrique du Sud','Albanie','Algérie','Allemagne','Angola','Arabie Saoudite','Argentine',
+  'Arménie','Australie','Autriche','Azerbaïdjan','Bangladesh','Belgique','Bénin','Biélorussie',
+  'Bolivie','Bosnie','Brésil','Bulgarie','Burkina Faso','Burundi','Cambodge','Cameroun','Canada',
+  'Centrafrique','Chili','Chine','Colombie','Congo','Corée du Sud',"Côte d'Ivoire",'Croatie','Cuba',
+  'Danemark','Djibouti','Égypte','Émirats arabes unis','Équateur','Espagne','Estonie','États-Unis',
+  'Éthiopie','Finlande','France','Gabon','Géorgie','Ghana','Grèce','Guatemala','Guinée','Haïti',
+  'Honduras','Hongrie','Inde','Indonésie','Irak','Iran','Irlande','Islande','Israël','Italie',
+  'Jamaïque','Japon','Jordanie','Kazakhstan','Kenya','Kosovo','Lettonie','Liban','Libye','Lituanie',
+  'Luxembourg','Madagascar','Mali','Maroc','Maurice','Mauritanie','Mexique','Moldavie','Mongolie',
+  'Mozambique','Myanmar','Namibie','Népal','Nicaragua','Niger','Nigéria','Norvège','Nouvelle-Zélande',
+  'Oman','Ouganda','Pakistan','Palestine','Panama','Paraguay','Pays-Bas','Pérou','Philippines',
+  'Pologne','Portugal','Qatar','République Tchèque','Roumanie','Royaume-Uni','Russie','Rwanda',
+  'Sénégal','Serbie','Sierra Leone','Singapour','Slovaquie','Slovénie','Somalie','Soudan','Suède',
+  'Suisse','Syrie','Taïwan','Tanzanie','Thaïlande','Togo','Tunisie','Turquie','Ukraine','Uruguay',
+  'Venezuela','Vietnam','Yémen','Zambie','Zimbabwe'
+];
+
+var LANG_LABELS = {
+  fr:'FR', en:'EN', es:'ES', pt:'PT', ar:'AR', zh:'中文', ru:'RU', hi:'HI', bn:'BN'
+};
+
+var UI_TEXT = {
+  fr:{home:'Accueil',map:'Carte',sorties:'Sorties',myevents:'Mes events',profile:'Profil',
+      upcoming:'Événements à venir',seeall:'Voir tout',free:'GRATUIT',full:'COMPLET',
+      register:"S'inscrire",registered:'Inscrit',pay:'Payer',spots:function(n){return n+' place'+(n>1?'s':'');},
+      search:'Rechercher un événement, une ville...',sortiesSearch:'Rechercher un resto, activité...',
+      empty:'Aucun événement',emptySub:'Essaie un autre filtre'},
+  en:{home:'Home',map:'Map',sorties:'Places',myevents:'My events',profile:'Profile',
+      upcoming:'Upcoming events',seeall:'See all',free:'FREE',full:'FULL',
+      register:'Register',registered:'Registered',pay:'Pay',spots:function(n){return n+' spot'+(n>1?'s':'');},
+      search:'Search events, cities...',sortiesSearch:'Search restaurants, activities...',
+      empty:'No events found',emptySub:'Try another filter'},
+  es:{home:'Inicio',map:'Mapa',sorties:'Lugares',myevents:'Mis eventos',profile:'Perfil',
+      upcoming:'Próximos eventos',seeall:'Ver todo',free:'GRATIS',full:'COMPLETO',
+      register:'Inscribirse',registered:'Inscrito',pay:'Pagar',spots:function(n){return n+' plaza'+(n>1?'s':'');},
+      search:'Buscar eventos, ciudades...',sortiesSearch:'Buscar restaurantes...',
+      empty:'Sin eventos',emptySub:'Prueba otro filtro'},
+  pt:{home:'Início',map:'Mapa',sorties:'Lugares',myevents:'Meus eventos',profile:'Perfil',
+      upcoming:'Próximos eventos',seeall:'Ver tudo',free:'GRÁTIS',full:'LOTADO',
+      register:'Inscrever-se',registered:'Inscrito',pay:'Pagar',spots:function(n){return n+' vaga'+(n>1?'s':'');},
+      search:'Buscar eventos, cidades...',sortiesSearch:'Buscar restaurantes...',
+      empty:'Nenhum evento',emptySub:'Tente outro filtro'},
+  ar:{home:'الرئيسية',map:'الخريطة',sorties:'الأماكن',myevents:'فعالياتي',profile:'الملف',
+      upcoming:'الفعاليات القادمة',seeall:'عرض الكل',free:'مجاني',full:'مكتمل',
+      register:'تسجيل',registered:'مسجل',pay:'دفع',spots:function(n){return n+' مكان';},
+      search:'ابحث عن فعاليات...',sortiesSearch:'ابحث عن مطاعم...',
+      empty:'لا توجد فعاليات',emptySub:'جرب فلترًا آخر'},
+  zh:{home:'首页',map:'地图',sorties:'场所',myevents:'我的活动',profile:'个人',
+      upcoming:'即将到来的活动',seeall:'查看全部',free:'免费',full:'已满',
+      register:'报名',registered:'已报名',pay:'支付',spots:function(n){return n+'个名额';},
+      search:'搜索活动、城市...',sortiesSearch:'搜索餐厅...',
+      empty:'没有活动',emptySub:'请尝试其他筛选'},
+  ru:{home:'Главная',map:'Карта',sorties:'Места',myevents:'Мои события',profile:'Профиль',
+      upcoming:'Предстоящие события',seeall:'Смотреть всё',free:'БЕСПЛАТНО',full:'НЕТ МЕСТ',
+      register:'Записаться',registered:'Записан',pay:'Оплатить',spots:function(n){return n+' место';},
+      search:'Поиск событий, городов...',sortiesSearch:'Поиск ресторанов...',
+      empty:'Нет событий',emptySub:'Попробуй другой фильтр'},
+  hi:{home:'होम',map:'नक्शा',sorties:'जगह',myevents:'मेरे इवेंट',profile:'प्रोफ़ाइल',
+      upcoming:'आने वाले इवेंट',seeall:'सब देखें',free:'मुफ़्त',full:'भरा हुआ',
+      register:'पंजीकरण',registered:'पंजीकृत',pay:'भुगतान',spots:function(n){return n+' सीट';},
+      search:'इवेंट, शहर खोजें...',sortiesSearch:'रेस्तरां खोजें...',
+      empty:'कोई इवेंट नहीं',emptySub:'दूसरा फ़िल्टर आज़माएं'},
+  bn:{home:'হোম',map:'মানচিত্র',sorties:'স্থান',myevents:'আমার ইভেন্ট',profile:'প্রোফাইল',
+      upcoming:'আসন্ন ইভেন্ট',seeall:'সব দেখুন',free:'বিনামূল্যে',full:'পূর্ণ',
+      register:'নিবন্ধন',registered:'নিবন্ধিত',pay:'পরিশোধ',spots:function(n){return n+'টি আসন';},
+      search:'ইভেন্ট, শহর খুঁজুন...',sortiesSearch:'রেস্তোরাঁ খুঁজুন...',
+      empty:'কোনো ইভেন্ট নেই',emptySub:'অন্য ফিল্টার চেষ্টা করুন'}
+};
+
+var currentLang = 'fr';
+
+function openLangPicker() {
+  var opts = document.querySelectorAll('.lang-opt');
+  for (var i=0;i<opts.length;i++) {
+    var ln = opts[i].getAttribute('onclick').match(/'([a-z]+)'/)[1];
+    opts[i].classList.toggle('active', ln === currentLang);
+  }
+  openModal('lang-modal');
+}
+
+function setLang(lang, btn) {
+  currentLang = lang;
+  var lb = document.getElementById('lang-btn');
+  if (lb) lb.textContent = LANG_LABELS[lang] || lang.toUpperCase();
+  document.body.classList.toggle('rtl', lang === 'ar');
+  applyUI();
+  if (globalMap) renderGPins();
+  closeModal('lang-modal');
+}
+
+function applyUI() {
+  var L = UI_TEXT[currentLang] || UI_TEXT.fr;
+  function txt(id, val) { var e=document.getElementById(id); if(e) { var nodes=e.childNodes; for(var i=nodes.length-1;i>=0;i--){if(nodes[i].nodeType===3&&nodes[i].textContent.trim()){nodes[i].textContent=val;return;}}}}
+  function ph(id, val) { var e=document.getElementById(id); if(e) e.placeholder=val; }
+  function html(sel, val) { var e=document.querySelector(sel); if(e) e.textContent=val; }
+
+  txt('nav-home', L.home); txt('nav-map', L.map);
+  txt('nav-sorties', L.sorties); txt('nav-myevents', L.myevents); txt('nav-profile', L.profile);
+  ph('search-input', L.search); ph('sorties-q', L.sortiesSearch);
+  html('.section-title', L.upcoming); html('.section-link', L.seeall);
+
+  // Re-render events with new translations
+  if (typeof renderEv === 'function' && typeof dispEv !== 'undefined') renderEv(dispEv);
+  if (typeof renderSorties === 'function' && typeof dispSo !== 'undefined') renderSorties(dispSo);
+}
 </script>
 </body>
 </html>
