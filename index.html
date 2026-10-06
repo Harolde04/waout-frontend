@@ -208,7 +208,8 @@ main{padding-bottom:90px;background:#f0f0f0;width:100%;overflow-x:hidden}
 .share-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px}
 .shr-btn{display:flex;flex-direction:column;align-items:center;gap:4px;border:none;padding:10px 6px;border-radius:10px;font-size:10px;font-weight:700;transition:transform .2s;cursor:pointer}
 .shr-btn:hover{transform:translateY(-2px)}
-.shr-ico{font-size:20px}
+.shr-ico{display:flex;align-items:center;justify-content:center;height:26px}
+.shr-svg{width:26px;height:26px;display:block}
 .shr-wa{background:#E8F8EF;color:#1DAA61}
 .shr-ig{background:#FCF0F5;color:#C13584}
 .shr-lk{background:#F0F0FF;color:#534AB7}
@@ -448,7 +449,6 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
           <button class="menu-filter" onclick="menuSetContinent('amerique',this)">Amérique</button>
           <button class="menu-filter" onclick="menuSetContinent('asie',this)">Asie</button>
         </div>
-        <div id="menu-pays-row" style="display:none;flex-wrap:wrap;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid #3a1515"></div>
       </div>
 
       <!-- Prix events -->
@@ -492,11 +492,10 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
         <div style="font-size:10px;font-weight:700;color:#6B0F1A;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px">Type</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px">
           <button class="menu-filter active" onclick="menuSetSF('cat','tous',this)">Tous</button>
-          <button class="menu-filter" onclick="menuSetSF('cat','resto',this)">Restos</button>
-          <button class="menu-filter" onclick="menuSetSF('cat','escape',this)">Escape</button>
-          <button class="menu-filter" onclick="menuSetSF('cat','musee',this)">Musées</button>
-          <button class="menu-filter" onclick="menuSetSF('cat','cinema',this)">Cinéma</button>
-          <button class="menu-filter" onclick="menuSetSF('cat','activite',this)">Activités</button>
+          <button class="menu-filter" onclick="menuSetSF('cat','manger',this)" data-i18n="sfgEat">Où manger</button>
+          <button class="menu-filter" onclick="menuSetSF('cat','culture',this)" data-i18n="sfgCulture">Culture</button>
+          <button class="menu-filter" onclick="menuSetSF('cat','loisir',this)" data-i18n="sfgFun">Loisirs</button>
+          <button class="menu-filter" onclick="menuSetSF('cat','bonsplans',this)" data-i18n="sfgDeals">Bons plans</button>
         </div>
       </div>
 
@@ -579,9 +578,6 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
     <button class="pays-btn" onclick="setContinent('amerique',this)" data-i18n="zoneAmerica">Amerique</button>
     <button class="pays-btn" onclick="setContinent('asie',this)" data-i18n="zoneAsia">Asie</button>
   </div>
-  <div id="pays-sub" style="display:none;align-items:center;gap:8px;padding:6px 16px;overflow-x:auto;scrollbar-width:none;background:#150808">
-    <span class="pays-label" data-i18n="countryLabel">Pays :</span>
-  </div>
 </div>
 <div class="filters" id="main-filters" style="display:none">
   <div class="filters-row" id="cat-row">
@@ -650,13 +646,12 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
     <div class="sf-row">
       <span class="sf-lbl" data-i18n="sortieTypeLabel">Type :</span>
       <button class="sf-btn active" onclick="setSF('cat','tous',this)" data-i18n="sortieTypeAll">Tous</button>
-      <button class="sf-btn" onclick="setSF('cat','resto',this)" data-i18n="sortieTypeResto">Restos</button>
-      <button class="sf-btn" onclick="setSF('cat','escape',this)" data-i18n="sortieTypeEscape">Escape game</button>
-      <button class="sf-btn" onclick="setSF('cat','musee',this)" data-i18n="sortieTypeMusee">Musees</button>
-      <button class="sf-btn" onclick="setSF('cat','cinema',this)" data-i18n="sortieTypeCinema">Cinema</button>
-      <button class="sf-btn" onclick="setSF('cat','sport',this)" data-i18n="sortieTypeSport">Sport</button>
-      <button class="sf-btn" onclick="setSF('cat','activite',this)" data-i18n="sortieTypeActivite">Activites</button>
+      <button class="sf-btn" onclick="setSF('cat','manger',this)" data-i18n="sfgEat">Où manger</button>
+      <button class="sf-btn" onclick="setSF('cat','culture',this)" data-i18n="sfgCulture">Culture</button>
+      <button class="sf-btn" onclick="setSF('cat','loisir',this)" data-i18n="sfgFun">Loisirs</button>
+      <button class="sf-btn" onclick="setSF('cat','bonsplans',this)" data-i18n="sfgDeals">Bons plans</button>
     </div>
+    <div class="sf-row" id="sf-sub-row" style="display:none"></div>
     <div class="sf-row">
       <span class="sf-lbl" data-i18n="sortiePriceLabel">Prix :</span>
       <button class="sf-btn active" onclick="setSF('prix','tous',this)" data-i18n="sortiePriceAll">Tous</button>
@@ -1045,35 +1040,7 @@ function closeMenu() {
 }
 
 function menuSetContinent(continent, btn) {
-  var btns = document.querySelectorAll("#menu-cont-row .menu-filter");
-  for (var i=0;i<btns.length;i++) btns[i].classList.remove("active");
-  if (btn) btn.classList.add("active");
-  var pr = elo("menu-pays-row");
-  if (continent === "tous") {
-    CP = "tous";
-    if (pr) pr.style.display = "none";
-    filterEv(); return;
-  }
-  var pays = CONTINENTS[continent] || [];
-  if (!pr) return;
-  while (pr.firstChild) pr.removeChild(pr.firstChild);
-  var ab = document.createElement("button"); ab.className="menu-filter active"; ab.textContent="Tous";
-  ab.onclick=function(){setPays("tous",this);}; pr.appendChild(ab);
-  for (var j=0;j<pays.length;j++) {
-    (function(p){
-      var b=document.createElement("button"); b.className="menu-filter"; b.textContent=p;
-      b.onclick=function(){menuPays(p,this);}; pr.appendChild(b);
-    })(pays[j]);
-  }
-  pr.style.display = "flex";
-  CP = "tous"; filterEv();
-}
-
-function menuPays(p, btn) {
-  var btns = document.querySelectorAll("#menu-pays-row .menu-filter");
-  for (var i=0;i<btns.length;i++) btns[i].classList.remove("active");
-  if (btn) btn.classList.add("active");
-  CP = p; filterEv();
+  setContinent(continent, btn);
 }
 
 function menuSetPrix(p, btn) {
@@ -1111,7 +1078,7 @@ function menuSetSF(type, val, btn) {
 }
 
 
-var CF = "tous", CP = "tous", CPRIX = "tous";
+var CF = "tous", CCONT = "tous", CPRIX = "tous";
 var registered = {}, paid = {};
 var searchOpen = false;
 var leafMap = null, globalMap = null, globalMapF = "tous";
@@ -1160,7 +1127,29 @@ var SORTIES = [
 
 var dispEv = EVENTS.slice();
 var dispSo = SORTIES.slice();
-var sfCat = "tous", sfPrix = "tous", sfVille = "toutes";
+var sfCat = "tous", sfSub = "tous", sfPrix = "tous", sfVille = "toutes";
+// Groupes generaux de sorties -> sous-categories proposees [cat, cle i18n]
+var SORTIE_GROUPS = {
+  manger: [["resto","sfsResto"],["brunch","sfsBrunch"],["buffet","sfsBuffet"],["cafe","sfsCafe"]],
+  culture: [["musee","sfsMusee"],["expo","sfsExpo"],["theatre","sfsTheatre"]],
+  loisir: [["parc","sfsParc"],["escape","sfsEscape"],["jeux","sfsJeux"],["cinema","sfsCinema"],["photo","sfsPhoto"],["sport","sfsSport"],["activite","sfsActivite"]]
+};
+function sortieInGroup(s, g) {
+  if (g === "tous") return true;
+  if (g === "bonsplans") return s.priceType === "free" || s.prix === 0;
+  var subs = SORTIE_GROUPS[g] || [];
+  for (var i=0;i<subs.length;i++) if (subs[i][0] === s.cat) return true;
+  return false;
+}
+function renderSfSub() {
+  var row = elo("sf-sub-row"); if (!row) return;
+  var subs = SORTIE_GROUPS[sfCat];
+  if (!subs) { row.style.display = "none"; row.innerHTML = ""; return; }
+  var h = '<span class="sf-lbl"></span><button class="sf-btn'+(sfSub==="tous"?" active":"")+'" onclick="setSfSub(\'tous\')">'+t('sfsAll')+'</button>';
+  for (var i=0;i<subs.length;i++) h += '<button class="sf-btn'+(sfSub===subs[i][0]?" active":"")+'" onclick="setSfSub(\''+subs[i][0]+'\')">'+t(subs[i][1])+'</button>';
+  row.innerHTML = h; row.style.display = "flex";
+}
+function setSfSub(v) { sfSub = v; renderSfSub(); filterSorties(); }
 
 // --- UTILS ---
 function elo(id) { return document.getElementById(id); }
@@ -1252,7 +1241,7 @@ function filterEv() {
   dispEv = EVENTS.filter(function(ev) {
     var m = ev.title.toLowerCase().indexOf(q)>=0||ev.ville.toLowerCase().indexOf(q)>=0||ev.org.toLowerCase().indexOf(q)>=0;
     if (!m) return false;
-    if (CP!=="tous" && ev.pays!==CP) return false;
+    if (CCONT!=="tous" && (CONTINENTS[CCONT]||[]).indexOf(ev.pays)<0) return false;
     if (CPRIX==="gratuit" && ev.prix!==0) return false;
     if (CPRIX==="moins10" && (ev.prix===0||ev.prix>=10)) return false;
     if (CPRIX==="10-30" && (ev.prix<10||ev.prix>30)) return false;
@@ -1281,41 +1270,17 @@ var CONTINENTS = {
 };
 
 function setContinent(continent, btn) {
-  var cBtns = document.querySelectorAll("#cont-row .pays-btn");
-  for (var i=0;i<cBtns.length;i++) cBtns[i].classList.remove("active");
-  if (btn) btn.classList.add("active");
-  var subBar = document.getElementById("pays-sub");
-  if (continent === "tous") {
-    CP = "tous";
-    if (subBar) subBar.style.display = "none";
-    filterEv(); return;
-  }
-  var pays = CONTINENTS[continent] || [];
-  if (!subBar) return;
-  while (subBar.firstChild) subBar.removeChild(subBar.firstChild);
-  var lbl = document.createElement("span"); lbl.className = "pays-label"; lbl.textContent = "Pays :";
-  subBar.appendChild(lbl);
-  var allBtn = document.createElement("button"); allBtn.className = "pays-btn active"; allBtn.textContent = "Tous";
-  allBtn.onclick = function(){ setPays("tous", this); }; subBar.appendChild(allBtn);
-  for (var j=0;j<pays.length;j++) {
-    (function(p){ var b=document.createElement("button"); b.className="pays-btn"; b.textContent=p;
-      b.onclick=function(){ setPays(p, this); }; subBar.appendChild(b); })(pays[j]);
-  }
-  subBar.style.display = "flex"; CP = "tous"; filterEv();
+  CCONT = continent;
+  // Synchronise la barre Zone et le menu
+  var cBtns = document.querySelectorAll("#cont-row .pays-btn, #menu-cont-row .menu-filter");
+  for (var i=0;i<cBtns.length;i++) cBtns[i].classList.toggle("active", cBtns[i].getAttribute("onclick").indexOf("'"+continent+"'")>=0);
+  filterEv();
 }
 
 
 function setPrix(p, btn) {
   CPRIX = p;
   var btns = document.querySelectorAll("#prix-row .filter-btn");
-  for (var i=0;i<btns.length;i++) btns[i].classList.remove("active");
-  if (btn) btn.classList.add("active");
-  filterEv();
-}
-
-function setPays(p, btn) {
-  CP = p;
-  var btns = document.querySelectorAll(".pays-btn");
   for (var i=0;i<btns.length;i++) btns[i].classList.remove("active");
   if (btn) btn.classList.add("active");
   filterEv();
@@ -1350,7 +1315,7 @@ function openEv(id) {
     b += '<button class="detail-reg-btn '+rc+'" id="drb" onclick="register('+id+');updateDRB('+id+')" '+dis+'>'+rt+'</button>';
   }
   b += '<div style="margin-bottom:12px"><button onclick="signalerEvent('+id+')" style="background:none;border:1px solid #ffcccc;color:#cc0000;padding:6px 14px;border-radius:8px;font-size:11px;cursor:pointer;width:100%">'+t('detailReport')+'</button></div>';
-  b += '<div class="share-row"><button class="shr-btn shr-wa" onclick="shareWA(ev.title)">' + '<span class="shr-ico">&#128172;</span>'+t('shareWhatsapp')+'</button><button class="shr-btn shr-ig" onclick="toast(\'Copie le lien !\')">' + '<span class="shr-ico">&#128247;</span>'+t('shareInstagram')+'</button><button class="shr-btn shr-lk" onclick="copyLink()">' + '<span class="shr-ico">&#128279;</span>'+t('shareCopy')+'</button></div>';
+  b += '<div class="share-row"><button class="shr-btn shr-wa" onclick="shareWA(ev.title)">' + '<span class="shr-ico"><svg class="shr-svg" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>'+t('shareWhatsapp')+'</button><button class="shr-btn shr-ig" onclick="shareIG()">' + '<span class="shr-ico"><svg class="shr-svg" viewBox="0 0 24 24"><defs><radialGradient id="igg" cx="30%" cy="107%" r="150%"><stop offset="0" stop-color="#fdf497"/><stop offset=".05" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/><stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs><rect x="0" y="0" width="24" height="24" rx="6" fill="url(#igg)"/><rect x="5" y="5" width="14" height="14" rx="4" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.3" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.4" cy="7.6" r="1.1" fill="#fff"/></svg></span>'+t('shareInstagram')+'</button><button class="shr-btn shr-lk" onclick="copyLink()">' + '<span class="shr-ico"><svg class="shr-svg" viewBox="0 0 24 24" fill="none" stroke="#534AB7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>'+t('shareCopy')+'</button></div>';
   b += '<div class="reviews-section"><div class="reviews-head"><span class="reviews-title">'+t('reviewsTitle')+' ('+rv.length+')</span><button class="add-review-btn" onclick="openReviewModal('+id+')">'+t('reviewsAdd')+'</button></div>';
   if (avg>0) b += '<div class="review-avg"><span class="avg-num">'+avg+'</span><span class="avg-stars">'+stars(avg)+'</span><span class="avg-count">'+t('reviewsOutOf', rv.length)+'</span></div>';
   if (!rv.length) b += '<div class="no-reviews">'+t('reviewsNone')+'</div>';
@@ -1480,7 +1445,7 @@ function openMapAt(lat, lng, name, adresse) {
   setTimeout(function(){
     if(leafMap){leafMap.remove();leafMap=null;}
     leafMap=L.map("leaflet-map").setView([lat,lng],15);
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{attribution:'&copy; OpenStreetMap &copy; CARTO',subdomains:"abcd",maxZoom:20}).addTo(leafMap);
+    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",{attribution:'Tiles &copy; Esri',maxZoom:19}).addTo(leafMap);
     var icon=L.divIcon({html:'<div style="background:#6B0F1A;color:#fff;border-radius:50% 50% 50% 0;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:16px;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);transform:rotate(-45deg)"><span style="transform:rotate(45deg)">!</span></div>',iconSize:[36,36],iconAnchor:[18,36]});
     L.marker([lat,lng],{icon:icon}).addTo(leafMap).bindPopup("<b>"+name+"</b><br>"+adresse).openPopup();
     leafMap.invalidateSize();
@@ -1496,7 +1461,7 @@ function closeMapModal() {
 function initGlobalMap() {
   if(globalMap) return;
   globalMap=L.map("map-page-container",{zoomControl:true}).setView([46.6034,1.8883],5);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{attribution:'&copy; OpenStreetMap &copy; CARTO',subdomains:"abcd",maxZoom:20}).addTo(globalMap);
+  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",{attribution:'Tiles &copy; Esri',maxZoom:19}).addTo(globalMap);
   renderGPins();
   setTimeout(function(){globalMap.invalidateSize();},300);
 }
@@ -1513,7 +1478,7 @@ function renderGPins() {
     (function(e){
       var icon=L.divIcon({html:'<div style="display:flex;align-items:center;gap:5px"><div style="background:#6B0F1A;border:2px solid #fff;border-radius:50% 50% 50% 0;width:26px;height:26px;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,0.3);transform:rotate(-45deg)"></div><span style="color:#1a0505;font-size:11px;font-weight:700;white-space:nowrap;max-width:130px;overflow:hidden;text-overflow:ellipsis;text-shadow:0 0 3px #fff,0 0 3px #fff">'+e.title+'</span></div>',iconSize:[200,28],iconAnchor:[13,24],className:''});
       var m=L.marker([e.lat,e.lng],{icon:icon}).addTo(globalMap);
-      m.bindPopup('<div style="min-width:160px"><b style="font-size:13px">'+e.title+'</b><br><small style="color:#888">'+e.ville+' - '+e.date+'</small><br><small>'+(e.prix===0?"Gratuit":e.prix+" euros")+'</small><br><br><button onclick="closeGPop();openEv('+e.id+')" style="background:#6B0F1A;color:#fff;border:none;padding:5px 12px;border-radius:5px;font-size:11px;cursor:pointer">Voir</button></div>');
+      m.bindPopup('<div style="min-width:160px"><b style="font-size:13px">'+e.title+'</b><br><small style="color:#888">'+e.ville+' - '+e.date+'</small><br><small>'+(e.prix===0?t('detailFree'):e.prix+" "+deviseFor(e.pays))+'</small><br><br><button onclick="closeGPop();openEv('+e.id+')" style="background:#6B0F1A;color:#fff;border:none;padding:5px 12px;border-radius:5px;font-size:11px;cursor:pointer">'+t('mapSee')+'</button></div>');
     })(filtered[i]);
   }
 }
@@ -1562,10 +1527,10 @@ function renderSorties(so) {
 }
 
 function setSF(type, val, btn) {
-  if(type==="cat") sfCat=val;
+  if(type==="cat"){ sfCat=val; sfSub="tous"; renderSfSub(); }
   else if(type==="prix") sfPrix=val;
   else if(type==="ville") sfVille=val;
-  var rows=document.querySelectorAll(".sf-row");
+  var rows=document.querySelectorAll(".sf-row:not(#sf-sub-row)");
   var idx=type==="cat"?0:(type==="prix"?1:2);
   if(rows[idx]){var bs=rows[idx].querySelectorAll(".sf-btn");for(var i=0;i<bs.length;i++) bs[i].classList.remove("active");}
   if(btn) btn.classList.add("active");
@@ -1577,7 +1542,8 @@ function filterSorties() {
   dispSo=SORTIES.filter(function(s){
     var m=s.name.toLowerCase().indexOf(q)>=0||s.ville.toLowerCase().indexOf(q)>=0||s.desc.toLowerCase().indexOf(q)>=0;
     if(!m) return false;
-    if(sfCat!=="tous"&&s.cat!==sfCat) return false;
+    if(!sortieInGroup(s,sfCat)) return false;
+    if(sfSub!=="tous"&&s.cat!==sfSub) return false;
     if(sfVille!=="toutes"&&s.ville!==sfVille) return false;
     if(sfPrix==="gratuit"&&s.priceType!=="free") return false;
     if(sfPrix==="moins10"&&(s.priceType==="free"||s.prix>=10)) return false;
@@ -1608,7 +1574,7 @@ function openSortie(id) {
   b+='<div class="sortie-hours"><div class="sortie-hours-title">'+t('sortieHoursTitle')+'</div>'+hrs+'</div>';
   if(s.reservation) b+='<a class="sortie-res-btn" href="'+s.reservation+'" target="_blank" style="width:100%;display:block;text-align:center;padding:14px;border-radius:12px;font-size:14px;margin-bottom:10px">'+t('sortieBookOnSite')+'</a>';
   else b+='<div style="background:#E1F5EE;border-radius:12px;padding:12px;text-align:center;color:#0F6E56;font-weight:700;margin-bottom:10px">'+t('sortieNoBooking')+'</div>';
-  b+='<div class="share-row"><button class="shr-btn shr-wa" onclick="shareWA(s.name)"><span class="shr-ico">&#128172;</span>'+t('shareWhatsapp')+'</button><button class="shr-btn shr-ig" onclick="toast(\'Copie le lien !\')"><span class="shr-ico">&#128247;</span>'+t('shareInstagram')+'</button><button class="shr-btn shr-lk" onclick="copyLink()"><span class="shr-ico">&#128279;</span>'+t('shareCopy')+'</button></div>';
+  b+='<div class="share-row"><button class="shr-btn shr-wa" onclick="shareWA(s.name)"><span class="shr-ico"><svg class="shr-svg" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>'+t('shareWhatsapp')+'</button><button class="shr-btn shr-ig" onclick="shareIG()"><span class="shr-ico"><svg class="shr-svg" viewBox="0 0 24 24"><defs><radialGradient id="igg" cx="30%" cy="107%" r="150%"><stop offset="0" stop-color="#fdf497"/><stop offset=".05" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/><stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs><rect x="0" y="0" width="24" height="24" rx="6" fill="url(#igg)"/><rect x="5" y="5" width="14" height="14" rx="4" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.3" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.4" cy="7.6" r="1.1" fill="#fff"/></svg></span>'+t('shareInstagram')+'</button><button class="shr-btn shr-lk" onclick="copyLink()"><span class="shr-ico"><svg class="shr-svg" viewBox="0 0 24 24" fill="none" stroke="#534AB7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>'+t('shareCopy')+'</button></div>';
   elo("modal-title").textContent=s.name;
   elo("modal-body").innerHTML=b;
   openModal("event-modal");
@@ -1773,6 +1739,11 @@ function openAdmin(){
 }
 
 function shareWA(text) { window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank"); }
+function shareIG(){
+  if (navigator.share) { navigator.share({title:document.title, url:window.location.href}).catch(function(){}); return; }
+  if (navigator.clipboard) navigator.clipboard.writeText(window.location.href).catch(function(){});
+  toast(t('toastIgCopied'));
+}
 function copyLink(){if(navigator.clipboard) navigator.clipboard.writeText(window.location.href).catch(function(){});toast(t('toastLinkCopied'));}
 function findEv(id){for(var i=0;i<EVENTS.length;i++){if(EVENTS[i].id===id) return EVENTS[i];} return null;}
 
@@ -2137,6 +2108,7 @@ var UI_TEXT = {
       btnFull:'Complet',btnTicketOk:'Ticket OK',
       sortieTypeLabel:'Type :',sortieTypeAll:'Tous',sortieTypeResto:'Restos',sortieTypeEscape:'Escape game',
       sortieTypeMusee:'Musées',sortieTypeCinema:'Cinéma',sortieTypeSport:'Sport',sortieTypeActivite:'Activités',
+      sfgEat:'Où manger',sfgCulture:'Culture',sfgFun:'Loisirs',sfgDeals:'Bons plans',sfsAll:'Tout',sfsResto:'Restaurant',sfsBrunch:'Brunch',sfsBuffet:'À volonté',sfsCafe:'Café',sfsMusee:'Musée',sfsExpo:'Expo',sfsTheatre:'Théâtre',sfsParc:'Parc',sfsEscape:'Escape game',sfsJeux:'Bar à jeux',sfsCinema:'Cinéma',sfsPhoto:'Photo',sfsSport:'Sport',sfsActivite:'Activités',mapSee:'Voir',toastIgCopied:'Lien copié, colle-le dans Instagram !',
       sortiePriceLabel:'Prix :',sortiePriceAll:'Tous',sortiePriceFree:'Gratuit',sortiePriceUnder10:'Moins 10',
       sortiePrice10to30:'10 à 30',sortiePriceOver30:'Plus 30',
       sortieVilleLabel:'Ville :',sortieVilleAll:'Toutes',
@@ -2227,6 +2199,7 @@ var UI_TEXT = {
       btnFull:'Full',btnTicketOk:'Ticket OK',
       sortieTypeLabel:'Type:',sortieTypeAll:'All',sortieTypeResto:'Restaurants',sortieTypeEscape:'Escape room',
       sortieTypeMusee:'Museums',sortieTypeCinema:'Cinema',sortieTypeSport:'Sport',sortieTypeActivite:'Activities',
+      sfgEat:'Where to eat',sfgCulture:'Culture',sfgFun:'Leisure',sfgDeals:'Good deals',sfsAll:'All',sfsResto:'Restaurant',sfsBrunch:'Brunch',sfsBuffet:'All-you-can-eat',sfsCafe:'Café',sfsMusee:'Museum',sfsExpo:'Exhibition',sfsTheatre:'Theatre',sfsParc:'Park',sfsEscape:'Escape room',sfsJeux:'Board game bar',sfsCinema:'Cinema',sfsPhoto:'Photo',sfsSport:'Sport',sfsActivite:'Activities',mapSee:'View',toastIgCopied:'Link copied, paste it in Instagram!',
       sortiePriceLabel:'Price:',sortiePriceAll:'All',sortiePriceFree:'Free',sortiePriceUnder10:'Under 10',
       sortiePrice10to30:'10 to 30',sortiePriceOver30:'Over 30',
       sortieVilleLabel:'City:',sortieVilleAll:'All',
@@ -2317,6 +2290,7 @@ var UI_TEXT = {
       btnFull:'Completo',btnTicketOk:'Ticket OK',
       sortieTypeLabel:'Tipo:',sortieTypeAll:'Todos',sortieTypeResto:'Restaurantes',sortieTypeEscape:'Escape room',
       sortieTypeMusee:'Museos',sortieTypeCinema:'Cine',sortieTypeSport:'Deporte',sortieTypeActivite:'Actividades',
+      sfgEat:'Dónde comer',sfgCulture:'Cultura',sfgFun:'Ocio',sfgDeals:'Chollos',sfsAll:'Todo',sfsResto:'Restaurante',sfsBrunch:'Brunch',sfsBuffet:'Buffet libre',sfsCafe:'Café',sfsMusee:'Museo',sfsExpo:'Exposición',sfsTheatre:'Teatro',sfsParc:'Parque',sfsEscape:'Escape room',sfsJeux:'Bar de juegos',sfsCinema:'Cine',sfsPhoto:'Foto',sfsSport:'Deporte',sfsActivite:'Actividades',mapSee:'Ver',toastIgCopied:'¡Enlace copiado, pégalo en Instagram!',
       sortiePriceLabel:'Precio:',sortiePriceAll:'Todos',sortiePriceFree:'Gratis',sortiePriceUnder10:'Menos de 10',
       sortiePrice10to30:'10 a 30',sortiePriceOver30:'Más de 30',
       sortieVilleLabel:'Ciudad:',sortieVilleAll:'Todas',
@@ -2407,6 +2381,7 @@ var UI_TEXT = {
       btnFull:'Lotado',btnTicketOk:'Ticket OK',
       sortieTypeLabel:'Tipo:',sortieTypeAll:'Todos',sortieTypeResto:'Restaurantes',sortieTypeEscape:'Escape room',
       sortieTypeMusee:'Museus',sortieTypeCinema:'Cinema',sortieTypeSport:'Esporte',sortieTypeActivite:'Atividades',
+      sfgEat:'Onde comer',sfgCulture:'Cultura',sfgFun:'Lazer',sfgDeals:'Boas ofertas',sfsAll:'Tudo',sfsResto:'Restaurante',sfsBrunch:'Brunch',sfsBuffet:'Rodízio',sfsCafe:'Café',sfsMusee:'Museu',sfsExpo:'Exposição',sfsTheatre:'Teatro',sfsParc:'Parque',sfsEscape:'Escape room',sfsJeux:'Bar de jogos',sfsCinema:'Cinema',sfsPhoto:'Foto',sfsSport:'Esporte',sfsActivite:'Atividades',mapSee:'Ver',toastIgCopied:'Link copiado, cole no Instagram!',
       sortiePriceLabel:'Preço:',sortiePriceAll:'Todos',sortiePriceFree:'Grátis',sortiePriceUnder10:'Menos de 10',
       sortiePrice10to30:'10 a 30',sortiePriceOver30:'Mais de 30',
       sortieVilleLabel:'Cidade:',sortieVilleAll:'Todas',
@@ -2497,6 +2472,7 @@ var UI_TEXT = {
       btnFull:'مكتمل',btnTicketOk:'التذكرة جاهزة',
       sortieTypeLabel:'النوع:',sortieTypeAll:'الكل',sortieTypeResto:'مطاعم',sortieTypeEscape:'غرفة هروب',
       sortieTypeMusee:'متاحف',sortieTypeCinema:'سينما',sortieTypeSport:'رياضة',sortieTypeActivite:'أنشطة',
+      sfgEat:'أين تأكل',sfgCulture:'ثقافة',sfgFun:'ترفيه',sfgDeals:'عروض مميزة',sfsAll:'الكل',sfsResto:'مطعم',sfsBrunch:'برانش',sfsBuffet:'بوفيه مفتوح',sfsCafe:'مقهى',sfsMusee:'متحف',sfsExpo:'معرض',sfsTheatre:'مسرح',sfsParc:'حديقة',sfsEscape:'غرفة هروب',sfsJeux:'مقهى ألعاب',sfsCinema:'سينما',sfsPhoto:'تصوير',sfsSport:'رياضة',sfsActivite:'أنشطة',mapSee:'عرض',toastIgCopied:'تم نسخ الرابط، الصقه في إنستغرام!',
       sortiePriceLabel:'السعر:',sortiePriceAll:'الكل',sortiePriceFree:'مجاني',sortiePriceUnder10:'أقل من 10',
       sortiePrice10to30:'10 إلى 30',sortiePriceOver30:'أكثر من 30',
       sortieVilleLabel:'المدينة:',sortieVilleAll:'الكل',
@@ -2587,6 +2563,7 @@ var UI_TEXT = {
       btnFull:'已满',btnTicketOk:'票已确认',
       sortieTypeLabel:'类型：',sortieTypeAll:'全部',sortieTypeResto:'餐厅',sortieTypeEscape:'密室逃脱',
       sortieTypeMusee:'博物馆',sortieTypeCinema:'电影院',sortieTypeSport:'运动',sortieTypeActivite:'活动',
+      sfgEat:'吃什么',sfgCulture:'文化',sfgFun:'休闲',sfgDeals:'优惠',sfsAll:'全部',sfsResto:'餐厅',sfsBrunch:'早午餐',sfsBuffet:'自助餐',sfsCafe:'咖啡馆',sfsMusee:'博物馆',sfsExpo:'展览',sfsTheatre:'剧院',sfsParc:'公园',sfsEscape:'密室逃脱',sfsJeux:'桌游吧',sfsCinema:'电影院',sfsPhoto:'拍照',sfsSport:'运动',sfsActivite:'活动',mapSee:'查看',toastIgCopied:'链接已复制，粘贴到 Instagram！',
       sortiePriceLabel:'价格：',sortiePriceAll:'全部',sortiePriceFree:'免费',sortiePriceUnder10:'低于10',
       sortiePrice10to30:'10到30',sortiePriceOver30:'高于30',
       sortieVilleLabel:'城市：',sortieVilleAll:'全部',
@@ -2677,6 +2654,7 @@ var UI_TEXT = {
       btnFull:'Мест нет',btnTicketOk:'Билет готов',
       sortieTypeLabel:'Тип:',sortieTypeAll:'Все',sortieTypeResto:'Рестораны',sortieTypeEscape:'Квест-комната',
       sortieTypeMusee:'Музеи',sortieTypeCinema:'Кино',sortieTypeSport:'Спорт',sortieTypeActivite:'Активности',
+      sfgEat:'Где поесть',sfgCulture:'Культура',sfgFun:'Досуг',sfgDeals:'Выгодно',sfsAll:'Все',sfsResto:'Ресторан',sfsBrunch:'Бранч',sfsBuffet:'Шведский стол',sfsCafe:'Кафе',sfsMusee:'Музей',sfsExpo:'Выставка',sfsTheatre:'Театр',sfsParc:'Парк',sfsEscape:'Квест-комната',sfsJeux:'Бар настольных игр',sfsCinema:'Кино',sfsPhoto:'Фото',sfsSport:'Спорт',sfsActivite:'Активности',mapSee:'Открыть',toastIgCopied:'Ссылка скопирована, вставьте её в Instagram!',
       sortiePriceLabel:'Цена:',sortiePriceAll:'Все',sortiePriceFree:'Бесплатно',sortiePriceUnder10:'Меньше 10',
       sortiePrice10to30:'От 10 до 30',sortiePriceOver30:'Больше 30',
       sortieVilleLabel:'Город:',sortieVilleAll:'Все',
@@ -2767,6 +2745,7 @@ var UI_TEXT = {
       btnFull:'भरा हुआ',btnTicketOk:'टिकट तैयार',
       sortieTypeLabel:'प्रकार:',sortieTypeAll:'सभी',sortieTypeResto:'रेस्तरां',sortieTypeEscape:'एस्केप रूम',
       sortieTypeMusee:'संग्रहालय',sortieTypeCinema:'सिनेमा',sortieTypeSport:'खेल',sortieTypeActivite:'गतिविधियाँ',
+      sfgEat:'कहाँ खाएँ',sfgCulture:'संस्कृति',sfgFun:'मनोरंजन',sfgDeals:'बढ़िया ऑफ़र',sfsAll:'सभी',sfsResto:'रेस्तरां',sfsBrunch:'ब्रंच',sfsBuffet:'अनलिमिटेड बुफ़े',sfsCafe:'कैफ़े',sfsMusee:'संग्रहालय',sfsExpo:'प्रदर्शनी',sfsTheatre:'थिएटर',sfsParc:'पार्क',sfsEscape:'एस्केप रूम',sfsJeux:'गेम बार',sfsCinema:'सिनेमा',sfsPhoto:'फ़ोटो',sfsSport:'खेल',sfsActivite:'गतिविधियाँ',mapSee:'देखें',toastIgCopied:'लिंक कॉपी हुआ, Instagram में पेस्ट करें!',
       sortiePriceLabel:'कीमत:',sortiePriceAll:'सभी',sortiePriceFree:'मुफ़्त',sortiePriceUnder10:'10 से कम',
       sortiePrice10to30:'10 से 30',sortiePriceOver30:'30 से अधिक',
       sortieVilleLabel:'शहर:',sortieVilleAll:'सभी',
@@ -2857,6 +2836,7 @@ var UI_TEXT = {
       btnFull:'পূর্ণ',btnTicketOk:'টিকিট প্রস্তুত',
       sortieTypeLabel:'ধরন:',sortieTypeAll:'সব',sortieTypeResto:'রেস্তোরাঁ',sortieTypeEscape:'এস্কেপ রুম',
       sortieTypeMusee:'জাদুঘর',sortieTypeCinema:'সিনেমা',sortieTypeSport:'খেলাধুলা',sortieTypeActivite:'কার্যক্রম',
+      sfgEat:'কোথায় খাবেন',sfgCulture:'সংস্কৃতি',sfgFun:'বিনোদন',sfgDeals:'ভালো অফার',sfsAll:'সব',sfsResto:'রেস্তোরাঁ',sfsBrunch:'ব্রাঞ্চ',sfsBuffet:'আনলিমিটেড বুফে',sfsCafe:'ক্যাফে',sfsMusee:'জাদুঘর',sfsExpo:'প্রদর্শনী',sfsTheatre:'থিয়েটার',sfsParc:'পার্ক',sfsEscape:'এস্কেপ রুম',sfsJeux:'গেম বার',sfsCinema:'সিনেমা',sfsPhoto:'ছবি',sfsSport:'খেলাধুলা',sfsActivite:'কার্যক্রম',mapSee:'দেখুন',toastIgCopied:'লিংক কপি হয়েছে, Instagram-এ পেস্ট করুন!',
       sortiePriceLabel:'মূল্য:',sortiePriceAll:'সব',sortiePriceFree:'বিনামূল্যে',sortiePriceUnder10:'10 এর কম',
       sortiePrice10to30:'10 থেকে 30',sortiePriceOver30:'30 এর বেশি',
       sortieVilleLabel:'শহর:',sortieVilleAll:'সব',
@@ -2983,6 +2963,7 @@ function applyUI() {
   // Re-render dynamic content with new translations
   if (typeof renderEv === 'function' && typeof dispEv !== 'undefined') renderEv(dispEv);
   if (typeof renderSorties === 'function' && typeof dispSo !== 'undefined') renderSorties(dispSo);
+  if (typeof renderSfSub === 'function') renderSfSub();
   var myEvPage = document.getElementById('page-myevents');
   if (myEvPage && myEvPage.classList.contains('active') && typeof renderMyEvents === 'function') renderMyEvents();
 }
