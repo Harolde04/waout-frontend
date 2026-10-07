@@ -40,7 +40,7 @@ header{background:#240004!important;padding:4px 16px;position:sticky;top:0;z-ind
 .search-wrap input{width:100%;background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.2);border-radius:10px;padding:9px 36px 9px 38px;font-size:13px;color:#fff;outline:none}
 .search-wrap input::placeholder{color:rgba(255,255,255,0.5)}
 .search-wrap input:focus{background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.4)}
-.s-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;pointer-events:none}
+.s-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);display:flex;color:rgba(255,255,255,0.6);pointer-events:none}
 .s-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.2);border:none;color:#fff;width:20px;height:20px;border-radius:50%;font-size:11px;display:none;align-items:center;justify-content:center}
 .s-clear.show{display:flex}
 .pays-bar{background:#1a0808;padding:8px 16px;border-bottom:1px solid var(--border);display:none;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none}
@@ -313,6 +313,7 @@ main{padding-bottom:90px;background:#f0f0f0;width:100%;overflow-x:hidden}
 .notif-unread{border-left:3px solid var(--bord)}
 .my-list{padding:0 16px 16px;display:flex;flex-direction:column;gap:10px}
 .my-card{background:#fff;border-radius:var(--radius);display:flex;align-items:center;gap:12px;padding:12px 14px;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+.mono{font-weight:900;color:#4a0912;opacity:.75;line-height:1}
 .my-img{width:60px;height:60px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:26px}
 .my-info{flex:1}
 .my-title{font-size:13px;font-weight:800;color:#1a0505;margin-bottom:3px}
@@ -334,15 +335,15 @@ main{padding-bottom:90px;background:#f0f0f0;width:100%;overflow-x:hidden}
 .pstat{text-align:center;padding:14px;border-right:1px solid #f5eaea}
 .pstat:last-child{border-right:none}
 .pstat-num{font-size:20px;font-weight:900;color:var(--bord)}
-.pstat-lbl{font-size:10px;color:#aaa;text-transform:uppercase;letter-spacing:.5px}
+.pstat-lbl{font-size:10px;color:#555;text-transform:uppercase;letter-spacing:.5px}
 .prof-menu{background:#fff;border-radius:var(--radius);margin:0 16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
 .pm-item{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #f5eaea;cursor:pointer;transition:background .2s}
 .pm-item:last-child{border-bottom:none}
 .pm-item:hover{background:#fff9f9}
-.pm-ico{width:36px;height:36px;border-radius:10px;background:#f9f0f0;display:flex;align-items:center;justify-content:center;font-size:18px}
+.pm-ico{width:36px;height:36px;border-radius:10px;background:#f9f0f0;color:#6B0F1A;display:flex;align-items:center;justify-content:center;font-size:18px}
 .pm-text{flex:1}
 .pm-title{font-size:13px;font-weight:700;color:#1a0505}
-.pm-sub{font-size:11px;color:#aaa;margin-top:2px}
+.pm-sub{font-size:11px;color:#666;margin-top:2px}
 .pm-arr{font-size:14px;color:#ccc}
 .admin-section{margin-bottom:20px}
 .admin-section h3{font-size:12px;font-weight:800;color:#1a0505;margin-bottom:12px;text-transform:uppercase;padding-bottom:6px;border-bottom:2px solid #f5eaea}
@@ -355,7 +356,7 @@ main{padding-bottom:90px;background:#f0f0f0;width:100%;overflow-x:hidden}
 .form-hint{font-size:10px;color:#aaa;margin-top:3px}
 .submit-btn{width:100%;background:var(--bord);color:#fff;border:none;padding:14px;border-radius:10px;font-size:14px;font-weight:800;margin-top:6px;cursor:pointer}
 .pending-card{background:#f9f0f0;border-radius:10px;padding:12px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
-.pending-ico{font-size:26px}
+.pending-ico{width:40px;height:40px;border-radius:10px;background:#f9f0f0;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .pending-info{flex:1}
 .pending-title{font-size:12px;font-weight:800;color:#1a0505;margin-bottom:2px}
 .pending-meta{font-size:10px;color:#999}
@@ -541,7 +542,7 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 </div>
 
 <div id="install-banner">
-  <div class="ib-text">&#128242; <strong>Installer WAOUT</strong> pour recevoir les notifications !</div>
+  <div class="ib-text"><strong>Installer WAOUT</strong> pour recevoir les notifications !</div>
   <button class="ib-btn" id="install-btn">Installer</button>
   <button class="ib-close" id="close-banner">&#10005;</button>
 </div>
@@ -563,7 +564,7 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
   </div>
   <div id="search-wrap" style="display:none;margin-top:8px">
     <div class="search-wrap">
-      <span class="s-icon">&#128269;</span>
+      <span class="s-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
       <input type="text" id="search-input" placeholder="Rechercher un evenement, une ville..." oninput="onSearch(this.value)" autocomplete="off" data-i18n-ph="search">
       <button class="s-clear" id="s-clear" onclick="clearSearch()">&#10005;</button>
     </div>
@@ -717,32 +718,32 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
   <div class="page-pill" data-i18n="pagePrefs">Mes preferences</div>
   <p style="font-size:12px;color:#888;padding:0 16px 12px" data-i18n="prefsSubtitle">Selectionne les types qui t interessent :</p>
   <div class="prefs-cats">
-    <div class="pref-cat selected" onclick="this.classList.toggle('selected')"><div class="pcat-ico">&#127934;</div><div class="pcat-name" data-i18n="catFive">Five</div></div>
-    <div class="pref-cat selected" onclick="this.classList.toggle('selected')"><div class="pcat-ico">&#129978;</div><div class="pcat-name" data-i18n="catPicnic">Pique-nique</div></div>
-    <div class="pref-cat" onclick="this.classList.toggle('selected')"><div class="pcat-ico">&#127918;</div><div class="pcat-name" data-i18n="catGames">Jeux</div></div>
-    <div class="pref-cat selected" onclick="this.classList.toggle('selected')"><div class="pcat-ico">&#127916;</div><div class="pcat-name" data-i18n="catCinema">Cine</div></div>
-    <div class="pref-cat" onclick="this.classList.toggle('selected')"><div class="pcat-ico">&#129360;</div><div class="pcat-name" data-i18n="catBrunch">Brunch</div></div>
-    <div class="pref-cat" onclick="this.classList.toggle('selected')"><div class="pcat-ico">&#127881;</div><div class="pcat-name" data-i18n="catParty">Soiree</div></div>
-    <div class="pref-cat" onclick="this.classList.toggle('selected')"><div class="pcat-ico">&#127912;</div><div class="pcat-name" data-i18n="catWorkshop">Atelier</div></div>
-    <div class="pref-cat" onclick="this.classList.toggle('selected')"><div class="pcat-ico">&#10024;</div><div class="pcat-name" data-i18n="catFreeTag">Gratuit</div></div>
-    <div class="pref-cat" onclick="this.classList.toggle('selected')"><div class="pcat-ico">&#128197;</div><div class="pcat-name" data-i18n="catWeekend">Week-end</div></div>
+    <div class="pref-cat selected" onclick="this.classList.toggle('selected')"><div class="pcat-name" data-i18n="catFive">Five</div></div>
+    <div class="pref-cat selected" onclick="this.classList.toggle('selected')"><div class="pcat-name" data-i18n="catPicnic">Pique-nique</div></div>
+    <div class="pref-cat" onclick="this.classList.toggle('selected')"><div class="pcat-name" data-i18n="catGames">Jeux</div></div>
+    <div class="pref-cat selected" onclick="this.classList.toggle('selected')"><div class="pcat-name" data-i18n="catCinema">Cine</div></div>
+    <div class="pref-cat" onclick="this.classList.toggle('selected')"><div class="pcat-name" data-i18n="catBrunch">Brunch</div></div>
+    <div class="pref-cat" onclick="this.classList.toggle('selected')"><div class="pcat-name" data-i18n="catParty">Soiree</div></div>
+    <div class="pref-cat" onclick="this.classList.toggle('selected')"><div class="pcat-name" data-i18n="catWorkshop">Atelier</div></div>
+    <div class="pref-cat" onclick="this.classList.toggle('selected')"><div class="pcat-name" data-i18n="catFreeTag">Gratuit</div></div>
+    <div class="pref-cat" onclick="this.classList.toggle('selected')"><div class="pcat-name" data-i18n="catWeekend">Week-end</div></div>
   </div>
   <button class="pref-save" onclick="showToast(t('toastPrefsSaved'))" data-i18n="prefsSave">Sauvegarder</button>
 </div>
 <div class="page" id="page-profile">
   <div id="prof-content-guest" style="padding:32px 16px;text-align:center">
-    <div style="font-size:64px;margin-bottom:16px">&#128100;</div>
-    <div style="font-size:18px;font-weight:900;color:#fff;margin-bottom:8px" data-i18n="profileGuestTitle">Bienvenue sur WAOUT</div>
-    <div style="font-size:13px;color:#888;margin-bottom:24px;line-height:1.6" data-i18n="profileGuestSub">Connecte-toi pour decouvrir les meilleurs evenements pres de chez toi.</div>
+    <div style="width:80px;height:80px;border-radius:50%;background:#f0e4e4;color:#6B0F1A;display:flex;align-items:center;justify-content:center;margin:0 auto 16px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+    <div style="font-size:18px;font-weight:900;color:#1a0505;margin-bottom:8px" data-i18n="profileGuestTitle">Bienvenue sur WAOUT</div>
+    <div style="font-size:13px;color:#444;margin-bottom:24px;line-height:1.6" data-i18n="profileGuestSub">Connecte-toi pour decouvrir les meilleurs evenements pres de chez toi.</div>
     <button onclick="openAuth('login')" style="width:100%;background:var(--bord);color:#fff;border:none;padding:14px;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;margin-bottom:10px" data-i18n="profileLogin">Se connecter</button>
-    <button onclick="openAuth('signup')" style="width:100%;background:transparent;color:#ccc;border:1.5px solid #3a1515;padding:14px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer" data-i18n="profileSignup">Creer un compte</button>
+    <button onclick="openAuth('signup')" style="width:100%;background:transparent;color:#1a0505;border:1.5px solid #240004;padding:14px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer" data-i18n="profileSignup">Creer un compte</button>
   </div>
   <div id="prof-content-user" style="display:none">
     <div class="prof-head">
       <div class="user-avatar" id="prof-avatar">?</div>
       <div>
         <div class="prof-name" id="prof-name">Chargement...</div>
-        <div class="prof-badge-row"><span class="prof-badge" data-i18n="profileMember">&#11088; Membre WAOUT</span></div>
+        <div class="prof-badge-row"><span class="prof-badge" data-i18n="profileMember">Membre WAOUT</span></div>
       </div>
     </div>
     <div class="prof-stats">
@@ -750,20 +751,20 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
       <div class="pstat"><div class="pstat-num" id="prof-stat-avis">0</div><div class="pstat-lbl" data-i18n="profileStatReviews">Avis</div></div>
       <div class="pstat"><div class="pstat-num" id="prof-stat-events">0</div><div class="pstat-lbl" data-i18n="profileStatOrganized">Organise</div></div>
     </div>
-    <div style="padding:4px 16px 12px;font-size:12px;color:#888" id="prof-email-display"></div>
+    <div style="padding:4px 16px 12px;font-size:12px;color:#444" id="prof-email-display"></div>
     <div class="prof-menu">
-      <div class="pm-item" onclick="showPage('myevents')"><div class="pm-ico">&#9989;</div><div class="pm-text"><div class="pm-title" data-i18n="profileMenuMyEvents">Mes evenements</div><div class="pm-sub" data-i18n="profileMenuMyEventsSub">Voir mes inscriptions</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="showOrgDash()"><div class="pm-ico">&#128202;</div><div class="pm-text"><div class="pm-title" data-i18n="profileMenuDash">Tableau de bord</div><div class="pm-sub" data-i18n="profileMenuDashSub">Stats et participants</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="openAdmin()"><div class="pm-ico">&#10010;</div><div class="pm-text"><div class="pm-title" data-i18n="profileMenuPublish">Publier un evenement</div><div class="pm-sub" data-i18n="profileMenuPublishSub">Ajouter un evenement</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="signOut()" style="border-top:1px solid #f5eaea;margin-top:4px"><div class="pm-ico" style="background:#fff0f0">&#128682;</div><div class="pm-text"><div class="pm-title" style="color:#c0392b" data-i18n="profileMenuLogout">Se deconnecter</div><div class="pm-sub" data-i18n="profileMenuLogoutSub">Fermer la session</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="showPage('privacy')"><div class="pm-ico" style="background:#f0f0ff">&#128274;</div><div class="pm-text"><div class="pm-title" data-i18n="profileMenuPrivacy">Confidentialite</div><div class="pm-sub" data-i18n="profileMenuPrivacySub">Politique RGPD et tes droits</div></div><span class="pm-arr">&#8250;</span></div>
-      <div class="pm-item" onclick="deleteAccount()" style="border-top:1px solid #ffe0e0"><div class="pm-ico" style="background:#fff0f0">&#128465;</div><div class="pm-text"><div class="pm-title" style="color:#c0392b" data-i18n="profileMenuDelete">Supprimer mon compte</div><div class="pm-sub" data-i18n="profileMenuDeleteSub">Efface toutes tes donnees (irreversible)</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="showPage('myevents')"><div class="pm-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="pm-text"><div class="pm-title" data-i18n="profileMenuMyEvents">Mes evenements</div><div class="pm-sub" data-i18n="profileMenuMyEventsSub">Voir mes inscriptions</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="showOrgDash()"><div class="pm-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="pm-text"><div class="pm-title" data-i18n="profileMenuDash">Tableau de bord</div><div class="pm-sub" data-i18n="profileMenuDashSub">Stats et participants</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="openAdmin()"><div class="pm-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="pm-text"><div class="pm-title" data-i18n="profileMenuPublish">Publier un evenement</div><div class="pm-sub" data-i18n="profileMenuPublishSub">Ajouter un evenement</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="signOut()" style="border-top:1px solid #f5eaea;margin-top:4px"><div class="pm-ico" style="background:#fff0f0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></div><div class="pm-text"><div class="pm-title" style="color:#c0392b" data-i18n="profileMenuLogout">Se deconnecter</div><div class="pm-sub" data-i18n="profileMenuLogoutSub">Fermer la session</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="showPage('privacy')"><div class="pm-ico" style="background:#f0f0ff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="pm-text"><div class="pm-title" data-i18n="profileMenuPrivacy">Confidentialite</div><div class="pm-sub" data-i18n="profileMenuPrivacySub">Politique RGPD et tes droits</div></div><span class="pm-arr">&#8250;</span></div>
+      <div class="pm-item" onclick="deleteAccount()" style="border-top:1px solid #ffe0e0"><div class="pm-ico" style="background:#fff0f0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div><div class="pm-text"><div class="pm-title" style="color:#c0392b" data-i18n="profileMenuDelete">Supprimer mon compte</div><div class="pm-sub" data-i18n="profileMenuDeleteSub">Efface toutes tes donnees (irreversible)</div></div><span class="pm-arr">&#8250;</span></div>
     </div>
   </div>
 </div>
 <div class="page" id="page-privacy" style="padding:20px;padding-bottom:90px">
   <div style="background:var(--dark2);border-radius:14px;padding:20px;margin-bottom:16px">
-    <div style="font-size:18px;font-weight:900;color:#fff;margin-bottom:4px">&#128274; Politique de confidentialite</div>
+    <div style="font-size:18px;font-weight:900;color:#fff;margin-bottom:4px">Politique de confidentialite</div>
     <div style="font-size:11px;color:#888">Derniere mise a jour : juin 2025</div>
   </div>
 
@@ -952,11 +953,11 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
         <button class="submit-btn" onclick="addEvent()" data-i18n="adminSubmit">Publier</button>
       </div>
       <div class="admin-section" id="pending-section">
-        <h3><span data-i18n="adminPending">&#9203; En attente de validation</span></h3>
+        <h3><span data-i18n="adminPending">En attente de validation</span></h3>
         <div id="pending-list"><p style="font-size:12px;color:#aaa;text-align:center;padding:12px" data-i18n="adminLoading">Chargement...</p></div>
       </div>
       <div class="admin-section" id="signaled-section">
-        <h3><span data-i18n="adminSignaled">&#9888; Signales (suspendus)</span></h3>
+        <h3><span data-i18n="adminSignaled">Signales (suspendus)</span></h3>
         <div id="signaled-list"><p style="font-size:12px;color:#aaa;text-align:center;padding:12px" data-i18n="adminLoading">Chargement...</p></div>
       </div>
     </div>
@@ -1007,14 +1008,14 @@ async function signalerEvent(evId) {
   } else if (res.error) {
     toast("Erreur lors du signalement");
   } else {
-    toast("&#9888; Signalement envoye - merci !");
+    toast("Signalement envoye - merci !");
     closeModal("event-modal");
   }
 }
 
 
-var SUPA_URL = "https://vdjukgmkveoetfyjyaio.supabase.co";
-var SUPA_KEY = "sb_publishable_WfI1JMjPgBcy1lY_1sdcdw_e_9Ne6Bg";
+var SUPA_URL = "https://jdxtdqnyyxtoenyhaatq.supabase.co";
+var SUPA_KEY = "sb_publishable_VbT8j26_JdKvBnp-mIoyZQ_zqBhiB93";
 var supa = null;
 try {
   if (typeof supabase !== "undefined") {
@@ -1103,26 +1104,26 @@ var WEATHER = {
 var REVIEWS = {1:[{author:"Marie",av:"F",stars:5,text:"Super ambiance !",date:"Il y a 2h"},{author:"Lucas",av:"H",stars:4,text:"Bien mais beaucoup de monde.",date:"Il y a 3h"}],2:[],3:[{author:"Chloe",av:"F",stars:5,text:"Soiree magique !",date:"Il y a 1 sem"}],4:[],5:[],6:[{author:"Thomas",av:"H",stars:5,text:"Super soiree !",date:"Il y a 2 sem"}],100:[],101:[],102:[]};
 
 var EVENTS = [
-  {id:1,title:"Pique-nique géant au Champ de Mars",cat:"pique-nique",ico:"&#129978;",banner:"eb1",poster:null,date:"Sam 28 juin",heure:"14h00",rawDate:"2026-08-02",ville:"Paris",adresse:"Champ de Mars 75007 Paris",lat:48.8584,lng:2.2945,places:30,inscrits:23,prix:0,weekend:true,pays:"France",desc:"Un grand pique-nique entre amis ! Apporte de quoi manger et boire. Ideal pour rencontrer de nouvelles personnes.",org:"WaOut Community Paris"},
-  {id:2,title:"Five foot — Tournoi étudiant",cat:"five",ico:"&#9917;",banner:"eb2",poster:null,date:"Ven 27 juin",heure:"18h30",rawDate:"2026-08-01",ville:"Lyon",adresse:"Complexe sportif Gerland Lyon",lat:45.7282,lng:4.8317,places:12,inscrits:8,prix:3,weekend:false,pays:"France",desc:"Tournoi de five foot ouvert a tous ! Terrain reserve pour 2h, equipes de 5. 3 euros par joueur.",org:"SportStuds Lyon"},
-  {id:3,title:"Soirée ciné en plein air",cat:"cinema",ico:"&#127916;",banner:"eb3",poster:null,date:"Sam 28 juin",heure:"21h00",rawDate:"2026-08-02",ville:"Bordeaux",adresse:"Parc de la Mairie Bordeaux",lat:44.8378,lng:-0.5792,places:50,inscrits:34,prix:0,weekend:true,pays:"France",desc:"Cine en plein air dans le parc ! Film annonce le soir meme. Apporte une couverture et des snacks.",org:"CineStud Bordeaux"},
-  {id:4,title:"Brunch du dimanche",cat:"brunch",ico:"&#129360;",banner:"eb4",poster:null,date:"Dim 29 juin",heure:"11h00",rawDate:"2026-08-03",ville:"Paris",adresse:"Cafe Marais 75003 Paris",lat:48.8637,lng:2.3611,places:15,inscrits:15,prix:8,weekend:true,pays:"France",desc:"Brunch convivial dans un cafe du Marais. Formule complete a 8 euros. Places tres limitees !",org:"Brunch and Co"},
-  {id:5,title:"Atelier peinture",cat:"atelier",ico:"&#127912;",banner:"eb5",poster:null,date:"Mer 2 juillet",heure:"17h00",rawDate:"2026-08-05",ville:"Lille",adresse:"Centre culturel etudiant Lille",lat:50.6292,lng:3.0573,places:12,inscrits:5,prix:5,weekend:false,pays:"France",desc:"Atelier peinture pour tous les niveaux. Materiel fourni. 5 euros pour le materiel.",org:"ArtStuds"},
-  {id:6,title:"Soirée jeux de société",cat:"jeux",ico:"&#127918;",banner:"eb6",poster:null,date:"Jeu 3 juillet",heure:"19h00",rawDate:"2026-08-06",ville:"Marseille",adresse:"Bar Le Comptoir Marseille",lat:43.2965,lng:5.3698,places:20,inscrits:11,prix:0,weekend:false,pays:"France",desc:"Grande soiree jeux ! Catan, Uno, Times Up... Tous les jeux sont fournis. Viens seul ou en groupe !",org:"GameNight Marseille"},
-  {id:100,title:"Soirée networking jeunes",cat:"soiree",ico:"&#127881;",banner:"eb6",poster:null,date:"Sam 5 juillet",heure:"19h00",rawDate:"2026-07-05",ville:"Abidjan",adresse:"Plateau Abidjan",lat:5.3600,lng:-4.0083,places:80,inscrits:42,prix:0,weekend:true,pays:"Cote Ivoire",desc:"Grande soiree networking pour les jeunes entrepreneurs. Musique, rencontres et opportunites.",org:"EziStud Abidjan"},
-  {id:101,title:"Tournoi foot plage Dakar",cat:"five",ico:"&#9917;",banner:"eb2",poster:null,date:"Dim 6 juillet",heure:"15h00",rawDate:"2026-07-06",ville:"Dakar",adresse:"Plage de Yoff Dakar",lat:14.7645,lng:-17.3660,places:30,inscrits:18,prix:0,weekend:true,pays:"Senegal",desc:"Tournoi de football plage sur la plage de Yoff. Equipes de 5, gratuit !",org:"SportStuds Dakar"},
-  {id:102,title:"Festival étudiant Bruxelles",cat:"soiree",ico:"&#127917;",banner:"eb3",poster:null,date:"Ven 11 juillet",heure:"20h00",rawDate:"2026-07-11",ville:"Bruxelles",adresse:"Place Flagey Bruxelles",lat:50.8279,lng:4.3739,places:200,inscrits:134,prix:5,weekend:false,pays:"Belgique",desc:"Festival culturel etudiant ! Musique live, food trucks et activites. 5 euros symbolique.",org:"EziStud Bruxelles"}
+  {id:1,title:"Pique-nique géant au Champ de Mars",cat:"pique-nique",banner:"eb1",poster:null,date:"Sam 28 juin",heure:"14h00",rawDate:"2026-08-02",ville:"Paris",adresse:"Champ de Mars 75007 Paris",lat:48.8584,lng:2.2945,places:30,inscrits:23,prix:0,weekend:true,pays:"France",desc:"Un grand pique-nique entre amis ! Apporte de quoi manger et boire. Ideal pour rencontrer de nouvelles personnes.",org:"WaOut Community Paris"},
+  {id:2,title:"Five foot — Tournoi étudiant",cat:"five",banner:"eb2",poster:null,date:"Ven 27 juin",heure:"18h30",rawDate:"2026-08-01",ville:"Lyon",adresse:"Complexe sportif Gerland Lyon",lat:45.7282,lng:4.8317,places:12,inscrits:8,prix:3,weekend:false,pays:"France",desc:"Tournoi de five foot ouvert a tous ! Terrain reserve pour 2h, equipes de 5. 3 euros par joueur.",org:"SportStuds Lyon"},
+  {id:3,title:"Soirée ciné en plein air",cat:"cinema",banner:"eb3",poster:null,date:"Sam 28 juin",heure:"21h00",rawDate:"2026-08-02",ville:"Bordeaux",adresse:"Parc de la Mairie Bordeaux",lat:44.8378,lng:-0.5792,places:50,inscrits:34,prix:0,weekend:true,pays:"France",desc:"Cine en plein air dans le parc ! Film annonce le soir meme. Apporte une couverture et des snacks.",org:"CineStud Bordeaux"},
+  {id:4,title:"Brunch du dimanche",cat:"brunch",banner:"eb4",poster:null,date:"Dim 29 juin",heure:"11h00",rawDate:"2026-08-03",ville:"Paris",adresse:"Cafe Marais 75003 Paris",lat:48.8637,lng:2.3611,places:15,inscrits:15,prix:8,weekend:true,pays:"France",desc:"Brunch convivial dans un cafe du Marais. Formule complete a 8 euros. Places tres limitees !",org:"Brunch and Co"},
+  {id:5,title:"Atelier peinture",cat:"atelier",banner:"eb5",poster:null,date:"Mer 2 juillet",heure:"17h00",rawDate:"2026-08-05",ville:"Lille",adresse:"Centre culturel etudiant Lille",lat:50.6292,lng:3.0573,places:12,inscrits:5,prix:5,weekend:false,pays:"France",desc:"Atelier peinture pour tous les niveaux. Materiel fourni. 5 euros pour le materiel.",org:"ArtStuds"},
+  {id:6,title:"Soirée jeux de société",cat:"jeux",banner:"eb6",poster:null,date:"Jeu 3 juillet",heure:"19h00",rawDate:"2026-08-06",ville:"Marseille",adresse:"Bar Le Comptoir Marseille",lat:43.2965,lng:5.3698,places:20,inscrits:11,prix:0,weekend:false,pays:"France",desc:"Grande soiree jeux ! Catan, Uno, Times Up... Tous les jeux sont fournis. Viens seul ou en groupe !",org:"GameNight Marseille"},
+  {id:100,title:"Soirée networking jeunes",cat:"soiree",banner:"eb6",poster:null,date:"Sam 5 juillet",heure:"19h00",rawDate:"2026-07-05",ville:"Abidjan",adresse:"Plateau Abidjan",lat:5.3600,lng:-4.0083,places:80,inscrits:42,prix:0,weekend:true,pays:"Cote Ivoire",desc:"Grande soiree networking pour les jeunes entrepreneurs. Musique, rencontres et opportunites.",org:"EziStud Abidjan"},
+  {id:101,title:"Tournoi foot plage Dakar",cat:"five",banner:"eb2",poster:null,date:"Dim 6 juillet",heure:"15h00",rawDate:"2026-07-06",ville:"Dakar",adresse:"Plage de Yoff Dakar",lat:14.7645,lng:-17.3660,places:30,inscrits:18,prix:0,weekend:true,pays:"Senegal",desc:"Tournoi de football plage sur la plage de Yoff. Equipes de 5, gratuit !",org:"SportStuds Dakar"},
+  {id:102,title:"Festival étudiant Bruxelles",cat:"soiree",banner:"eb3",poster:null,date:"Ven 11 juillet",heure:"20h00",rawDate:"2026-07-11",ville:"Bruxelles",adresse:"Place Flagey Bruxelles",lat:50.8279,lng:4.3739,places:200,inscrits:134,prix:5,weekend:false,pays:"Belgique",desc:"Festival culturel etudiant ! Musique live, food trucks et activites. 5 euros symbolique.",org:"EziStud Bruxelles"}
 ];
 
 var SORTIES = [
-  {id:1,name:"Le Bouillon Chartier",cat:"resto",photo:"https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80",ico:"&#127836;",banner:"sb1",ville:"Paris",adresse:"7 Rue du Faubourg Montmartre 75009 Paris",lat:48.8722,lng:2.3468,hours:{Lun:"11h30-00h00",Mar:"11h30-00h00",Mer:"11h30-00h00",Jeu:"11h30-00h00",Ven:"11h30-00h00",Sam:"11h30-00h00",Dim:"11h30-00h00"},openNow:true,prix:12,priceType:"paid",priceLabel:"Plat des 12",reservation:"https://www.bouillon-chartier.com",desc:"Institution parisienne depuis 1896. Cuisine francaise traditionnelle a prix doux. File d attente souvent longue mais ca vaut le coup !"},
-  {id:2,name:"Escape Hunt Paris",cat:"escape",photo:"https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&q=80",ico:"&#128272;",banner:"sb2",ville:"Paris",adresse:"11 Rue Biot 75017 Paris",lat:48.8838,lng:2.3186,hours:{Lun:"10h00-22h00",Mar:"10h00-22h00",Mer:"10h00-22h00",Jeu:"10h00-22h00",Ven:"10h00-23h00",Sam:"10h00-23h00",Dim:"10h00-22h00"},openNow:true,prix:28,priceType:"paid",priceLabel:"Des 28 par pers",reservation:"https://www.escapehunt.com/fr/paris",desc:"L un des meilleurs escape games de Paris. Salles thematiques, decors immersifs, pour groupes de 2 a 6 personnes. Reservation obligatoire."},
-  {id:3,name:"Musée du Louvre",cat:"musee",photo:"https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=80",ico:"&#127963;",banner:"sb3",ville:"Paris",adresse:"Rue de Rivoli 75001 Paris",lat:48.8606,lng:2.3376,hours:{Lun:"Ferme",Mar:"09h00-18h00",Mer:"09h00-21h45",Jeu:"09h00-18h00",Ven:"09h00-21h45",Sam:"09h00-18h00",Dim:"09h00-18h00"},openNow:true,prix:17,priceType:"paid",priceLabel:"17 euros adulte",reservation:"https://www.louvre.fr/billetterie",desc:"Le plus grand musee du monde. La Joconde, la Venus de Milo... Gratuit pour les moins de 26 ans residant en Europe !"},
-  {id:4,name:"MK2 Bibliothèque",cat:"cinema",photo:"https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=600&q=80",ico:"&#127916;",banner:"sb4",ville:"Paris",adresse:"128 Av de France 75013 Paris",lat:48.8325,lng:2.3755,hours:{Lun:"11h00-23h30",Mar:"11h00-23h30",Mer:"09h30-23h30",Jeu:"11h00-23h30",Ven:"11h00-00h30",Sam:"09h30-00h30",Dim:"09h30-23h30"},openNow:true,prix:8,priceType:"paid",priceLabel:"8 euros etudiant",reservation:"https://www.mk2.com",desc:"Cinema moderne avec 14 salles. Tarif etudiant avantageux, bar et restaurant sur place. Films VO et avant-premieres."},
-  {id:5,name:"Parc des Buttes-Chaumont",cat:"activite",photo:"https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=600&q=80",ico:"&#127795;",banner:"sb3",ville:"Paris",adresse:"1 Rue Botzaris 75019 Paris",lat:48.8800,lng:2.3818,hours:{Lun:"7h00-21h00",Mar:"7h00-21h00",Mer:"7h00-21h00",Jeu:"7h00-21h00",Ven:"7h00-21h00",Sam:"7h00-21h00",Dim:"7h00-21h00"},openNow:true,prix:0,priceType:"free",priceLabel:"Entree gratuite",reservation:null,desc:"Le plus sauvage des grands parcs parisiens. Lac, pelouses, falaises. Parfait pour pique-niquer ou se detendre."},
-  {id:6,name:"Bowling Bellecour",cat:"activite",photo:"https://images.unsplash.com/photo-1612535560800-7b05aa26e5e6?w=600&q=80",ico:"&#127923;",banner:"sb5",ville:"Lyon",adresse:"Place Bellecour 69002 Lyon",lat:45.7578,lng:4.8320,hours:{Lun:"14h00-00h00",Mar:"14h00-00h00",Mer:"12h00-00h00",Jeu:"14h00-00h00",Ven:"14h00-02h00",Sam:"12h00-02h00",Dim:"12h00-00h00"},openNow:false,prix:9,priceType:"paid",priceLabel:"9 euros la partie",reservation:"https://www.bowlinglyonbellecour.fr",desc:"Bowling moderne en plein centre de Lyon. 16 pistes, bar, billard. Ambiance festive garantie !"},
-  {id:7,name:"Mucem Marseille",cat:"musee",photo:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",ico:"&#127963;",banner:"sb6",ville:"Marseille",adresse:"7 Promenade Robert Laffont 13002 Marseille",lat:43.2966,lng:5.3602,hours:{Lun:"Ferme",Mar:"11h00-19h00",Mer:"11h00-19h00",Jeu:"11h00-19h00",Ven:"11h00-21h00",Sam:"11h00-19h00",Dim:"11h00-19h00"},openNow:true,prix:9,priceType:"paid",priceLabel:"9 euros - Gratuit -26 ans vendredi soir",reservation:"https://www.mucem.org",desc:"Architecture iconique face a la mer. Expositions sur les civilisations mediterraneennes. Vue sur le Vieux-Port."},
-  {id:8,name:"La Bocca Trattoria",cat:"resto",photo:"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80",ico:"&#127829;",banner:"sb1",ville:"Lyon",adresse:"15 Rue Merciere 69002 Lyon",lat:45.7615,lng:4.8320,hours:{Lun:"Ferme",Mar:"12h00-14h30",Mer:"12h00-14h30",Jeu:"12h00-14h30",Ven:"12h00-23h00",Sam:"12h00-23h00",Dim:"12h00-22h00"},openNow:true,prix:14,priceType:"paid",priceLabel:"Menu des 14 euros",reservation:null,desc:"Trattoria italienne authentique dans la Presqu ile. Pizzas napolitaines et pates maison. Cadre chaleureux."}
+  {id:1,name:"Le Bouillon Chartier",cat:"resto",photo:"https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80",banner:"sb1",ville:"Paris",adresse:"7 Rue du Faubourg Montmartre 75009 Paris",lat:48.8722,lng:2.3468,hours:{Lun:"11h30-00h00",Mar:"11h30-00h00",Mer:"11h30-00h00",Jeu:"11h30-00h00",Ven:"11h30-00h00",Sam:"11h30-00h00",Dim:"11h30-00h00"},openNow:true,prix:12,priceType:"paid",priceLabel:"Plat des 12",reservation:"https://www.bouillon-chartier.com",desc:"Institution parisienne depuis 1896. Cuisine francaise traditionnelle a prix doux. File d attente souvent longue mais ca vaut le coup !"},
+  {id:2,name:"Escape Hunt Paris",cat:"escape",photo:"https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=600&q=80",banner:"sb2",ville:"Paris",adresse:"11 Rue Biot 75017 Paris",lat:48.8838,lng:2.3186,hours:{Lun:"10h00-22h00",Mar:"10h00-22h00",Mer:"10h00-22h00",Jeu:"10h00-22h00",Ven:"10h00-23h00",Sam:"10h00-23h00",Dim:"10h00-22h00"},openNow:true,prix:28,priceType:"paid",priceLabel:"Des 28 par pers",reservation:"https://www.escapehunt.com/fr/paris",desc:"L un des meilleurs escape games de Paris. Salles thematiques, decors immersifs, pour groupes de 2 a 6 personnes. Reservation obligatoire."},
+  {id:3,name:"Musée du Louvre",cat:"musee",photo:"https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=80",banner:"sb3",ville:"Paris",adresse:"Rue de Rivoli 75001 Paris",lat:48.8606,lng:2.3376,hours:{Lun:"Ferme",Mar:"09h00-18h00",Mer:"09h00-21h45",Jeu:"09h00-18h00",Ven:"09h00-21h45",Sam:"09h00-18h00",Dim:"09h00-18h00"},openNow:true,prix:17,priceType:"paid",priceLabel:"17 euros adulte",reservation:"https://www.louvre.fr/billetterie",desc:"Le plus grand musee du monde. La Joconde, la Venus de Milo... Gratuit pour les moins de 26 ans residant en Europe !"},
+  {id:4,name:"MK2 Bibliothèque",cat:"cinema",photo:"https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=600&q=80",banner:"sb4",ville:"Paris",adresse:"128 Av de France 75013 Paris",lat:48.8325,lng:2.3755,hours:{Lun:"11h00-23h30",Mar:"11h00-23h30",Mer:"09h30-23h30",Jeu:"11h00-23h30",Ven:"11h00-00h30",Sam:"09h30-00h30",Dim:"09h30-23h30"},openNow:true,prix:8,priceType:"paid",priceLabel:"8 euros etudiant",reservation:"https://www.mk2.com",desc:"Cinema moderne avec 14 salles. Tarif etudiant avantageux, bar et restaurant sur place. Films VO et avant-premieres."},
+  {id:5,name:"Parc des Buttes-Chaumont",cat:"activite",photo:"https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=600&q=80",banner:"sb3",ville:"Paris",adresse:"1 Rue Botzaris 75019 Paris",lat:48.8800,lng:2.3818,hours:{Lun:"7h00-21h00",Mar:"7h00-21h00",Mer:"7h00-21h00",Jeu:"7h00-21h00",Ven:"7h00-21h00",Sam:"7h00-21h00",Dim:"7h00-21h00"},openNow:true,prix:0,priceType:"free",priceLabel:"Entree gratuite",reservation:null,desc:"Le plus sauvage des grands parcs parisiens. Lac, pelouses, falaises. Parfait pour pique-niquer ou se detendre."},
+  {id:6,name:"Bowling Bellecour",cat:"activite",photo:"https://images.unsplash.com/photo-1612535560800-7b05aa26e5e6?w=600&q=80",banner:"sb5",ville:"Lyon",adresse:"Place Bellecour 69002 Lyon",lat:45.7578,lng:4.8320,hours:{Lun:"14h00-00h00",Mar:"14h00-00h00",Mer:"12h00-00h00",Jeu:"14h00-00h00",Ven:"14h00-02h00",Sam:"12h00-02h00",Dim:"12h00-00h00"},openNow:false,prix:9,priceType:"paid",priceLabel:"9 euros la partie",reservation:"https://www.bowlinglyonbellecour.fr",desc:"Bowling moderne en plein centre de Lyon. 16 pistes, bar, billard. Ambiance festive garantie !"},
+  {id:7,name:"Mucem Marseille",cat:"musee",photo:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",banner:"sb6",ville:"Marseille",adresse:"7 Promenade Robert Laffont 13002 Marseille",lat:43.2966,lng:5.3602,hours:{Lun:"Ferme",Mar:"11h00-19h00",Mer:"11h00-19h00",Jeu:"11h00-19h00",Ven:"11h00-21h00",Sam:"11h00-19h00",Dim:"11h00-19h00"},openNow:true,prix:9,priceType:"paid",priceLabel:"9 euros - Gratuit -26 ans vendredi soir",reservation:"https://www.mucem.org",desc:"Architecture iconique face a la mer. Expositions sur les civilisations mediterraneennes. Vue sur le Vieux-Port."},
+  {id:8,name:"La Bocca Trattoria",cat:"resto",photo:"https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80",banner:"sb1",ville:"Lyon",adresse:"15 Rue Merciere 69002 Lyon",lat:45.7615,lng:4.8320,hours:{Lun:"Ferme",Mar:"12h00-14h30",Mer:"12h00-14h30",Jeu:"12h00-14h30",Ven:"12h00-23h00",Sam:"12h00-23h00",Dim:"12h00-22h00"},openNow:true,prix:14,priceType:"paid",priceLabel:"Menu des 14 euros",reservation:null,desc:"Trattoria italienne authentique dans la Presqu ile. Pizzas napolitaines et pates maison. Cadre chaleureux."}
 ];
 
 var dispEv = EVENTS.slice();
@@ -1196,7 +1197,7 @@ function renderEv(events) {
   var c = elo("events-container"); if (!c) return;
   c.style.display = "block";
   c.style.width = "100%";
-  if (!events.length) { c.innerHTML = '<div class="empty-state"><div class="es-ico">&#128546;</div><p>'+t('empty')+'</p><small>'+t('emptySub')+'</small></div>'; return; }
+  if (!events.length) { c.innerHTML = '<div class="empty-state"><p>'+t('empty')+'</p><small>'+t('emptySub')+'</small></div>'; return; }
   var h = "";
   for (var i=0;i<events.length;i++) {
     var ev = events[i];
@@ -1220,7 +1221,7 @@ function renderEv(events) {
     h += '<div class="event-body">';
     h += '<div class="ev-top"><span class="'+bc+'">'+bt+'</span>'+sp+'</div>';
     h += '<div class="event-title">'+ev.title+'</div>'+rh;
-    h += '<div class="event-meta"><span class="meta-loc" onclick="event.stopPropagation();openEvMap('+ev.id+')">&#128205; '+ev.ville+'</span><span class="meta-tag"> &middot; '+ev.date+'</span><span class="meta-tag"> &middot; '+ev.heure+'</span></div>';
+    h += '<div class="event-meta"><span class="meta-loc" onclick="event.stopPropagation();openEvMap('+ev.id+')"><svg style="vertical-align:-2px;margin-right:3px" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'+ev.ville+'</span><span class="meta-tag"> &middot; '+ev.date+'</span><span class="meta-tag"> &middot; '+ev.heure+'</span></div>';
     h += '<div class="event-desc">'+ev.desc.substring(0,80)+'...</div>';
     h += '<div class="ev-footer"><span class="org-name">'+ev.org+'</span>'+ab+'</div>';
     h += '</div>';
@@ -1228,6 +1229,12 @@ function renderEv(events) {
   }
   c.innerHTML = h;
   setTimeout(function(){ var els=c.querySelectorAll(".fade-in"); for(var j=0;j<els.length;j++)(function(el,d){setTimeout(function(){el.classList.add("visible");},d);})(els[j],j*60); }, 10);
+}
+
+// Initiale du titre, a la place des emojis (y compris ceux venant de la base)
+function mono(txt) {
+  var c = (txt || "").replace(/^[^A-Za-z0-9\u00C0-\u024F]+/, "").charAt(0);
+  return '<span class="mono">' + (c ? c.toUpperCase() : "W") + '</span>';
 }
 
 function flagFor(pays) {
@@ -1303,8 +1310,8 @@ function openEv(id) {
   if (avg>0) b += '<div class="detail-rating-row"><span class="detail-stars">'+stars(avg)+'</span><span class="detail-rating-num">'+avg+'</span><span class="detail-rating-count">('+rv.length+' '+t('reviewsTitle').toLowerCase()+')</span></div>';
   if (cd&&!cd.passed) b += '<div class="detail-cd"><div class="cd-left">'+t('detailStartsIn')+'</div><div class="cd-units"><div class="cu"><span class="cu-num">'+cd.days+'</span><span class="cu-lbl">'+t('detailDays')+'</span></div><div class="cu"><span class="cu-num">'+cd.hours+'</span><span class="cu-lbl">'+t('detailHours')+'</span></div><div class="cu"><span class="cu-num">'+cd.mins+'</span><span class="cu-lbl">'+t('detailMins')+'</span></div></div></div>';
   b += '<div class="detail-infos"><div class="detail-info"><div class="di-label">'+t('detailDate')+'</div><div class="di-value">'+ev.date+'</div></div><div class="detail-info"><div class="di-label">'+t('detailTime')+'</div><div class="di-value">'+ev.heure+'</div></div><div class="detail-info"><div class="di-label">'+t('detailPrice')+'</div><div class="di-value">'+(ev.prix===0?t('detailFree'):ev.prix+" "+t('detailEuros'))+'</div></div><div class="detail-info"><div class="di-label">'+t('detailPlaces')+'</div><div class="di-value">'+ev.inscrits+"/"+ev.places+'</div></div></div>';
-  b += '<div class="map-trigger" onclick="openEvMap('+id+')"><span class="mt-ico">&#128205;</span><div ' + 'class="mt-body"><div class="mt-title">'+ev.adresse+'</div><div class="mt-sub">'+t('detailMapTrigger')+'</div></div><span class="mt-arr">&#8250;</span></div>';
-  if (w) b += '<div class="weather-block"><div style="display:flex;align-items:center"><span class="wb-ico">&#9728;&#65039;</span><div><div class="wb-title">'+t('detailWeather')+' '+ev.ville+'</div><div class="wb-sub">'+w.desc+'</div></div></div><span class="wb-temp">'+w.temp+'</span></div>';
+  b += '<div class="map-trigger" onclick="openEvMap('+id+')"><span class="mt-ico" style="display:flex;color:#6B0F1A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div ' + 'class="mt-body"><div class="mt-title">'+ev.adresse+'</div><div class="mt-sub">'+t('detailMapTrigger')+'</div></div><span class="mt-arr">&#8250;</span></div>';
+  if (w) b += '<div class="weather-block"><div style="display:flex;align-items:center"><span class="wb-ico" style="display:flex;color:#C9A84C"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span><div><div class="wb-title">'+t('detailWeather')+' '+ev.ville+'</div><div class="wb-sub">'+w.desc+'</div></div></div><span class="wb-temp">'+w.temp+'</span></div>';
   b += '<p class="detail-desc">'+ev.desc+'</p>';
   b += '<div class="spots-bar-wrap"><div class="spots-bar"><div class="spots-fill" style="width:'+pct+'%"></div></div><div class="spots-lbl">'+ev.inscrits+"/"+ev.places+' '+t('profileStatRegistered').toLowerCase()+' - '+pct+'%</div></div>';
   if (ev.prix>0) {
@@ -1344,11 +1351,11 @@ function closeAndPay(id){closeModal("event-modal");setTimeout(function(){openPay
 function openPay(evId) {
   var ev=findEv(evId); if(!ev) return;
   payEvId=evId; selectedPM="card";
-  var b='<div class="pay-ev-summary"><span class="pay-ev-ico">'+ev.ico+'</span><div class="pay-ev-info"><div class="pay-ev-title">'+ev.title+'</div><div class="pay-ev-meta">'+ev.ville+' - '+ev.date+'</div></div><span class="pay-ev-price">'+ev.prix+'</span></div>';
+  var b='<div class="pay-ev-summary"><div class="pay-ev-info"><div class="pay-ev-title">'+ev.title+'</div><div class="pay-ev-meta">'+ev.ville+' - '+ev.date+'</div></div><span class="pay-ev-price">'+ev.prix+'</span></div>';
   b+='<div class="pay-methods">';
-  b+='<div class="pay-method selected" id="pm-card" onclick="selPM(\'card\')"><span class="pm-ico">&#128179;</span><div><div class="pm-name">'+t('payCardTitle')+'</div><div class="pm-sub">'+t('payCardSub')+'</div></div><div class="pm-radio checked" id="radio-card"></div></div>';
-  b+='<div class="pay-method" id="pm-paypal" onclick="selPM(\'paypal\')"><span class="pm-ico">&#128016;</span><div><div class="pm-name">'+t('payPaypalTitle')+'</div><div class="pm-sub">'+t('payPaypalSub')+'</div></div><div class="pm-radio" id="radio-paypal"></div></div>';
-  b+='<div class="pay-method" id="pm-apple" onclick="selPM(\'apple\')"><span class="pm-ico">&#128241;</span><div><div class="pm-name">'+t('payAppleTitle')+'</div><div class="pm-sub">'+t('payAppleSub')+'</div></div><div class="pm-radio" id="radio-apple"></div></div>';
+  b+='<div class="pay-method selected" id="pm-card" onclick="selPM(\'card\')"><span class="pm-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span><div><div class="pm-name">'+t('payCardTitle')+'</div><div class="pm-sub">'+t('payCardSub')+'</div></div><div class="pm-radio checked" id="radio-card"></div></div>';
+  b+='<div class="pay-method" id="pm-paypal" onclick="selPM(\'paypal\')"><span class="pm-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg></span><div><div class="pm-name">'+t('payPaypalTitle')+'</div><div class="pm-sub">'+t('payPaypalSub')+'</div></div><div class="pm-radio" id="radio-paypal"></div></div>';
+  b+='<div class="pay-method" id="pm-apple" onclick="selPM(\'apple\')"><span class="pm-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span><div><div class="pm-name">'+t('payAppleTitle')+'</div><div class="pm-sub">'+t('payAppleSub')+'</div></div><div class="pm-radio" id="radio-apple"></div></div>';
   b+='</div>';
   b+='<div class="pay-card-form show" id="card-form">';
   b+='<input class="pay-input" type="text" placeholder="'+t('payCardNumber')+'" maxlength="19">';
@@ -1502,7 +1509,7 @@ function setMapFilter(f, btn) {
 // --- SORTIES ---
 function renderSorties(so) {
   var c=elo("sorties-container"); if(!c) return;
-  if(!so.length){c.innerHTML='<div class="empty-state"><div class="es-ico">&#128546;</div><p>'+t('empty')+'</p></div>'; return;}
+  if(!so.length){c.innerHTML='<div class="empty-state"><p>'+t('empty')+'</p></div>'; return;}
   var h="";
   for(var i=0;i<so.length;i++){
     var s=so[i];
@@ -1511,7 +1518,7 @@ function renderSorties(so) {
     var opc=s.openNow?"s-open":"s-closed";
     var opt=s.openNow?t('sortieOpen'):t('sortieClosed');
     h+='<div class="sortie-card fade-in" onclick="openSortie('+s.id+')">';
-    h+='<div class="sortie-banner">'+(s.photo?'<img src="'+s.photo+'" style="width:100%;height:100%;object-fit:cover">':'<div class="sortie-emoji '+banner+'">'+ic+'</div>');
+    h+='<div class="sortie-banner">'+(s.photo?'<img src="'+s.photo+'" style="width:100%;height:100%;object-fit:cover">':'<div class="sortie-emoji '+banner+'">'+mono(s.name)+'</div>');
     h+='<span class="sortie-price-badge '+pbc+'">'+s.priceLabel+'</span>';
     h+='<span class="sortie-open-badge '+opc+'">'+opt+'</span></div>';
     h+='<div class="sortie-info"><div class="sortie-name">'+s.name+'</div>';
@@ -1566,10 +1573,10 @@ function openSortie(id) {
   var hrs="";
   var hkeys=Object.keys(s.hours);
   for(var k=0;k<hkeys.length;k++) hrs+='<div class="sortie-hours-row"><strong>'+hkeys[k]+'</strong> : '+s.hours[hkeys[k]]+'</div>';
-  var b=s.photo?'<img class="detail-poster-img" src="'+s.photo+'" alt="'+s.name+'">':'<div class="detail-emoji-banner '+s.banner+'">'+s.ico+'</div>';
+  var b=s.photo?'<img class="detail-poster-img" src="'+s.photo+'" alt="'+s.name+'">':'<div class="detail-emoji-banner '+s.banner+'">'+mono(s.name)+'</div>';
   b+='<div class="detail-title">'+s.name+'</div>';
   b+='<div class="detail-infos"><div class="detail-info"><div class="di-label">'+t('sortieVilleLabel')+'</div><div class="di-value">'+s.ville+'</div></div><div class="detail-info"><div class="di-label">'+t('detailPrice')+'</div><div class="di-value">'+s.priceLabel+'</div></div><div class="detail-info"><div class="di-label">'+t('sortieStatusLabel')+'</div><div class="di-value">'+(s.openNow?t('sortieOpen'):t('sortieClosed'))+'</div></div><div class="detail-info"><div class="di-label">'+t('adminAddress')+'</div><div class="di-value">'+s.adresse.split(",")[0]+'</div></div></div>';
-  b+='<div class="map-trigger" onclick="openSortieMap('+s.id+')"><span class="mt-ico">&#128205;</span><div class="mt-body"><div class="mt-title">'+s.adresse+'</div><div class="mt-sub">'+t('detailMapTrigger')+'</div></div><span class="mt-arr">&#8250;</span></div>';
+  b+='<div class="map-trigger" onclick="openSortieMap('+s.id+')"><span class="mt-ico" style="display:flex;color:#6B0F1A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div class="mt-body"><div class="mt-title">'+s.adresse+'</div><div class="mt-sub">'+t('detailMapTrigger')+'</div></div><span class="mt-arr">&#8250;</span></div>';
   b+='<p class="detail-desc">'+s.desc+'</p>';
   b+='<div class="sortie-hours"><div class="sortie-hours-title">'+t('sortieHoursTitle')+'</div>'+hrs+'</div>';
   if(s.reservation) b+='<a class="sortie-res-btn" href="'+s.reservation+'" target="_blank" style="width:100%;display:block;text-align:center;padding:14px;border-radius:12px;font-size:14px;margin-bottom:10px">'+t('sortieBookOnSite')+'</a>';
@@ -1598,7 +1605,7 @@ function renderMyEvents() {
     var statusClass = isPaid ? 'status-soon' : 'status-soon';
     var statusText = isPaid ? t('myEventsTicket') : t('myEventsRegistered');
     h += '<div class="my-card" onclick="openEv('+ev.id+')" style="cursor:pointer">';
-    h += '<div class="my-img '+ev.banner+'">'+ev.ico+'</div>';
+    h += '<div class="my-img '+ev.banner+'">'+mono(ev.title)+'</div>';
     h += '<div class="my-info"><div class="my-title">'+ev.title+'</div><div class="my-meta">'+ev.ville+' - '+ev.date+' - '+ev.heure+'</div></div>';
     h += '<span class="'+statusClass+'">'+statusText+'</span>';
     h += '</div>';
@@ -1658,10 +1665,10 @@ function approvePending(btn){
   var evId = c.dataset.evid;
   if (supa && evId) {
     supa.from("events").update({status:"approved"}).eq("id", evId).then(function(){
-      c.style.opacity=".4"; c.style.pointerEvents="none"; toast("&#9989; Evenement approuve !");
+      c.style.opacity=".4"; c.style.pointerEvents="none"; toast("Evenement approuve !");
     });
   } else {
-    c.style.opacity=".4"; c.style.pointerEvents="none"; toast("&#9989; Approuve !");
+    c.style.opacity=".4"; c.style.pointerEvents="none"; toast("Approuve !");
   }
 }
 function rejectPending(btn){
@@ -1669,10 +1676,10 @@ function rejectPending(btn){
   var evId = c.dataset.evid;
   if (supa && evId) {
     supa.from("events").update({status:"rejected"}).eq("id", evId).then(function(){
-      c.style.opacity=".4"; c.style.pointerEvents="none"; toast("&#10060; Evenement refuse");
+      c.style.opacity=".4"; c.style.pointerEvents="none"; toast("Evenement refuse");
     });
   } else {
-    c.style.opacity=".4"; c.style.pointerEvents="none"; toast("&#10060; Refuse");
+    c.style.opacity=".4"; c.style.pointerEvents="none"; toast("Refuse");
   }
 }
 
@@ -1722,7 +1729,7 @@ function openAdmin(){
     if (!evs.length) { c.innerHTML='<p style="font-size:12px;color:#0F6E56;text-align:center;padding:12px">'+t('adminNoPending')+'</p>'; return; }
     var h = "";
     evs.forEach(function(ev) {
-      h += '<div class="pending-card" data-evid="'+ev.id+'"><div class="pending-ico">'+ev.ico+'</div><div class="pending-info"><div class="pending-title">'+ev.title+'</div><div class="pending-meta">'+ev.ville+' - '+ev.date+'</div></div><div class="pending-actions"><button class="btn-approve" onclick="approvePending(this)">&#9989;</button><button class="btn-reject" onclick="rejectPending(this)">&#10060;</button></div></div>';
+      h += '<div class="pending-card" data-evid="'+ev.id+'"><div class="pending-ico">'+mono(ev.title)+'</div><div class="pending-info"><div class="pending-title">'+ev.title+'</div><div class="pending-meta">'+ev.ville+' - '+ev.date+'</div></div><div class="pending-actions"><button class="btn-approve" onclick="approvePending(this)">&#10003;</button><button class="btn-reject" onclick="rejectPending(this)">&#10005;</button></div></div>';
     });
     c.innerHTML = h;
   });
@@ -1732,7 +1739,7 @@ function openAdmin(){
     if (!evs.length) { c.innerHTML='<p style="font-size:12px;color:#0F6E56;text-align:center;padding:12px">'+t('adminNoSignaled')+'</p>'; return; }
     var h = "";
     evs.forEach(function(ev) {
-      h += '<div class="pending-card" data-evid="'+ev.id+'"><div class="pending-ico">'+ev.ico+'</div><div class="pending-info"><div class="pending-title">'+ev.title+'</div><div class="pending-meta">'+ev.ville+' - '+ev.signalements+' signalement(s)</div></div><div class="pending-actions"><button class="btn-approve" onclick="approvePending(this)">&#9989;</button><button class="btn-reject" onclick="rejectPending(this)">&#10060;</button></div></div>';
+      h += '<div class="pending-card" data-evid="'+ev.id+'"><div class="pending-ico">'+mono(ev.title)+'</div><div class="pending-info"><div class="pending-title">'+ev.title+'</div><div class="pending-meta">'+ev.ville+' - '+ev.signalements+' signalement(s)</div></div><div class="pending-actions"><button class="btn-approve" onclick="approvePending(this)">&#10003;</button><button class="btn-reject" onclick="rejectPending(this)">&#10005;</button></div></div>';
     });
     c.innerHTML = h;
   });
@@ -1812,7 +1819,7 @@ function updateProfileUI(user) {
     var profEmail = elo("prof-email-display");
     if (profName) profName.textContent = name;
     if (profAvatar) profAvatar.textContent = initials;
-    if (profEmail) profEmail.textContent = "&#128231; " + email;
+    if (profEmail) profEmail.textContent = email;
     // Stats
     var inscrits = Object.keys(registered).length + Object.keys(paid).length;
     var avis = 0;
@@ -1878,6 +1885,10 @@ function showAuthErr(msg) {
   var el = elo("auth-err"); if(el){el.textContent=msg;el.className="auth-error show";}
   var ok = elo("auth-ok"); if(ok) ok.className="auth-success";
 }
+// Erreur reseau (serveur injoignable) vs vraie erreur d'authentification
+function isNetErr(err) {
+  return !!err && (err.name === "AuthRetryableFetchError" || /fetch|network/i.test(err.message||""));
+}
 function showAuthOk(msg) {
   var el = elo("auth-ok"); if(el){el.textContent=msg;el.className="auth-success show";}
   var err = elo("auth-err"); if(err) err.className="auth-error";
@@ -1892,7 +1903,7 @@ async function doLogin() {
   if (btn) { btn.textContent = t('authConnecting'); btn.disabled = true; }
   var res = await supa.auth.signInWithPassword({email:email, password:pass});
   if (res.error) {
-    showAuthErr(t('authErrBadCredentials'));
+    showAuthErr(isNetErr(res.error) ? t('authErrNoService') : t('authErrBadCredentials'));
     if (btn) { btn.textContent = t('authLogin'); btn.disabled = false; }
   } else {
     currentUser = res.data.user;
@@ -1918,7 +1929,7 @@ async function doSignup() {
   if (btn) { btn.textContent = t('authCreating'); btn.disabled = true; }
   var res = await supa.auth.signUp({email:email, password:pass, options:{data:{full_name:name||email.split("@")[0], lang:lang, country:country}}});
   if (res.error) {
-    showAuthErr(t('authErrGeneric') + res.error.message);
+    showAuthErr(isNetErr(res.error) ? t('authErrNoService') : t('authErrGeneric') + res.error.message);
     if (btn) { btn.textContent = t('authSubmitSignup'); btn.disabled = false; }
   } else {
     showAuthOk(t('authSignupOk'));
@@ -2040,7 +2051,7 @@ loadFromSupabase().then(function() { initAuth(); });
 .lang-opt{display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:10px;border:1.5px solid #f0e8e8;background:#fff;font-size:14px;font-weight:600;color:#1a0505;cursor:pointer;text-align:left;transition:all .2s;width:100%}
 .lang-opt.active{border-color:var(--bord);background:#fff9f9;color:var(--bord)}
 .lang-opt:hover:not(.active){background:#f9f0f0}
-.lang-flag{font-size:20px;width:28px;text-align:center;flex-shrink:0}
+.lang-flag{font-size:11px;font-weight:800;color:#6B0F1A;width:28px;text-align:center;flex-shrink:0}
 body.rtl{direction:rtl}
 body.rtl .event-card{flex-direction:row-reverse}
 body.rtl .pm-item{flex-direction:row-reverse}
@@ -2054,15 +2065,15 @@ body.rtl .pm-item{flex-direction:row-reverse}
       <button class="modal-close" onclick="closeModal('lang-modal')">&#10005;</button>
     </div>
     <div style="padding:16px;display:flex;flex-direction:column;gap:8px">
-      <button class="lang-opt active" onclick="setLang('fr',this)"><span class="lang-flag">🇫🇷</span>Français</button>
-      <button class="lang-opt" onclick="setLang('en',this)"><span class="lang-flag">🇬🇧</span>English</button>
-      <button class="lang-opt" onclick="setLang('es',this)"><span class="lang-flag">🇪🇸</span>Español</button>
-      <button class="lang-opt" onclick="setLang('pt',this)"><span class="lang-flag">🇧🇷</span>Português</button>
-      <button class="lang-opt" onclick="setLang('ar',this)"><span class="lang-flag">🇸🇦</span>العربية</button>
-      <button class="lang-opt" onclick="setLang('zh',this)"><span class="lang-flag">🇨🇳</span>中文</button>
-      <button class="lang-opt" onclick="setLang('ru',this)"><span class="lang-flag">🇷🇺</span>Русский</button>
-      <button class="lang-opt" onclick="setLang('hi',this)"><span class="lang-flag">🇮🇳</span>हिन्दी</button>
-      <button class="lang-opt" onclick="setLang('bn',this)"><span class="lang-flag">🇧🇩</span>বাংলা</button>
+      <button class="lang-opt active" onclick="setLang('fr',this)"><span class="lang-flag">FR</span>Français</button>
+      <button class="lang-opt" onclick="setLang('en',this)"><span class="lang-flag">EN</span>English</button>
+      <button class="lang-opt" onclick="setLang('es',this)"><span class="lang-flag">ES</span>Español</button>
+      <button class="lang-opt" onclick="setLang('pt',this)"><span class="lang-flag">PT</span>Português</button>
+      <button class="lang-opt" onclick="setLang('ar',this)"><span class="lang-flag">AR</span>العربية</button>
+      <button class="lang-opt" onclick="setLang('zh',this)"><span class="lang-flag">ZH</span>中文</button>
+      <button class="lang-opt" onclick="setLang('ru',this)"><span class="lang-flag">RU</span>Русский</button>
+      <button class="lang-opt" onclick="setLang('hi',this)"><span class="lang-flag">HI</span>हिन्दी</button>
+      <button class="lang-opt" onclick="setLang('bn',this)"><span class="lang-flag">BN</span>বাংলা</button>
     </div>
   </div>
 </div>
@@ -2124,7 +2135,7 @@ var UI_TEXT = {
       profileGuestTitle:'Bienvenue sur WAOUT',
       profileGuestSub:'Connecte-toi pour découvrir les meilleurs événements près de chez toi.',
       profileLogin:'Se connecter',profileSignup:'Créer un compte',
-      profileMember:'⭐ Membre WAOUT',
+      profileMember:'Membre WAOUT',
       profileStatRegistered:'Inscrits',profileStatReviews:'Avis',profileStatOrganized:'Organisé',
       profileMenuMyEvents:'Mes événements',profileMenuMyEventsSub:'Voir mes inscriptions',
       profileMenuDash:'Tableau de bord',profileMenuDashSub:'Stats et participants',
@@ -2140,7 +2151,7 @@ var UI_TEXT = {
       detailAlreadyRegistered:'Déjà inscrit',detailFull:'Complet',detailRegisterNow:"S'inscrire maintenant",
       detailViewTicket:'Voir mon ticket',
       detailPayAndRegister:function(p){return 'Payer '+p+" euros et s'inscrire";},
-      detailReport:'⚠ Signaler cet événement',
+      detailReport:'Signaler cet événement',
       shareWhatsapp:'WhatsApp',shareInstagram:'Instagram',shareCopy:'Copier',
       reviewsTitle:'Avis',reviewsAdd:'+ Avis',reviewsNone:"Aucun avis pour l'instant.",
       reviewsOutOf:function(n){return 'sur '+n+' avis';},
@@ -2163,8 +2174,8 @@ var UI_TEXT = {
       adminMaxSpots:'Places max',adminOrganizer:'Organisateur',adminOrganizerPh:'Nom / pseudo',
       adminDescription:'Description',adminDescriptionPh:"Décris l'événement...",
       adminSubmit:'Publier',
-      adminPending:'⏳ En attente de validation',adminSignaled:'⚠ Signalés (suspendus)',
-      adminLoading:'Chargement...',adminNoPending:'✅ Aucun événement en attente',adminNoSignaled:'✅ Aucun événement signalé',
+      adminPending:'En attente de validation',adminSignaled:'Signalés (suspendus)',
+      adminLoading:'Chargement...',adminNoPending:'Aucun événement en attente',adminNoSignaled:'Aucun événement signalé',
       authLogin:'Se connecter',authSignup:'Créer un compte',
       authNamePh:'Ton prénom ou pseudo',authLangLabel:'Langue',authCountryLabel:'Pays',
       authEmailPh:'Ton adresse email',authPassPh:'Mot de passe (min 6 caractères)',
@@ -2181,7 +2192,7 @@ var UI_TEXT = {
       authErrBadCredentials:'Email ou mot de passe incorrect',authWelcome:'Bienvenue ! Tu es connecté.',authCreating:'Création...',
       authErrPassLength:'Le mot de passe doit faire au moins 6 caractères',authErrConsent:"Tu dois accepter les conditions d'utilisation pour continuer",
       authErrGeneric:'Erreur : ',authSignupOk:'Compte créé ! Vérifie ta boîte email pour confirmer ton inscription.',
-      authErrNoEmail:"Entre ton email d'abord !",authResetSent:'Email de réinitialisation envoyé !',authLoggedOut:'Tu es déconnecté.',toastFull:'Cet événement est complet !',toastCancelled:'Inscription annulée',toastConfirmed:'Inscription confirmée !',toastLinkCopied:'Lien copié !',toastReviewNeedStars:'Sélectionne une note !',toastReviewThanks:'Merci pour ton avis !',toastPrefsSaved:'Préférences sauvegardées !',toastEventPending:'✅ Événement soumis ! Il sera vérifié avant publication.',toastEventPublished:'Événement publié !',toastFillRequired:'Remplis les champs obligatoires !',toastLoginToPublish:'Connecte-toi pour publier un événement !'},
+      authErrNoEmail:"Entre ton email d'abord !",authResetSent:'Email de réinitialisation envoyé !',authLoggedOut:'Tu es déconnecté.',toastFull:'Cet événement est complet !',toastCancelled:'Inscription annulée',toastConfirmed:'Inscription confirmée !',toastLinkCopied:'Lien copié !',toastReviewNeedStars:'Sélectionne une note !',toastReviewThanks:'Merci pour ton avis !',toastPrefsSaved:'Préférences sauvegardées !',toastEventPending:'Événement soumis ! Il sera vérifié avant publication.',toastEventPublished:'Événement publié !',toastFillRequired:'Remplis les champs obligatoires !',toastLoginToPublish:'Connecte-toi pour publier un événement !'},
   en:{home:'Home',map:'Map',sorties:'Places',myevents:'My events',profile:'Profile',
       upcoming:'Upcoming events',seeall:'See all',free:'FREE',full:'FULL',
       register:'Register',registered:'Registered',pay:'Pay',spots:function(n){return n+' spot'+(n>1?'s':'');},
@@ -2215,7 +2226,7 @@ var UI_TEXT = {
       profileGuestTitle:'Welcome to WAOUT',
       profileGuestSub:'Log in to discover the best events near you.',
       profileLogin:'Log in',profileSignup:'Create account',
-      profileMember:'⭐ WAOUT Member',
+      profileMember:'WAOUT Member',
       profileStatRegistered:'Registered',profileStatReviews:'Reviews',profileStatOrganized:'Organized',
       profileMenuMyEvents:'My events',profileMenuMyEventsSub:'See my registrations',
       profileMenuDash:'Dashboard',profileMenuDashSub:'Stats and participants',
@@ -2231,7 +2242,7 @@ var UI_TEXT = {
       detailAlreadyRegistered:'Already registered',detailFull:'Full',detailRegisterNow:'Register now',
       detailViewTicket:'View my ticket',
       detailPayAndRegister:function(p){return 'Pay '+p+' euros and register';},
-      detailReport:'⚠ Report this event',
+      detailReport:'Report this event',
       shareWhatsapp:'WhatsApp',shareInstagram:'Instagram',shareCopy:'Copy',
       reviewsTitle:'Reviews',reviewsAdd:'+ Review',reviewsNone:'No reviews yet.',
       reviewsOutOf:function(n){return 'out of '+n+' reviews';},
@@ -2254,8 +2265,8 @@ var UI_TEXT = {
       adminMaxSpots:'Max spots',adminOrganizer:'Organizer',adminOrganizerPh:'Name / handle',
       adminDescription:'Description',adminDescriptionPh:'Describe the event...',
       adminSubmit:'Publish',
-      adminPending:'⏳ Pending review',adminSignaled:'⚠ Reported (suspended)',
-      adminLoading:'Loading...',adminNoPending:'✅ No pending events',adminNoSignaled:'✅ No reported events',
+      adminPending:'Pending review',adminSignaled:'Reported (suspended)',
+      adminLoading:'Loading...',adminNoPending:'No pending events',adminNoSignaled:'No reported events',
       authLogin:'Log in',authSignup:'Create account',
       authNamePh:'Your first name or handle',authLangLabel:'Language',authCountryLabel:'Country',
       authEmailPh:'Your email address',authPassPh:'Password (min 6 characters)',
@@ -2272,7 +2283,7 @@ var UI_TEXT = {
       authErrBadCredentials:'Incorrect email or password',authWelcome:"Welcome! You're logged in.",authCreating:'Creating...',
       authErrPassLength:'Password must be at least 6 characters',authErrConsent:'You must accept the terms of use to continue',
       authErrGeneric:'Error: ',authSignupOk:'Account created! Check your email to confirm your registration.',
-      authErrNoEmail:'Enter your email first!',authResetSent:'Reset email sent!',authLoggedOut:'You are logged out.',toastFull:'This event is full!',toastCancelled:'Registration cancelled',toastConfirmed:'Registration confirmed!',toastLinkCopied:'Link copied!',toastReviewNeedStars:'Select a rating!',toastReviewThanks:'Thanks for your review!',toastPrefsSaved:'Preferences saved!',toastEventPending:'✅ Event submitted! It will be reviewed before publishing.',toastEventPublished:'Event published!',toastFillRequired:'Fill in the required fields!',toastLoginToPublish:'Log in to publish an event!'},
+      authErrNoEmail:'Enter your email first!',authResetSent:'Reset email sent!',authLoggedOut:'You are logged out.',toastFull:'This event is full!',toastCancelled:'Registration cancelled',toastConfirmed:'Registration confirmed!',toastLinkCopied:'Link copied!',toastReviewNeedStars:'Select a rating!',toastReviewThanks:'Thanks for your review!',toastPrefsSaved:'Preferences saved!',toastEventPending:'Event submitted! It will be reviewed before publishing.',toastEventPublished:'Event published!',toastFillRequired:'Fill in the required fields!',toastLoginToPublish:'Log in to publish an event!'},
   es:{home:'Inicio',map:'Mapa',sorties:'Lugares',myevents:'Mis eventos',profile:'Perfil',
       upcoming:'Próximos eventos',seeall:'Ver todo',free:'GRATIS',full:'COMPLETO',
       register:'Inscribirse',registered:'Inscrito',pay:'Pagar',spots:function(n){return n+' plaza'+(n>1?'s':'');},
@@ -2306,7 +2317,7 @@ var UI_TEXT = {
       profileGuestTitle:'Bienvenido a WAOUT',
       profileGuestSub:'Inicia sesión para descubrir los mejores eventos cerca de ti.',
       profileLogin:'Iniciar sesión',profileSignup:'Crear cuenta',
-      profileMember:'⭐ Miembro WAOUT',
+      profileMember:'Miembro WAOUT',
       profileStatRegistered:'Inscritos',profileStatReviews:'Reseñas',profileStatOrganized:'Organizados',
       profileMenuMyEvents:'Mis eventos',profileMenuMyEventsSub:'Ver mis inscripciones',
       profileMenuDash:'Panel de control',profileMenuDashSub:'Estadísticas y participantes',
@@ -2322,7 +2333,7 @@ var UI_TEXT = {
       detailAlreadyRegistered:'Ya inscrito',detailFull:'Completo',detailRegisterNow:'Inscribirse ahora',
       detailViewTicket:'Ver mi ticket',
       detailPayAndRegister:function(p){return 'Pagar '+p+' euros e inscribirse';},
-      detailReport:'⚠ Denunciar este evento',
+      detailReport:'Denunciar este evento',
       shareWhatsapp:'WhatsApp',shareInstagram:'Instagram',shareCopy:'Copiar',
       reviewsTitle:'Reseñas',reviewsAdd:'+ Reseña',reviewsNone:'Aún no hay reseñas.',
       reviewsOutOf:function(n){return 'de '+n+' reseñas';},
@@ -2345,8 +2356,8 @@ var UI_TEXT = {
       adminMaxSpots:'Plazas máx.',adminOrganizer:'Organizador',adminOrganizerPh:'Nombre / apodo',
       adminDescription:'Descripción',adminDescriptionPh:'Describe el evento...',
       adminSubmit:'Publicar',
-      adminPending:'⏳ Pendiente de validación',adminSignaled:'⚠ Denunciados (suspendidos)',
-      adminLoading:'Cargando...',adminNoPending:'✅ Ningún evento pendiente',adminNoSignaled:'✅ Ningún evento denunciado',
+      adminPending:'Pendiente de validación',adminSignaled:'Denunciados (suspendidos)',
+      adminLoading:'Cargando...',adminNoPending:'Ningún evento pendiente',adminNoSignaled:'Ningún evento denunciado',
       authLogin:'Iniciar sesión',authSignup:'Crear cuenta',
       authNamePh:'Tu nombre o apodo',authLangLabel:'Idioma',authCountryLabel:'País',
       authEmailPh:'Tu correo electrónico',authPassPh:'Contraseña (mín. 6 caracteres)',
@@ -2363,7 +2374,7 @@ var UI_TEXT = {
       authErrBadCredentials:'Email o contraseña incorrectos',authWelcome:'¡Bienvenido! Has iniciado sesión.',authCreating:'Creando...',
       authErrPassLength:'La contraseña debe tener al menos 6 caracteres',authErrConsent:'Debes aceptar las condiciones de uso para continuar',
       authErrGeneric:'Error: ',authSignupOk:'¡Cuenta creada! Revisa tu correo para confirmar tu inscripción.',
-      authErrNoEmail:'¡Introduce tu email primero!',authResetSent:'¡Email de restablecimiento enviado!',authLoggedOut:'Has cerrado sesión.',toastFull:'¡Este evento está completo!',toastCancelled:'Inscripción cancelada',toastConfirmed:'¡Inscripción confirmada!',toastLinkCopied:'¡Enlace copiado!',toastReviewNeedStars:'¡Selecciona una puntuación!',toastReviewThanks:'¡Gracias por tu reseña!',toastPrefsSaved:'¡Preferencias guardadas!',toastEventPending:'✅ ¡Evento enviado! Será revisado antes de publicarse.',toastEventPublished:'¡Evento publicado!',toastFillRequired:'¡Completa los campos obligatorios!',toastLoginToPublish:'¡Inicia sesión para publicar un evento!'},
+      authErrNoEmail:'¡Introduce tu email primero!',authResetSent:'¡Email de restablecimiento enviado!',authLoggedOut:'Has cerrado sesión.',toastFull:'¡Este evento está completo!',toastCancelled:'Inscripción cancelada',toastConfirmed:'¡Inscripción confirmada!',toastLinkCopied:'¡Enlace copiado!',toastReviewNeedStars:'¡Selecciona una puntuación!',toastReviewThanks:'¡Gracias por tu reseña!',toastPrefsSaved:'¡Preferencias guardadas!',toastEventPending:'¡Evento enviado! Será revisado antes de publicarse.',toastEventPublished:'¡Evento publicado!',toastFillRequired:'¡Completa los campos obligatorios!',toastLoginToPublish:'¡Inicia sesión para publicar un evento!'},
   pt:{home:'Início',map:'Mapa',sorties:'Lugares',myevents:'Meus eventos',profile:'Perfil',
       upcoming:'Próximos eventos',seeall:'Ver tudo',free:'GRÁTIS',full:'LOTADO',
       register:'Inscrever-se',registered:'Inscrito',pay:'Pagar',spots:function(n){return n+' vaga'+(n>1?'s':'');},
@@ -2397,7 +2408,7 @@ var UI_TEXT = {
       profileGuestTitle:'Bem-vindo ao WAOUT',
       profileGuestSub:'Faça login para descobrir os melhores eventos perto de você.',
       profileLogin:'Entrar',profileSignup:'Criar conta',
-      profileMember:'⭐ Membro WAOUT',
+      profileMember:'Membro WAOUT',
       profileStatRegistered:'Inscritos',profileStatReviews:'Avaliações',profileStatOrganized:'Organizados',
       profileMenuMyEvents:'Meus eventos',profileMenuMyEventsSub:'Ver minhas inscrições',
       profileMenuDash:'Painel',profileMenuDashSub:'Estatísticas e participantes',
@@ -2413,7 +2424,7 @@ var UI_TEXT = {
       detailAlreadyRegistered:'Já inscrito',detailFull:'Lotado',detailRegisterNow:'Inscrever-se agora',
       detailViewTicket:'Ver meu ticket',
       detailPayAndRegister:function(p){return 'Pagar '+p+' euros e se inscrever';},
-      detailReport:'⚠ Denunciar este evento',
+      detailReport:'Denunciar este evento',
       shareWhatsapp:'WhatsApp',shareInstagram:'Instagram',shareCopy:'Copiar',
       reviewsTitle:'Avaliações',reviewsAdd:'+ Avaliação',reviewsNone:'Ainda não há avaliações.',
       reviewsOutOf:function(n){return 'de '+n+' avaliações';},
@@ -2436,8 +2447,8 @@ var UI_TEXT = {
       adminMaxSpots:'Vagas máx.',adminOrganizer:'Organizador',adminOrganizerPh:'Nome / apelido',
       adminDescription:'Descrição',adminDescriptionPh:'Descreva o evento...',
       adminSubmit:'Publicar',
-      adminPending:'⏳ Pendente de validação',adminSignaled:'⚠ Denunciados (suspensos)',
-      adminLoading:'Carregando...',adminNoPending:'✅ Nenhum evento pendente',adminNoSignaled:'✅ Nenhum evento denunciado',
+      adminPending:'Pendente de validação',adminSignaled:'Denunciados (suspensos)',
+      adminLoading:'Carregando...',adminNoPending:'Nenhum evento pendente',adminNoSignaled:'Nenhum evento denunciado',
       authLogin:'Entrar',authSignup:'Criar conta',
       authNamePh:'Seu nome ou apelido',authLangLabel:'Idioma',authCountryLabel:'País',
       authEmailPh:'Seu endereço de e-mail',authPassPh:'Senha (mín. 6 caracteres)',
@@ -2454,7 +2465,7 @@ var UI_TEXT = {
       authErrBadCredentials:'Email ou senha incorretos',authWelcome:'Bem-vindo! Você está conectado.',authCreating:'Criando...',
       authErrPassLength:'A senha deve ter pelo menos 6 caracteres',authErrConsent:'Você deve aceitar os termos de uso para continuar',
       authErrGeneric:'Erro: ',authSignupOk:'Conta criada! Verifique seu email para confirmar sua inscrição.',
-      authErrNoEmail:'Digite seu email primeiro!',authResetSent:'Email de redefinição enviado!',authLoggedOut:'Você saiu.',toastFull:'Este evento está lotado!',toastCancelled:'Inscrição cancelada',toastConfirmed:'Inscrição confirmada!',toastLinkCopied:'Link copiado!',toastReviewNeedStars:'Selecione uma nota!',toastReviewThanks:'Obrigado pela sua avaliação!',toastPrefsSaved:'Preferências salvas!',toastEventPending:'✅ Evento enviado! Será revisado antes da publicação.',toastEventPublished:'Evento publicado!',toastFillRequired:'Preencha os campos obrigatórios!',toastLoginToPublish:'Faça login para publicar um evento!'},
+      authErrNoEmail:'Digite seu email primeiro!',authResetSent:'Email de redefinição enviado!',authLoggedOut:'Você saiu.',toastFull:'Este evento está lotado!',toastCancelled:'Inscrição cancelada',toastConfirmed:'Inscrição confirmada!',toastLinkCopied:'Link copiado!',toastReviewNeedStars:'Selecione uma nota!',toastReviewThanks:'Obrigado pela sua avaliação!',toastPrefsSaved:'Preferências salvas!',toastEventPending:'Evento enviado! Será revisado antes da publicação.',toastEventPublished:'Evento publicado!',toastFillRequired:'Preencha os campos obrigatórios!',toastLoginToPublish:'Faça login para publicar um evento!'},
   ar:{home:'الرئيسية',map:'الخريطة',sorties:'الأماكن',myevents:'فعالياتي',profile:'الملف',
       upcoming:'الفعاليات القادمة',seeall:'عرض الكل',free:'مجاني',full:'مكتمل',
       register:'تسجيل',registered:'مسجل',pay:'دفع',spots:function(n){return n+' مكان';},
@@ -2488,7 +2499,7 @@ var UI_TEXT = {
       profileGuestTitle:'مرحبًا بك في WAOUT',
       profileGuestSub:'سجل الدخول لاكتشاف أفضل الفعاليات بالقرب منك.',
       profileLogin:'تسجيل الدخول',profileSignup:'إنشاء حساب',
-      profileMember:'⭐ عضو WAOUT',
+      profileMember:'عضو WAOUT',
       profileStatRegistered:'مسجل',profileStatReviews:'تقييمات',profileStatOrganized:'منظَّمة',
       profileMenuMyEvents:'فعالياتي',profileMenuMyEventsSub:'عرض تسجيلاتي',
       profileMenuDash:'لوحة التحكم',profileMenuDashSub:'الإحصائيات والمشاركون',
@@ -2504,7 +2515,7 @@ var UI_TEXT = {
       detailAlreadyRegistered:'مسجل بالفعل',detailFull:'مكتمل',detailRegisterNow:'سجل الآن',
       detailViewTicket:'عرض تذكرتي',
       detailPayAndRegister:function(p){return 'دفع '+p+' يورو والتسجيل';},
-      detailReport:'⚠ الإبلاغ عن هذه الفعالية',
+      detailReport:'الإبلاغ عن هذه الفعالية',
       shareWhatsapp:'واتساب',shareInstagram:'انستغرام',shareCopy:'نسخ',
       reviewsTitle:'التقييمات',reviewsAdd:'+ تقييم',reviewsNone:'لا توجد تقييمات بعد.',
       reviewsOutOf:function(n){return 'من '+n+' تقييم';},
@@ -2527,8 +2538,8 @@ var UI_TEXT = {
       adminMaxSpots:'الحد الأقصى للأماكن',adminOrganizer:'المنظم',adminOrganizerPh:'الاسم / اللقب',
       adminDescription:'الوصف',adminDescriptionPh:'صف الفعالية...',
       adminSubmit:'نشر',
-      adminPending:'⏳ بانتظار المراجعة',adminSignaled:'⚠ مُبلَّغ عنها (معلَّقة)',
-      adminLoading:'جارٍ التحميل...',adminNoPending:'✅ لا توجد فعاليات بانتظار المراجعة',adminNoSignaled:'✅ لا توجد فعاليات مُبلَّغ عنها',
+      adminPending:'بانتظار المراجعة',adminSignaled:'مُبلَّغ عنها (معلَّقة)',
+      adminLoading:'جارٍ التحميل...',adminNoPending:'لا توجد فعاليات بانتظار المراجعة',adminNoSignaled:'لا توجد فعاليات مُبلَّغ عنها',
       authLogin:'تسجيل الدخول',authSignup:'إنشاء حساب',
       authNamePh:'اسمك الأول أو لقبك',authLangLabel:'اللغة',authCountryLabel:'البلد',
       authEmailPh:'بريدك الإلكتروني',authPassPh:'كلمة المرور (6 أحرف على الأقل)',
@@ -2545,7 +2556,7 @@ var UI_TEXT = {
       authErrBadCredentials:'البريد الإلكتروني أو كلمة المرور غير صحيحة',authWelcome:'مرحبًا! تم تسجيل دخولك.',authCreating:'جارٍ الإنشاء...',
       authErrPassLength:'يجب أن تتكون كلمة المرور من 6 أحرف على الأقل',authErrConsent:'يجب عليك قبول شروط الاستخدام للمتابعة',
       authErrGeneric:'خطأ: ',authSignupOk:'تم إنشاء الحساب! تحقق من بريدك الإلكتروني لتأكيد تسجيلك.',
-      authErrNoEmail:'أدخل بريدك الإلكتروني أولاً!',authResetSent:'تم إرسال بريد إعادة التعيين!',authLoggedOut:'تم تسجيل خروجك.',toastFull:'هذه الفعالية مكتملة!',toastCancelled:'تم إلغاء التسجيل',toastConfirmed:'تم تأكيد التسجيل!',toastLinkCopied:'تم نسخ الرابط!',toastReviewNeedStars:'اختر تقييمًا!',toastReviewThanks:'شكرًا على تقييمك!',toastPrefsSaved:'تم حفظ التفضيلات!',toastEventPending:'✅ تم إرسال الفعالية! ستتم مراجعتها قبل النشر.',toastEventPublished:'تم نشر الفعالية!',toastFillRequired:'يرجى ملء الحقول المطلوبة!',toastLoginToPublish:'سجل الدخول لنشر فعالية!'},
+      authErrNoEmail:'أدخل بريدك الإلكتروني أولاً!',authResetSent:'تم إرسال بريد إعادة التعيين!',authLoggedOut:'تم تسجيل خروجك.',toastFull:'هذه الفعالية مكتملة!',toastCancelled:'تم إلغاء التسجيل',toastConfirmed:'تم تأكيد التسجيل!',toastLinkCopied:'تم نسخ الرابط!',toastReviewNeedStars:'اختر تقييمًا!',toastReviewThanks:'شكرًا على تقييمك!',toastPrefsSaved:'تم حفظ التفضيلات!',toastEventPending:'تم إرسال الفعالية! ستتم مراجعتها قبل النشر.',toastEventPublished:'تم نشر الفعالية!',toastFillRequired:'يرجى ملء الحقول المطلوبة!',toastLoginToPublish:'سجل الدخول لنشر فعالية!'},
   zh:{home:'首页',map:'地图',sorties:'场所',myevents:'我的活动',profile:'个人',
       upcoming:'即将到来的活动',seeall:'查看全部',free:'免费',full:'已满',
       register:'报名',registered:'已报名',pay:'支付',spots:function(n){return n+'个名额';},
@@ -2579,7 +2590,7 @@ var UI_TEXT = {
       profileGuestTitle:'欢迎来到WAOUT',
       profileGuestSub:'登录以发现你身边最好的活动。',
       profileLogin:'登录',profileSignup:'创建账户',
-      profileMember:'⭐ WAOUT会员',
+      profileMember:'WAOUT会员',
       profileStatRegistered:'已报名',profileStatReviews:'评价',profileStatOrganized:'已组织',
       profileMenuMyEvents:'我的活动',profileMenuMyEventsSub:'查看我的报名',
       profileMenuDash:'管理面板',profileMenuDashSub:'统计数据和参与者',
@@ -2595,7 +2606,7 @@ var UI_TEXT = {
       detailAlreadyRegistered:'已报名',detailFull:'已满',detailRegisterNow:'立即报名',
       detailViewTicket:'查看我的票',
       detailPayAndRegister:function(p){return '支付'+p+'欧元并报名';},
-      detailReport:'⚠ 举报此活动',
+      detailReport:'举报此活动',
       shareWhatsapp:'WhatsApp',shareInstagram:'Instagram',shareCopy:'复制',
       reviewsTitle:'评价',reviewsAdd:'+ 评价',reviewsNone:'暂无评价。',
       reviewsOutOf:function(n){return '共'+n+'条评价';},
@@ -2618,8 +2629,8 @@ var UI_TEXT = {
       adminMaxSpots:'最大名额',adminOrganizer:'组织者',adminOrganizerPh:'姓名/昵称',
       adminDescription:'描述',adminDescriptionPh:'描述该活动...',
       adminSubmit:'发布',
-      adminPending:'⏳ 待审核',adminSignaled:'⚠ 被举报（已暂停）',
-      adminLoading:'加载中...',adminNoPending:'✅ 没有待审核的活动',adminNoSignaled:'✅ 没有被举报的活动',
+      adminPending:'待审核',adminSignaled:'被举报（已暂停）',
+      adminLoading:'加载中...',adminNoPending:'没有待审核的活动',adminNoSignaled:'没有被举报的活动',
       authLogin:'登录',authSignup:'创建账户',
       authNamePh:'你的名字或昵称',authLangLabel:'语言',authCountryLabel:'国家',
       authEmailPh:'你的电子邮箱',authPassPh:'密码（至少6个字符）',
@@ -2636,7 +2647,7 @@ var UI_TEXT = {
       authErrBadCredentials:'邮箱或密码错误',authWelcome:'欢迎！你已登录。',authCreating:'创建中...',
       authErrPassLength:'密码至少需要6个字符',authErrConsent:'你必须接受使用条款才能继续',
       authErrGeneric:'错误：',authSignupOk:'账户已创建！请查看邮箱以确认注册。',
-      authErrNoEmail:'请先输入你的邮箱！',authResetSent:'重置邮件已发送！',authLoggedOut:'你已退出登录。',toastFull:'此活动已满员！',toastCancelled:'已取消报名',toastConfirmed:'报名已确认！',toastLinkCopied:'链接已复制！',toastReviewNeedStars:'请选择评分！',toastReviewThanks:'感谢你的评价！',toastPrefsSaved:'偏好已保存！',toastEventPending:'✅ 活动已提交！将在发布前进行审核。',toastEventPublished:'活动已发布！',toastFillRequired:'请填写必填字段！',toastLoginToPublish:'请登录以发布活动！'},
+      authErrNoEmail:'请先输入你的邮箱！',authResetSent:'重置邮件已发送！',authLoggedOut:'你已退出登录。',toastFull:'此活动已满员！',toastCancelled:'已取消报名',toastConfirmed:'报名已确认！',toastLinkCopied:'链接已复制！',toastReviewNeedStars:'请选择评分！',toastReviewThanks:'感谢你的评价！',toastPrefsSaved:'偏好已保存！',toastEventPending:'活动已提交！将在发布前进行审核。',toastEventPublished:'活动已发布！',toastFillRequired:'请填写必填字段！',toastLoginToPublish:'请登录以发布活动！'},
   ru:{home:'Главная',map:'Карта',sorties:'Места',myevents:'Мои события',profile:'Профиль',
       upcoming:'Предстоящие события',seeall:'Смотреть всё',free:'БЕСПЛАТНО',full:'НЕТ МЕСТ',
       register:'Записаться',registered:'Записан',pay:'Оплатить',spots:function(n){return n+' место';},
@@ -2670,7 +2681,7 @@ var UI_TEXT = {
       profileGuestTitle:'Добро пожаловать в WAOUT',
       profileGuestSub:'Войди, чтобы найти лучшие события рядом с тобой.',
       profileLogin:'Войти',profileSignup:'Создать аккаунт',
-      profileMember:'⭐ Участник WAOUT',
+      profileMember:'Участник WAOUT',
       profileStatRegistered:'Записи',profileStatReviews:'Отзывы',profileStatOrganized:'Организовано',
       profileMenuMyEvents:'Мои события',profileMenuMyEventsSub:'Посмотреть мои записи',
       profileMenuDash:'Панель управления',profileMenuDashSub:'Статистика и участники',
@@ -2686,7 +2697,7 @@ var UI_TEXT = {
       detailAlreadyRegistered:'Уже записан',detailFull:'Мест нет',detailRegisterNow:'Записаться сейчас',
       detailViewTicket:'Посмотреть билет',
       detailPayAndRegister:function(p){return 'Оплатить '+p+' евро и записаться';},
-      detailReport:'⚠ Пожаловаться на событие',
+      detailReport:'Пожаловаться на событие',
       shareWhatsapp:'WhatsApp',shareInstagram:'Instagram',shareCopy:'Копировать',
       reviewsTitle:'Отзывы',reviewsAdd:'+ Отзыв',reviewsNone:'Пока нет отзывов.',
       reviewsOutOf:function(n){return 'из '+n+' отзывов';},
@@ -2709,8 +2720,8 @@ var UI_TEXT = {
       adminMaxSpots:'Макс. мест',adminOrganizer:'Организатор',adminOrganizerPh:'Имя / никнейм',
       adminDescription:'Описание',adminDescriptionPh:'Опиши событие...',
       adminSubmit:'Опубликовать',
-      adminPending:'⏳ Ожидает проверки',adminSignaled:'⚠ Пожаловались (приостановлено)',
-      adminLoading:'Загрузка...',adminNoPending:'✅ Нет событий на проверке',adminNoSignaled:'✅ Нет событий с жалобами',
+      adminPending:'Ожидает проверки',adminSignaled:'Пожаловались (приостановлено)',
+      adminLoading:'Загрузка...',adminNoPending:'Нет событий на проверке',adminNoSignaled:'Нет событий с жалобами',
       authLogin:'Войти',authSignup:'Создать аккаунт',
       authNamePh:'Твоё имя или никнейм',authLangLabel:'Язык',authCountryLabel:'Страна',
       authEmailPh:'Твой email',authPassPh:'Пароль (мин. 6 символов)',
@@ -2727,7 +2738,7 @@ var UI_TEXT = {
       authErrBadCredentials:'Неверный email или пароль',authWelcome:'Добро пожаловать! Ты вошёл в систему.',authCreating:'Создание...',
       authErrPassLength:'Пароль должен содержать не менее 6 символов',authErrConsent:'Ты должен принять условия использования, чтобы продолжить',
       authErrGeneric:'Ошибка: ',authSignupOk:'Аккаунт создан! Проверь почту, чтобы подтвердить регистрацию.',
-      authErrNoEmail:'Сначала введи свой email!',authResetSent:'Письмо для сброса пароля отправлено!',authLoggedOut:'Ты вышел из системы.',toastFull:'На это событие нет мест!',toastCancelled:'Запись отменена',toastConfirmed:'Запись подтверждена!',toastLinkCopied:'Ссылка скопирована!',toastReviewNeedStars:'Выбери оценку!',toastReviewThanks:'Спасибо за отзыв!',toastPrefsSaved:'Настройки сохранены!',toastEventPending:'✅ Событие отправлено! Оно будет проверено перед публикацией.',toastEventPublished:'Событие опубликовано!',toastFillRequired:'Заполни обязательные поля!',toastLoginToPublish:'Войди, чтобы опубликовать событие!'},
+      authErrNoEmail:'Сначала введи свой email!',authResetSent:'Письмо для сброса пароля отправлено!',authLoggedOut:'Ты вышел из системы.',toastFull:'На это событие нет мест!',toastCancelled:'Запись отменена',toastConfirmed:'Запись подтверждена!',toastLinkCopied:'Ссылка скопирована!',toastReviewNeedStars:'Выбери оценку!',toastReviewThanks:'Спасибо за отзыв!',toastPrefsSaved:'Настройки сохранены!',toastEventPending:'Событие отправлено! Оно будет проверено перед публикацией.',toastEventPublished:'Событие опубликовано!',toastFillRequired:'Заполни обязательные поля!',toastLoginToPublish:'Войди, чтобы опубликовать событие!'},
   hi:{home:'होम',map:'नक्शा',sorties:'जगह',myevents:'मेरे इवेंट',profile:'प्रोफ़ाइल',
       upcoming:'आने वाले इवेंट',seeall:'सब देखें',free:'मुफ़्त',full:'भरा हुआ',
       register:'पंजीकरण',registered:'पंजीकृत',pay:'भुगतान',spots:function(n){return n+' सीट';},
@@ -2761,7 +2772,7 @@ var UI_TEXT = {
       profileGuestTitle:'WAOUT में आपका स्वागत है',
       profileGuestSub:'अपने आस-पास के सबसे अच्छे इवेंट खोजने के लिए लॉगिन करें।',
       profileLogin:'लॉगिन करें',profileSignup:'खाता बनाएं',
-      profileMember:'⭐ WAOUT सदस्य',
+      profileMember:'WAOUT सदस्य',
       profileStatRegistered:'पंजीकृत',profileStatReviews:'समीक्षाएं',profileStatOrganized:'आयोजित',
       profileMenuMyEvents:'मेरे इवेंट',profileMenuMyEventsSub:'मेरे पंजीकरण देखें',
       profileMenuDash:'डैशबोर्ड',profileMenuDashSub:'आंकड़े और प्रतिभागी',
@@ -2777,7 +2788,7 @@ var UI_TEXT = {
       detailAlreadyRegistered:'पहले से पंजीकृत',detailFull:'भरा हुआ',detailRegisterNow:'अभी पंजीकरण करें',
       detailViewTicket:'मेरा टिकट देखें',
       detailPayAndRegister:function(p){return p+' यूरो का भुगतान करें और पंजीकरण करें';},
-      detailReport:'⚠ इस इवेंट की रिपोर्ट करें',
+      detailReport:'इस इवेंट की रिपोर्ट करें',
       shareWhatsapp:'WhatsApp',shareInstagram:'Instagram',shareCopy:'कॉपी करें',
       reviewsTitle:'समीक्षाएं',reviewsAdd:'+ समीक्षा',reviewsNone:'अभी तक कोई समीक्षा नहीं है।',
       reviewsOutOf:function(n){return n+' समीक्षाओं में से';},
@@ -2800,8 +2811,8 @@ var UI_TEXT = {
       adminMaxSpots:'अधिकतम सीटें',adminOrganizer:'आयोजक',adminOrganizerPh:'नाम / उपनाम',
       adminDescription:'विवरण',adminDescriptionPh:'इवेंट का वर्णन करें...',
       adminSubmit:'प्रकाशित करें',
-      adminPending:'⏳ समीक्षा लंबित',adminSignaled:'⚠ रिपोर्ट किए गए (निलंबित)',
-      adminLoading:'लोड हो रहा है...',adminNoPending:'✅ कोई लंबित इवेंट नहीं',adminNoSignaled:'✅ कोई रिपोर्ट किया गया इवेंट नहीं',
+      adminPending:'समीक्षा लंबित',adminSignaled:'रिपोर्ट किए गए (निलंबित)',
+      adminLoading:'लोड हो रहा है...',adminNoPending:'कोई लंबित इवेंट नहीं',adminNoSignaled:'कोई रिपोर्ट किया गया इवेंट नहीं',
       authLogin:'लॉगिन करें',authSignup:'खाता बनाएं',
       authNamePh:'आपका पहला नाम या उपनाम',authLangLabel:'भाषा',authCountryLabel:'देश',
       authEmailPh:'आपका ईमेल पता',authPassPh:'पासवर्ड (कम से कम 6 अक्षर)',
@@ -2818,7 +2829,7 @@ var UI_TEXT = {
       authErrBadCredentials:'ईमेल या पासवर्ड गलत है',authWelcome:'स्वागत है! आप लॉगिन हो गए हैं।',authCreating:'बनाया जा रहा है...',
       authErrPassLength:'पासवर्ड कम से कम 6 अक्षर का होना चाहिए',authErrConsent:'जारी रखने के लिए आपको उपयोग की शर्तें स्वीकार करनी होंगी',
       authErrGeneric:'त्रुटि: ',authSignupOk:'खाता बन गया! अपना पंजीकरण पुष्ट करने के लिए अपना ईमेल जांचें।',
-      authErrNoEmail:'पहले अपना ईमेल दर्ज करें!',authResetSent:'रीसेट ईमेल भेज दिया गया है!',authLoggedOut:'आप लॉगआउट हो गए हैं।',toastFull:'यह इवेंट भरा हुआ है!',toastCancelled:'पंजीकरण रद्द किया गया',toastConfirmed:'पंजीकरण की पुष्टि हो गई!',toastLinkCopied:'लिंक कॉपी हो गया!',toastReviewNeedStars:'एक रेटिंग चुनें!',toastReviewThanks:'आपकी समीक्षा के लिए धन्यवाद!',toastPrefsSaved:'प्राथमिकताएं सहेजी गईं!',toastEventPending:'✅ इवेंट सबमिट किया गया! प्रकाशन से पहले इसकी समीक्षा की जाएगी।',toastEventPublished:'इवेंट प्रकाशित हुआ!',toastFillRequired:'आवश्यक फ़ील्ड भरें!',toastLoginToPublish:'इवेंट प्रकाशित करने के लिए लॉगिन करें!'},
+      authErrNoEmail:'पहले अपना ईमेल दर्ज करें!',authResetSent:'रीसेट ईमेल भेज दिया गया है!',authLoggedOut:'आप लॉगआउट हो गए हैं।',toastFull:'यह इवेंट भरा हुआ है!',toastCancelled:'पंजीकरण रद्द किया गया',toastConfirmed:'पंजीकरण की पुष्टि हो गई!',toastLinkCopied:'लिंक कॉपी हो गया!',toastReviewNeedStars:'एक रेटिंग चुनें!',toastReviewThanks:'आपकी समीक्षा के लिए धन्यवाद!',toastPrefsSaved:'प्राथमिकताएं सहेजी गईं!',toastEventPending:'इवेंट सबमिट किया गया! प्रकाशन से पहले इसकी समीक्षा की जाएगी।',toastEventPublished:'इवेंट प्रकाशित हुआ!',toastFillRequired:'आवश्यक फ़ील्ड भरें!',toastLoginToPublish:'इवेंट प्रकाशित करने के लिए लॉगिन करें!'},
   bn:{home:'হোম',map:'মানচিত্র',sorties:'স্থান',myevents:'আমার ইভেন্ট',profile:'প্রোফাইল',
       upcoming:'আসন্ন ইভেন্ট',seeall:'সব দেখুন',free:'বিনামূল্যে',full:'পূর্ণ',
       register:'নিবন্ধন',registered:'নিবন্ধিত',pay:'পরিশোধ',spots:function(n){return n+'টি আসন';},
@@ -2852,7 +2863,7 @@ var UI_TEXT = {
       profileGuestTitle:'WAOUT-এ স্বাগতম',
       profileGuestSub:'আপনার কাছাকাছি সেরা ইভেন্টগুলো খুঁজে পেতে লগইন করুন।',
       profileLogin:'লগইন করুন',profileSignup:'অ্যাকাউন্ট তৈরি করুন',
-      profileMember:'⭐ WAOUT সদস্য',
+      profileMember:'WAOUT সদস্য',
       profileStatRegistered:'নিবন্ধিত',profileStatReviews:'রিভিউ',profileStatOrganized:'আয়োজিত',
       profileMenuMyEvents:'আমার ইভেন্ট',profileMenuMyEventsSub:'আমার নিবন্ধন দেখুন',
       profileMenuDash:'ড্যাশবোর্ড',profileMenuDashSub:'পরিসংখ্যান এবং অংশগ্রহণকারী',
@@ -2868,7 +2879,7 @@ var UI_TEXT = {
       detailAlreadyRegistered:'ইতিমধ্যে নিবন্ধিত',detailFull:'পূর্ণ',detailRegisterNow:'এখনই নিবন্ধন করুন',
       detailViewTicket:'আমার টিকিট দেখুন',
       detailPayAndRegister:function(p){return p+' ইউরো পরিশোধ করে নিবন্ধন করুন';},
-      detailReport:'⚠ এই ইভেন্ট রিপোর্ট করুন',
+      detailReport:'এই ইভেন্ট রিপোর্ট করুন',
       shareWhatsapp:'WhatsApp',shareInstagram:'Instagram',shareCopy:'কপি করুন',
       reviewsTitle:'রিভিউ',reviewsAdd:'+ রিভিউ',reviewsNone:'এখনও কোনো রিভিউ নেই।',
       reviewsOutOf:function(n){return n+'টি রিভিউর মধ্যে';},
@@ -2891,8 +2902,8 @@ var UI_TEXT = {
       adminMaxSpots:'সর্বোচ্চ আসন',adminOrganizer:'আয়োজক',adminOrganizerPh:'নাম / ডাকনাম',
       adminDescription:'বিবরণ',adminDescriptionPh:'ইভেন্টটি বর্ণনা করুন...',
       adminSubmit:'প্রকাশ করুন',
-      adminPending:'⏳ পর্যালোচনার অপেক্ষায়',adminSignaled:'⚠ রিপোর্ট করা হয়েছে (স্থগিত)',
-      adminLoading:'লোড হচ্ছে...',adminNoPending:'✅ কোনো অপেক্ষমাণ ইভেন্ট নেই',adminNoSignaled:'✅ কোনো রিপোর্ট করা ইভেন্ট নেই',
+      adminPending:'পর্যালোচনার অপেক্ষায়',adminSignaled:'রিপোর্ট করা হয়েছে (স্থগিত)',
+      adminLoading:'লোড হচ্ছে...',adminNoPending:'কোনো অপেক্ষমাণ ইভেন্ট নেই',adminNoSignaled:'কোনো রিপোর্ট করা ইভেন্ট নেই',
       authLogin:'লগইন করুন',authSignup:'অ্যাকাউন্ট তৈরি করুন',
       authNamePh:'আপনার নাম বা ডাকনাম',authLangLabel:'ভাষা',authCountryLabel:'দেশ',
       authEmailPh:'আপনার ইমেইল ঠিকানা',authPassPh:'পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)',
@@ -2909,7 +2920,7 @@ var UI_TEXT = {
       authErrBadCredentials:'ইমেইল বা পাসওয়ার্ড ভুল',authWelcome:'স্বাগতম! আপনি লগইন করেছেন।',authCreating:'তৈরি হচ্ছে...',
       authErrPassLength:'পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে',authErrConsent:'চালিয়ে যেতে আপনাকে ব্যবহারের শর্তাবলী মেনে নিতে হবে',
       authErrGeneric:'ত্রুটি: ',authSignupOk:'অ্যাকাউন্ট তৈরি হয়েছে! আপনার নিবন্ধন নিশ্চিত করতে ইমেইল চেক করুন।',
-      authErrNoEmail:'প্রথমে আপনার ইমেইল লিখুন!',authResetSent:'রিসেট ইমেইল পাঠানো হয়েছে!',authLoggedOut:'আপনি লগআউট হয়েছেন।',toastFull:'এই ইভেন্টটি পূর্ণ!',toastCancelled:'নিবন্ধন বাতিল করা হয়েছে',toastConfirmed:'নিবন্ধন নিশ্চিত হয়েছে!',toastLinkCopied:'লিংক কপি হয়েছে!',toastReviewNeedStars:'একটি রেটিং বেছে নিন!',toastReviewThanks:'আপনার রিভিউর জন্য ধন্যবাদ!',toastPrefsSaved:'পছন্দসমূহ সংরক্ষিত হয়েছে!',toastEventPending:'✅ ইভেন্ট জমা দেওয়া হয়েছে! প্রকাশের আগে এটি পর্যালোচনা করা হবে।',toastEventPublished:'ইভেন্ট প্রকাশিত হয়েছে!',toastFillRequired:'প্রয়োজনীয় ঘরগুলো পূরণ করুন!',toastLoginToPublish:'ইভেন্ট প্রকাশ করতে লগইন করুন!'}
+      authErrNoEmail:'প্রথমে আপনার ইমেইল লিখুন!',authResetSent:'রিসেট ইমেইল পাঠানো হয়েছে!',authLoggedOut:'আপনি লগআউট হয়েছেন।',toastFull:'এই ইভেন্টটি পূর্ণ!',toastCancelled:'নিবন্ধন বাতিল করা হয়েছে',toastConfirmed:'নিবন্ধন নিশ্চিত হয়েছে!',toastLinkCopied:'লিংক কপি হয়েছে!',toastReviewNeedStars:'একটি রেটিং বেছে নিন!',toastReviewThanks:'আপনার রিভিউর জন্য ধন্যবাদ!',toastPrefsSaved:'পছন্দসমূহ সংরক্ষিত হয়েছে!',toastEventPending:'ইভেন্ট জমা দেওয়া হয়েছে! প্রকাশের আগে এটি পর্যালোচনা করা হবে।',toastEventPublished:'ইভেন্ট প্রকাশিত হয়েছে!',toastFillRequired:'প্রয়োজনীয় ঘরগুলো পূরণ করুন!',toastLoginToPublish:'ইভেন্ট প্রকাশ করতে লগইন করুন!'}
 };
 
 function t(key, arg) {
