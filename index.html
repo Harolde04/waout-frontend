@@ -56,7 +56,7 @@ header{background:#240004!important;padding:4px 16px;position:sticky;top:0;z-ind
 .filter-btn{padding:7px 16px;border-radius:20px;border:1.5px solid #3a1818;background:var(--dark3);font-size:12px;color:#aaa;transition:all .2s;flex-shrink:0;font-weight:500;cursor:pointer}
 .filter-btn.active{background:var(--bord);color:#fff;border-color:var(--bord)}
 .filter-btn:hover:not(.active){border-color:var(--bordl);color:#fff}
-main{padding-bottom:90px;background:#f0f0f0;width:100%;overflow-x:hidden}
+main{padding-bottom:90px;background:transparent;width:100%;overflow-x:hidden}
 .hero-banner{position:relative;overflow:hidden;height:280px;display:flex;align-items:flex-end}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero-fallback{position:absolute;inset:0;background:url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80") center/cover no-repeat;z-index:-1}
@@ -65,9 +65,6 @@ main{padding-bottom:90px;background:#f0f0f0;width:100%;overflow-x:hidden}
 .hero-content h2{font-size:22px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,0.5)}
 .hero-content h2 em{font-style:italic;color:var(--gold)}
 .hero-content p{font-size:12px;color:rgba(255,255,255,.7);margin-bottom:14px}
-.hero-stats{display:flex;gap:20px}
-.hstat-num{font-size:18px;font-weight:900;color:var(--gold)}
-.hstat-lbl{font-size:9px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px}
 .section-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 8px}
 .section-title{font-size:14px;font-weight:800;color:#fff}
 .section-link{font-size:12px;color:#aaa}
@@ -106,6 +103,12 @@ main{padding-bottom:90px;background:#f0f0f0;width:100%;overflow-x:hidden}
 .reg-btn.full{background:#ccc;cursor:not-allowed}
 .pay-btn{background:var(--gold);color:#1a0505;border:none;padding:7px 14px;border-radius:8px;font-size:11px;font-weight:800}
 .empty-state{text-align:center;padding:48px 24px}
+/* Motifs de fond : doux partout, festif dans quelques zones choisies */
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:url("bg-soft.svg") center/cover no-repeat;pointer-events:none}
+.bg-festif{background:#f3eaea url("bg-festif.svg") center/cover no-repeat}
+.festif-banner{height:170px;border-radius:20px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.festif-strip{height:72px;flex-shrink:0}
+.es-art{height:120px;max-width:320px;border-radius:16px;margin:0 auto 16px}
 .empty-state .es-ico{font-size:48px;margin-bottom:12px}
 .empty-state p{font-size:14px;font-weight:700;color:#333;margin-bottom:6px}
 .empty-state small{font-size:12px;color:#aaa}
@@ -401,9 +404,10 @@ main{padding-bottom:90px;background:#f0f0f0;width:100%;overflow-x:hidden}
 .auth-success.show{display:block}
 .user-avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--bord),var(--bordd));display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;flex-shrink:0;border:2px solid rgba(255,255,255,0.3)}
 
-.page{background:#f0f0f0}
-.page.active{display:block!important;width:100%;background:#f0f0f0}
-.section-head{background:#f0f0f0}
+.page{background:transparent}
+.page.active{display:block!important;width:100%;background:transparent}
+.section-head{background:transparent}
+.section-title{color:#1a0505}
 .filters,.filters-row{background:#f0f0f0}
 #pays-bar{background:#f0f0f0}
 .prof-head{background:#240004}
@@ -611,11 +615,6 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
     <div class="hero-content">
       <h2><span data-i18n="heroTitle1">Sors et rencontre</span><br><em data-i18n="heroTitleEm">de nouvelles personnes</em></h2>
       <p data-i18n="heroSub">Les meilleurs evenements et sorties pres de chez toi.</p>
-      <div class="hero-stats">
-        <div class="hstat"><div class="hstat-num" id="s-ev">9</div><div class="hstat-lbl" data-i18n="statEvents">Evenements</div></div>
-        <div class="hstat"><div class="hstat-num" id="s-ins">96</div><div class="hstat-lbl" data-i18n="statMembers">Inscrits</div></div>
-        <div class="hstat"><div class="hstat-num" id="s-vil">7</div><div class="hstat-lbl" data-i18n="statCities">Villes</div></div>
-      </div>
     </div>
   </div>
   <div class="section-head">
@@ -732,7 +731,7 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 </div>
 <div class="page" id="page-profile">
   <div id="prof-content-guest" style="padding:32px 16px;text-align:center">
-    <div style="width:80px;height:80px;border-radius:50%;background:#f0e4e4;color:#6B0F1A;display:flex;align-items:center;justify-content:center;margin:0 auto 16px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+    <div class="bg-festif festif-banner"><div style="width:84px;height:84px;border-radius:50%;background:#fff;color:#6B0F1A;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(74,9,18,.18)"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div></div>
     <div style="font-size:18px;font-weight:900;color:#1a0505;margin-bottom:8px" data-i18n="profileGuestTitle">Bienvenue sur WAOUT</div>
     <div style="font-size:13px;color:#444;margin-bottom:24px;line-height:1.6" data-i18n="profileGuestSub">Connecte-toi pour decouvrir les meilleurs evenements pres de chez toi.</div>
     <button onclick="openAuth('login')" style="width:100%;background:var(--bord);color:#fff;border:none;padding:14px;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;margin-bottom:10px" data-i18n="profileLogin">Se connecter</button>
@@ -841,6 +840,7 @@ header img{background:none!important;mix-blend-mode:normal;border-radius:0;paddi
 <!-- AUTH MODAL -->
 <div class="modal-overlay" id="auth-modal">
   <div class="modal-box">
+    <div class="bg-festif festif-strip"></div>
     <div class="modal-handle"></div>
     <div class="modal-header">
       <span class="modal-title" id="auth-modal-title">Mon compte</span>
@@ -1197,7 +1197,7 @@ function renderEv(events) {
   var c = elo("events-container"); if (!c) return;
   c.style.display = "block";
   c.style.width = "100%";
-  if (!events.length) { c.innerHTML = '<div class="empty-state"><p>'+t('empty')+'</p><small>'+t('emptySub')+'</small></div>'; return; }
+  if (!events.length) { c.innerHTML = '<div class="empty-state"><div class="es-art bg-festif"></div><p>'+t('empty')+'</p><small>'+t('emptySub')+'</small></div>'; return; }
   var h = "";
   for (var i=0;i<events.length;i++) {
     var ev = events[i];
@@ -1258,7 +1258,7 @@ function filterEv() {
     if (CF==="weekend") return ev.weekend;
     return ev.cat===CF;
   });
-  renderEv(dispEv); updateStats();
+  renderEv(dispEv);
 }
 
 function setFilter(f, e) {
@@ -1342,7 +1342,7 @@ function register(id) {
   if(ev.inscrits>=ev.places&&!registered[id]){toast(t('toastFull')); return;}
   if(registered[id]){delete registered[id];ev.inscrits--;toast(t('toastCancelled'));}
   else{registered[id]=true;ev.inscrits++;toast(t('toastConfirmed'));}
-  renderEv(dispEv); updateStats();
+  renderEv(dispEv);
 }
 
 // --- PAYMENT ---
@@ -1383,7 +1383,7 @@ function confirmPay() {
   var ev=findEv(payEvId); if(!ev) return;
   closeModal("pay-modal");
   paid[payEvId]=true; registered[payEvId]=true; ev.inscrits++;
-  renderEv(dispEv); updateStats();
+  renderEv(dispEv);
   setTimeout(function(){showTicket(payEvId);},300);
 }
 
@@ -1509,7 +1509,7 @@ function setMapFilter(f, btn) {
 // --- SORTIES ---
 function renderSorties(so) {
   var c=elo("sorties-container"); if(!c) return;
-  if(!so.length){c.innerHTML='<div class="empty-state"><p>'+t('empty')+'</p></div>'; return;}
+  if(!so.length){c.innerHTML='<div class="empty-state"><div class="es-art bg-festif"></div><p>'+t('empty')+'</p></div>'; return;}
   var h="";
   for(var i=0;i<so.length;i++){
     var s=so[i];
@@ -1647,7 +1647,7 @@ function addEvent() {
   REVIEWS[ev.id]=[];
   EVENTS.unshift(ev);
   dispEv=EVENTS.slice();
-  renderEv(dispEv); updateStats();
+  renderEv(dispEv);
   if(globalMap) renderGPins();
   closeModal("admin-modal");
   // Feedback selon le statut (le trigger auto_moderate définit le statut)
@@ -1758,14 +1758,6 @@ var ovs=document.querySelectorAll(".modal-overlay");
 for(var i=0;i<ovs.length;i++) ovs[i].addEventListener("click",function(e){if(e.target===this) this.classList.remove("open");});
 elo("map-modal").addEventListener("click",function(e){if(e.target===this) closeMapModal();});
 
-// --- STATS ---
-function updateStats(){
-  elo("s-ev").textContent=EVENTS.length;
-  var t=0;for(var i=0;i<EVENTS.length;i++) t+=EVENTS[i].inscrits;
-  elo("s-ins").textContent=t;
-  var v={};for(var i=0;i<EVENTS.length;i++) v[EVENTS[i].ville]=true;
-  elo("s-vil").textContent=Object.keys(v).length;
-}
 
 window.addEventListener("scroll",function(){var b=elo("scroll-top");if(b) b.classList.toggle("show",window.scrollY>300);});
 
@@ -1860,7 +1852,7 @@ function renderAuthModal(tab) {
     b += '</select></div>';
     b += '<div><label style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px">'+t('authCountryLabel')+'</label>';
     b += '<select class="auth-input" id="auth-country" style="padding:10px 8px;background:#fff;cursor:pointer">';
-    b += WAOUT_COUNTRIES.map(function(c){ return '<option>'+c+'</option>'; }).join('');
+    b += WAOUT_COUNTRIES.map(function(c){ return '<option'+(c==='France'?' selected':'')+'>'+c+'</option>'; }).join('');
     b += '</select></div></div>';
   }
   b += '<input class="auth-input" type="email" id="auth-email" placeholder="'+t('authEmailPh')+'" autocomplete="email">';
@@ -1966,7 +1958,7 @@ async function loadFromSupabase() {
   }
   if (!supa) {
     console.log("Supabase non disponible - donnees locales utilisees");
-    renderEv(EVENTS); updateStats(); showPage("home"); return;
+    renderEv(EVENTS); showPage("home"); return;
   }
   try {
     // Charger les events
@@ -2013,7 +2005,6 @@ async function loadFromSupabase() {
     console.log("Erreur Supabase, données locales utilisées:", err);
   }
   renderEv(EVENTS);
-  updateStats();
   showPage("home");
 }
 
